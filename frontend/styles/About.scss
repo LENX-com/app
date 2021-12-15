@@ -1,0 +1,14 @@
+@media screen and (max-width: 767px) {
+  .section-one {
+    padding: 130px 0 190px;
+  }
+  .separator {
+    bottom: -110px;
+    .separator__svg {
+      left: -20%;
+      position: relative;
+      transform: rotate(15deg);
+      width: 140%;
+    }
+  }
+}

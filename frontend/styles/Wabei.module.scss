@@ -1,0 +1,43 @@
+.section {
+    box-shadow: 0 50px 100px -20px RGB(50 50 93 / 25%), 0 30px 60px -30px RGB(0 0 0 / 30%)
+}
+
+@media (min-width: 880px) {
+.SupportSite-BackgroundStripes {
+    position: absolute;
+    top: 250px;
+    right: 0;
+    z-index: -1;
+    transform: skewY(-12deg);
+}
+}
+
+@media (min-width: 880px) {
+.SupportSite-BackgroundStripes-Stripe-1 {
+    width: 60px;
+    background: #393e46;
+    }
+}
+
+@media (min-width: 880px) {
+.SupportSite-BackgroundStripes-Stripe-1, .SupportSite-BackgroundStripes-Stripe-2, .SupportSite-BackgroundStripes-Stripe-3 {
+    height: 80px;
+    margin-left: auto;
+    }
+}
+
+@media (min-width: 880px) {
+.SupportSite-BackgroundStripes-Stripe-2 {
+    width: 240px;
+    background: #00adb5;
+    }
+}
+
+@media (min-width: 880px) {
+.SupportSite-BackgroundStripes-Stripe-3 {
+    width: 120px;
+    border: 2px
+    solid #e3e8ee;
+    border-right: none;
+    }
+}

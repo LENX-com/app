@@ -1,0 +1,17 @@
+@import "src/variables.scss";
+
+.image-card{
+    max-width:150px;
+}
+
+.card{
+    background: $card-background;
+    border-radius:5px;
+    padding:10px;
+    margin:5px;
+}
+
+.card:hover{
+        transform:translateZ(0);
+        box-shadow: $box-shadow-small;
+    }

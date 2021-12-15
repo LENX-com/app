@@ -1,0 +1,9 @@
+wabei.co.uk:443 {
+  tls vialra99@gmail.com
+  root * /srv
+  route {
+    reverse_proxy /api* server:5000
+    try_files {path} {path}/ /index.html
+    file_server
+  }
+}

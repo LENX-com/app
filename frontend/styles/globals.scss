@@ -1,0 +1,181 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import "./variables.scss";
+
+
+body {
+  background: $background-light !important;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Camphor";
+  src: url('../assets/fonts/Camphor/camphor.woff2')
+      format("woff2"),
+    url('../assets/fonts/Camphor/camphor.woff')
+      format("woff"),
+    url('../assets/fonts/Camphor/camphor.ttf')
+      format("truetype"),
+    url('../assets/fonts/Camphor/camphor.svg')
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Camphor", "Open Sans", "Segoe UI", "sans-serif" !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Camphor", "Open Sans", "Segoe UI", "sans-serif" !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+// ::-webkit-scrollbar {
+//   width: 6px !important;
+//   height: 6px !important;
+// }
+
+//UI that changes the color for the scrollbar
+body {
+  ::-webkit-scrollbar {
+    width: 0.7em;
+    height: 0.01em;
+    max-height: 20px!important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #909090;
+    border-radius: 5px;
+    max-height: 20px!important;
+    height: 50%;
+    
+
+  &:hover {
+    background: #cccc;
+  }
+  }
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+  margin-bottom: 10px;
+}
+
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+  margin-top: 10px;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis!important;
+}
+
+.vertical-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//Border Radius for comments and reviews.
+.border-box {
+  border: 1px solid #dddddd !important;
+  border-radius: 12px !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 16px !important;
+  background: white !important;
+  box-shadow: $shadow-product !important;
+  border-radius: 100px;
+  color: $black;
+  opacity: 100!important;
+  padding: 5px 10px !important;
+  z-index:100!important;
+  border: 1px solid rgb(221, 221, 221) !important;
+}
+
+.text {
+  font-size: 14px!important;
+}
+
+button {
+  padding: 5px 12px 7px 12px !important;
+}
+
+.input-feedback {
+  color: red;
+  margin-top: .25rem;
+}
+
+html {
+  height: -webkit-fill-available;
+  /* Allows content to fill the viewport and go beyond the bottom */
+  height: 100%;
+  /* Allows you to scroll below the viewport; default value is visible */
+  overflow-y: scroll;
+  /* To smooth any scrolling behavior */
+  -webkit-overflow-scrolling: touch;
+}
+
+.fill {
+  height: -webkit-fill-available;
+}
+
+.sticky {
+  position: -webkit-sticky !important;
+}
+
+.shadow-separator {
+  box-shadow: inset 0 -1px #e3e8ee !important;
+}
+
+.Center {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     -webkit-transform: translate(-50%, -50%);
+     transform: translate(-50%, -50%);
+}
+
+.review-box {
+    border: 1px solid rgb(221, 221, 221) !important;
+    border-radius: 12px !important;
+    height: 236px !important;
+    padding: 16px !important;
+}
+
+.product .swiper-container-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+        background: #7F7F7F !important;
+        bottom: 10px !important;
+        width: 60px !important;
+        position: absolute !important;
+        right: 20px !important;
+        border-radius: 5px !important;
+        color: white !important;
+        left: auto !important;
+}

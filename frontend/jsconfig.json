@@ -1,0 +1,21 @@
+//jsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/marketplace/*": ["marketplace/*"],
+      "@/containers/*": ["containers/*"],
+      "@/assets/*": ["assets/*"],
+      "@/styles/*": ["styles/*"],
+      "@/utils/*": ["utils/*"],
+      "@/reducers/*": ["redux/reducers/*"],
+      "@/redux/*": ["redux/*"],
+      "@/actions/*": [ "redux/actions/*"],
+      "@/config/*": ["config/*"],
+      "@/context/*": ["context/*"],
+      "@/dashboard/*": [ "dashboard/*"],
+      "@/chat/*": ["chat/*"],
+    }
+  }
+}
