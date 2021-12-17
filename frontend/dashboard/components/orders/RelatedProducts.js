@@ -7,7 +7,7 @@ import { Data } from '../stories/Data'
 const RelatedProducts = () => {
     return (
         <div className="mt-4 mb-4">
-            <SectionTitle> Related Products </SectionTitle>
+            <SectionTitle> Related Services </SectionTitle>
                 <Swiper slidesPerView={2}
                         spaceBetween={20}
                         pagination={{"clickable": true}}

@@ -39,7 +39,7 @@ const RelatedProducts = ( {relatedProduct, product} ) => {
     ] 
 
     return (
-        <Card title="Related products" className="overflow-x-hidden">
+        <Card title="Related services" className="overflow-x-hidden">
             <Swiper
                 spaceBetween={20}
                 slidesPerView={1}
