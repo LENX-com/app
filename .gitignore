@@ -2,5 +2,5 @@
 **/node_modules
 **/.next
 
-/server/config/*
-!/server/config/dev.env
+# /server/config/*
+# !/server/config/dev.env
