@@ -1,7 +1,7 @@
 ### First Stage ###
 FROM node:14-slim AS builder
 
-WORKDIR /usr/src/app
+WORKDIR /usr/app
 
 COPY ./package.json ./
 COPY ./package-lock.json ./
