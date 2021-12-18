@@ -119,7 +119,7 @@ const Product = (props) => {
                 
                 { 
                    !isTabletOrMobile && 
-                   <Card title="Product description">
+                   <Card title="Service description">  
                      <div>
                        { parse(product.description)}
                      </div>

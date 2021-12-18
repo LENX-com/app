@@ -19,7 +19,7 @@ const NavBar = ({children}) => {
   return (
     <Layout>
       <div className="lg:grid lg:grid-cols-8">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 mobile:hidden">
           <div  style={BarStyle} className="overflow-y-scroll pb-3">
             <SidebarContent />
           </div>

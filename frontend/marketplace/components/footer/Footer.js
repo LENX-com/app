@@ -32,12 +32,12 @@ const Footer = () => {
 
 
   return (
-    <>
+    <> 
         { isTabletOrMobile &&
             <div className= {`sticky bottom-0 bg-white dashboard-footer shadow-button lg:hidden block`} style={{zIndex:"999", height: "48px"}}>  
                 <div className="grid grid-cols-3 gap-3 text-Black-medium">
                 <div className="col">
-                    <NavLink href= {`/marketplace`} className="text-Blue font-bold">
+                    <NavLink href= "/marketplace" activeClassName=" text-Blue font-bold">
                         <div className="wrapper text-center"> 
                             <div className="icon-wrapper mt-2 text-xl">
                                 < AiOutlineShop className="mx-auto"/>
@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
             
                 <div className="col">
-                    <NavLink href= {`/user/dashboard`} className="text-Blue font-bold">
+                    <NavLink href= {`/user/dashboard`} activeClassName=" text-Blue font-bold">
                         <div className="wrapper text-center"> 
                             <div className="icon-wrapper mt-2 text-xl">
                                 <BsPerson className="mx-auto" />
