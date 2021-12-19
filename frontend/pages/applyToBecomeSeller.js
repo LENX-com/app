@@ -70,7 +70,7 @@ const ApplyToBecomeSeller = () => {
                     <h1 className="text-Black-text font-bold text-lg my-3"> All good! Your application was sent succesfully</h1>
                 </div>
                 <div className="my-4 text-center">
-                    <p className="text-Black-medium"> You'll be notified of the outcome of your application.
+                    <p className="text-Black-medium"> You will be notified of the outcome of your application.
                          <br />
                          Due to the high volume of application, we can only accept a limited number of appliicants - in order to ensure the high quality of the platform. 
                     </p>
