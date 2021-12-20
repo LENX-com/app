@@ -40,8 +40,11 @@ const Dashboard = () => {
     <>
      {conversations !== undefined && conversations?.length !== 0 ? 
          
-         ( conversations.map(data => (   
-            <div className="py-2 shadow-separator px-3 hover:bg-Grey-dashboard">
+         ( conversations.map( (data, i) => (   
+            <div 
+                className="py-2 shadow-separator px-3 hover:bg-Grey-dashboard"
+                key={i}}    
+            >
               <Link 
                     href= {`/user/dashboard/chat/room/${data._id}`} 
                     className="w-full"

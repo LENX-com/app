@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, Fragment } from "react";
 import CategoryProduct from "@/marketplace/components/product/CategoryProduct";
 import Card from "@/components/Cards/Card";
 import { useSelector, useDispatch } from "react-redux";
@@ -150,7 +150,8 @@ const handleFollow = (profile) => {
                 <SwiperSlide
                   spaceBetween={20}
                   className={`px-3 py-1 m-1 rounded-md cursor-pointer text-center hover:bg-Grey-hover mobile:w-auto ${ data.id === category ? "bg-Grey-hover" : "bg-Grey-dashboard"}`}
-                  onClick= {() => handleCategory(data.id)}      
+                  onClick= {() => handleCategory(data.id)}
+                  key={data.id}      
                 >
                   <span className="text-Black-medium font-bold ml-1 text-center"> {data.name} </span>
                 </SwiperSlide>
@@ -161,7 +162,8 @@ const handleFollow = (profile) => {
                 {filteredCategories && filteredCategories.map( data => 
                   <div 
                     className={`px-3 py-1 rounded-md cursor-pointer text-center hover:bg-Grey-hover mobile:w-auto ${ data.id === category ? "bg-Grey-hover" : "bg-Grey-dashboard"}`}
-                    onClick= {() => handleCategory(data.id)}      
+                    onClick= {() => handleCategory(data.id)}
+                    key={data.id}      
                   >
                     <span className="text-Black-medium font-bold ml-1 text-center"> {data.name} </span>
                   </div>
@@ -172,14 +174,18 @@ const handleFollow = (profile) => {
       <div className="grid mobile:grid-cols-2 gap-4 grid-cols-5 my-4">
         {
             filteredProducts.length  !== 0 ?
-              filteredProducts.map(product => 
-                <CategoryProduct product={product} />
+              filteredProducts.map((product, i) =>
+                <Fragment key={i}>
+                  <CategoryProduct product={product} />
+                </Fragment> 
               )
                 :
 
             products && products.length !== 0 ?
-              products.map(product => 
-                <CategoryProduct product={product} />
+              products.map((product, i) =>
+                <Fragment key={i}> 
+                  <CategoryProduct product={product} />
+                </Fragment>
               )
               :
             <NoResult /> 
@@ -218,7 +224,10 @@ const handleFollow = (profile) => {
         </div>
         <div className={`${!isTabletOrMobile ? "grid grid-cols-5 gap-4" : "flex"} my-3`}>
           {ratings.map( (data, i) =>
-            <div className="px-1"> 
+            <div 
+              className="px-1"
+              key={i}
+            > 
               <div 
                   className= {`mobile:w-auto px-3 mobile:px-2 py-1 rounded-md flex cursor-pointer hover:bg-Grey-hover ${rating === data ? "bg-Grey-hover" : "bg-Grey-dashboard" }`}
                   onClick={() => handleRating(data)}      
@@ -232,16 +241,20 @@ const handleFollow = (profile) => {
       </div>
       {isFiltered && filteredReviews ?
         filteredReviews.length !== 0 ?
-          filteredReviews.map( data => 
-            <ReviewCard review= { data } />   
+          filteredReviews.map( (data, i) =>
+          <Fragment key={i}> 
+            <ReviewCard review= { data } />
+          </Fragment>   
           )
           :
           <NoResult />
           
           :
           reviews && reviews.length !== 0 ? 
-            reviews.map( data => 
-              <ReviewCard review= { data } />   
+            reviews.map( (data, i) =>
+            <Fragment key={i}> 
+              <ReviewCard review= { data } />
+            </Fragment>   
             )
           :
           <NoResult />
@@ -281,8 +294,8 @@ const handleFollow = (profile) => {
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-5 my-5">
-                  {profile.skills.map( data =>
-                  <div>
+                  {profile.skills.map( (data, i) =>
+                  <div key={i}>
                     <div className="px-3 py-2 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer"> 
                       {data.skill}
                     </div>
@@ -460,10 +473,12 @@ const handleFollow = (profile) => {
                 spaceBetween={10}
                 className="mb-3 mt-1"
               >
-                {profile.skills?.map( data =>
+                {profile.skills?.map( (data, i) =>
+                <Fragment key={i}>
                   <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer"> 
                     {data.skill}
                   </SwiperSlide>
+                </Fragment>
                 )}
               </Swiper>
             </div>
@@ -481,7 +496,8 @@ const handleFollow = (profile) => {
                 spaceBetween={10}
                 className="mb-3 mt-1"
               >
-                {profile.locations?.map( data =>
+                {profile.locations?.map( (data, i) =>
+                <Fragment key={i}>
                   <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer">
                     <div className="flex m-auto">
                       <MdLocationOn className="my-auto ml-1 mr-1"/>
@@ -490,6 +506,7 @@ const handleFollow = (profile) => {
                       </span>
                     </div>
                   </SwiperSlide>
+                </Fragment>
                 )}
               </Swiper>
             </div>

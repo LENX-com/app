@@ -138,8 +138,10 @@ const Product = (props) => {
               { !isTabletOrMobile &&
                 <div className="col-span-1">
                   <Card title="Related services">
-                    { fakeRelatedProducts.map( data => (
-                      <div className="my-1 p-3">
+                    { fakeRelatedProducts.map( (data, i) => (
+                      <div className="my-1 p-3"
+                           key={i}
+                      >
                         <ProductCard product= {data} />
                       </div>
                     ))}
