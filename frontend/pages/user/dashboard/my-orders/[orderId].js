@@ -223,16 +223,16 @@ const SingleOrder = ({match}) => {
                     <div className="shadow-separator mb-2 pb-2">
                     <h2 className="mb-1 text-lg font-semibold text-Black-text"> Products </h2>
                     </div>
-                    <table class="">
+                    <table className="">
                     <thead>
                       <tr>
-                        <th class="w-1/2 font-bold text">Products</th>
-                        <th class="w-1/4 font-bold text">Quantity</th>
-                        <th class="w-1/4 font-bold text">Price</th>
+                        <th className="w-1/2 font-bold text">Products</th>
+                        <th className="w-1/4 font-bold text">Quantity</th>
+                        <th className="w-1/4 font-bold text">Price</th>
                       </tr>
                     </thead>
-                  { order[0].products?.map( data => 
-                    <tbody>
+                  { order[0].products?.map( (data, i) => 
+                    <tbody key={i}>
                       <tr>
                         <td className="m-auto border border-Grey-dashboard px-4 py-2 ">
                           <div className="m-auto text-center mobile:text-auto">
@@ -354,8 +354,11 @@ const SingleOrder = ({match}) => {
                     </Button>
                 </div>
                   <div className="grid grid-cols-4 gap-2 my-2 w-3/4">
-                    {order[0].notes.map( data =>
-                      <div className="p-3 rounded-md bg-white text-Black-text text-center relative border-box">
+                    {order[0].notes.map( (data ,i) =>
+                      <div 
+                          className="p-3 rounded-md bg-white text-Black-text text-center relative border-box"
+                          key={i}    
+                      >
                         <div className="my-auto text">
                         {data.text}
                         </div>

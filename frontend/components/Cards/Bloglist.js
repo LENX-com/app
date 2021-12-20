@@ -13,7 +13,7 @@ const Bloglist = () => {
 
                     <div className="flex">
                         <div>
-                            <img src="https://dummyimage.com/84x84" alt="blog author" class="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"/>
+                            <img src="https://dummyimage.com/84x84" alt="blog author" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"/>
                         </div>
                         <div>
                             <h2 className="text-gray-900 text-lg font-medium">Tara Gibson</h2>

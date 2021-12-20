@@ -62,7 +62,10 @@ function MyOrders({ filterdIdlist }) {
                </div>
                :
                orders.map((h, i) => (
-                   <div className="shadow-separator bg-white text-Black-text">
+                   <div 
+                        className="shadow-separator bg-white text-Black-text"
+                        key={i}
+                    >
                    <Disclosure>
                        {({open}) => (
                        <>
@@ -91,16 +94,16 @@ function MyOrders({ filterdIdlist }) {
                            </div>
                        </Disclosure.Button>
                        <Disclosure.Panel className="text-Black-text p-3">
-                           <table class="table-auto">
+                           <table className="table-auto">
                            <thead>
                                <tr>
-                               <th class="w-1/2 font-bold text">Products</th>
-                               <th class="w-1/4 font-bold text">Quantity</th>
-                               <th class="w-1/4 font-bold text">Price</th>
+                               <th className="w-1/2 font-bold text">Products</th>
+                               <th className="w-1/4 font-bold text">Quantity</th>
+                               <th className="w-1/4 font-bold text">Price</th>
                                </tr>
                            </thead>
-                           { h.products.map( data => 
-                           <tbody>
+                           { h.products.map( (data, i) => 
+                           <tbody key={i}>
                                <tr>
                                <td className="m-auto border border-Grey-dashboard px-4 py-2 ">
                                    <div className="m-auto text-center mobile:text-auto">

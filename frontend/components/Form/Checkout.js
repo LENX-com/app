@@ -13,7 +13,7 @@ const Checkout = () => {
                 </form>
 
                 <h4 className="text-base">Shpping Address</h4><br />
-                <div class="flex">
+                <div className="flex">
                     <form action="" className="text-sm">
                         <input type="text" name="name" id="firstname" placeholder="First Name" className="mb-2 w-3/6 border border-gray-300 rounded-md p-3"/>
                         

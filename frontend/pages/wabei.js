@@ -103,9 +103,9 @@ const Wabei = () => {
             </div>
             {/* <!-- begin Separator --> */}
                 <div className="separator mobile:-mt-12 overflow-hidden">  
-                    <svg class="separator__svg" width="100%" height="400" viewBox="0 0 100 100" preserveAspectRatio="none" fill="#222831" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="separator__svg" width="100%" height="400" viewBox="0 0 100 100" preserveAspectRatio="none" fill="#222831" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <path d="M 100 100 V 10 L 0 100"/>
-                    <path d="M 30 73 L 100 18 V 10 Z" stroke-width="0"/>
+                    <path d="M 30 73 L 100 18 V 10 Z" strokeWidth="0"/>
                     </svg>
                 </div>  
             {/* <!-- end Separator --> */}
@@ -182,10 +182,10 @@ const Wabei = () => {
         <div className="relative w-full mx-auto">
 
             { /* strips design  */}
-                <div class="SupportSite-BackgroundStripes z-50">
-                    <div class="SupportSite-BackgroundStripes-Stripe-1" />
-                    <div class="SupportSite-BackgroundStripes-Stripe-2" />
-                    <div class="SupportSite-BackgroundStripes-Stripe-3" />
+                <div className="SupportSite-BackgroundStripes z-50">
+                    <div className="SupportSite-BackgroundStripes-Stripe-1" />
+                    <div className="SupportSite-BackgroundStripes-Stripe-2" />
+                    <div className="SupportSite-BackgroundStripes-Stripe-3" />
                 </div>
             {/*  */}
             <div className="my-4">
