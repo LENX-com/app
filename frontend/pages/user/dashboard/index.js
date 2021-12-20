@@ -43,7 +43,7 @@ const Dashboard = () => {
          ( conversations.map( (data, i) => (   
             <div 
                 className="py-2 shadow-separator px-3 hover:bg-Grey-dashboard"
-                key={i}}    
+                key={i}  
             >
               <Link 
                     href= {`/user/dashboard/chat/room/${data._id}`} 
