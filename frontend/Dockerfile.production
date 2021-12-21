@@ -21,7 +21,12 @@ FROM caddy:2.1.1
 ARG CADDYFILE
 COPY ${CADDYFILE} /etc/caddy/Caddyfile
 
-COPY --from=builder /app/build/ /srv
+# You only need to copy next.config.js if you are NOT using the default configuration
+# COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
 EXPOSE 80
 
