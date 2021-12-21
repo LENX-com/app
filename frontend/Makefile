@@ -16,4 +16,8 @@ build-production:
 	docker build \
 		-t react-app-production:production \
 		-f Dockerfile.production .  
-	docker build --tag nginx-image ./nginx
+	docker build --tag nginx-image ./nginx .
+
+build-nginx: 
+	docker build --tag nginx-image ./nginx .
+
