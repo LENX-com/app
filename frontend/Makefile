@@ -15,9 +15,9 @@ build-local:
 build-production:
 	docker build \
 		-t react-app-production:production \
-		-f Dockerfile.production .  
-	docker build -t nginx-image ./nginx .
+		-f Dockerfile.production \
+		cd nginx && docker build -t nginx-image -f Dockerfile .
 
 build-nginx: 
-	docker build -t nginx-image ./nginx .
+	cd nginx && docker build -t nginx-image -f Dockerfile .
 
