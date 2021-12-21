@@ -5,6 +5,8 @@ WORKDIR /usr/src/app
 COPY ./package.json ./
 COPY ./package-lock.json ./
 
+# Install PM2 globally
+RUN npm install --global pm2
 RUN yarn
 
 COPY . .
