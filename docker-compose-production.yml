@@ -1,16 +1,13 @@
 version: "3"
 services:
-  react-app:
+  react-app: 
+    build: ./
     image: react-app-production:production
-    restart: unless-stopped
-    ports: 
-      - "80:80"
-      - "443:443"
-    volumes:
-      - caddy-data:/data
-      - caddy-config:/config
-    networks:
-      - server
+  nginx-image: 
+    image: nginx-image
+    build: ./nginx
+    ports:
+      - 80:80
   server :
     image: server 
     restart: unless-stopped
