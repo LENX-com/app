@@ -1,40 +1,27 @@
-### First Stage ###
-FROM node:14-slim AS builder
+FROM node:alpine
 
-WORKDIR /app
+# Set working directory
+WORKDIR /usr/app
 
-COPY ./package.json ./
-COPY ./package-lock.json ./
+# Copy "package.json" and "package-lock.json" before other files
+# Utilise Docker cache to save re-installing dependencies if unchanged
+COPY ./package*.json ./
 
-RUN npm install
+# Install dependencies
+RUN npm install --production
 
-COPY . .
+# Copy all files
+COPY ./ ./
 
-ARG BASE_URL
-ENV REACT_APP_BASE_URL=${BASE_URL}
-
+# Build app
 RUN npm run build
 
-### Second Stage ###
-FROM caddy:2.1.1
+# Expose the listening port
+EXPOSE 3000
 
-ARG CADDYFILE
-COPY ${CADDYFILE} /etc/caddy/Caddyfile
+# Run container as non-root (unprivileged) user
+# The "node" user is provided in the Node.js Alpine base image
+USER node
 
-
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-
-# You only need to copy next.config.js if you are NOT using the default configuration
-COPY --from=builder /app/next.config.js ./
-
-COPY --from=builder /app/public ./public 
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
-USER nextjs
-
-EXPOSE 80
-
-EXPOSE 443 
+# Launch app with PM2
+CMD ["node_modules/.bin/next", "start"]
