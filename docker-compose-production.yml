@@ -5,7 +5,7 @@ services:
     image: react-app-production:production
   nginx-image: 
     image: nginx-image
-    build: ./nginx
+    build: ./frontend/nginx
     ports:
       - 80:80
   server :
