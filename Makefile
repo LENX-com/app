@@ -45,3 +45,9 @@ copy-files:
 # when you add firewall rule, have to add SSH on port 22 or it will stop working
 
 # run challenge with cloudflare on flexible, then bump to ful
+
+# Push all changes to github
+push:
+	git add .
+	git commit -m "changes"
+	git push
