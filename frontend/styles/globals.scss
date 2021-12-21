@@ -15,6 +15,41 @@ body {
   padding: 0;
 }
 
+@font-face {
+  font-family: "Camphor";
+  src: url('../assets/fonts/Camphor/camphor.woff2')
+      format("woff2"),
+    url('../assets/fonts/Camphor/camphor.woff')
+      format("woff"),
+    url('../assets/fonts/Camphor/camphor.ttf')
+      format("truetype"),
+    url('../assets/fonts/Camphor/camphor.svg')
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "Camphor", "Open Sans", "Segoe UI", "sans-serif" !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Camphor", "Open Sans", "Segoe UI", "sans-serif" !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
 body {
   ::-webkit-scrollbar {
     width: 0.7em;
@@ -94,6 +129,7 @@ html {
 
   height: 100%;
   overflow-y: scroll;
+  /* To smooth any scrolling behavior */
   -webkit-overflow-scrolling: touch;
 }
 

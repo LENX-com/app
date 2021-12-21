@@ -1,7 +1,7 @@
 import { useState, Fragment, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
-import Link from 'next/Link'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import * as Yup from "yup";
 import Layout from '@/containers/Layout'
