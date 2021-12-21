@@ -2,9 +2,7 @@ import '@/styles/globals.scss'
 import { Provider } from 'react-redux'
 import store from '@/config/store'
 import { SignInProvider } from "@/context/SignInContext";
-
 import { PersistGate } from 'redux-persist/integration/react';
-
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css'
 
@@ -15,7 +13,7 @@ import 'swiper/swiper.min.css'
 import 'swiper/components/navigation/navigation.min.css'
 import 'swiper/components/pagination/pagination.min.css'
 
-
+  
 function MyApp({ Component, pageProps }) {
 
   return (

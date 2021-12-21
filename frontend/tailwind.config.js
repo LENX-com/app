@@ -208,7 +208,7 @@ const colors = require('tailwindcss/colors')
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
       border: 'rgb(0 32 77 / 15%) 0px 3px 8px 0px',
-      product: 'rgb(49 53 59 / 12%) 0px 1px 6px 0px;',
+      product: 'rgb(49 53 59 / 12%) 0px 1px 6px 0px',
     },
     contrast: {
       0: '0',
