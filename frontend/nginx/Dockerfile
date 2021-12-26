@@ -13,7 +13,7 @@ COPY ./client-cert.pem /etc/ssl/client-cert.pem
 
 
 # Expose the listening port
-EXPOSE 8080
+EXPOSE 80
 
 # Launch NGINX
 CMD [ "nginx", "-g", "daemon off;" ]     
