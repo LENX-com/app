@@ -51,3 +51,6 @@ push:
 	git add .
 	git commit -m "changes"
 	git push
+
+build-nginx: 
+	cd frontend && cd nginx && docker build -t nginx-image -f Dockerfile .
