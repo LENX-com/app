@@ -13,6 +13,8 @@ COPY . .
 ARG BASE_URL
 ENV REACT_APP_BASE_URL=${BASE_URL}
 
+RUN npm run start
+
 # RUN yarn build
 
 ### Second Stage ###
