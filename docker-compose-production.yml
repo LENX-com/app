@@ -1,17 +1,18 @@
 version: "3"
 services:
-  react-app:
+  react-app: 
+    build: ./frontend
     image: react-app-production:production
-    restart: unless-stopped
-    ports: 
+    ports:
+      - 3000:3000
+  nginx-image: 
+    image: nginx-image
+    build: ./frontend/nginx
+    ports:
       - "80:80"
       - "443:443"
-      - "3000:3000"
-    volumes:
-      - caddy-data:/data
-      - caddy-config:/config
-    networks:
-      - server
+    depends_on:
+        - react-app 
   server :
     image: server 
     restart: unless-stopped
@@ -19,16 +20,9 @@ services:
       CHOKIDAR_USEPOLLING: "true"
     env_file: ./Server/.env
     ports:
-      - "5000:5000"
+      - "4000:4000"
     networks:
       - server
 networks:
   server:
     driver: bridge
-volumes:
-  mongo-data:
-    driver: local
-  caddy-data:
-    driver: local
-  caddy-config:
-    driver: local 
