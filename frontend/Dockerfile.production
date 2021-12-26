@@ -15,7 +15,7 @@ ENV REACT_APP_BASE_URL=${BASE_URL}
 
 RUN npm run build
 
-RUN npm run start
+# RUN npm run start
 
 
 ### Second Stage ###
