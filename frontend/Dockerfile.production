@@ -1,27 +1,28 @@
-FROM node:14-slim
+### First Stage ###
+FROM node:14-slim AS builder
 
-# Set working directory
-WORKDIR /usr/app
+WORKDIR /usr/src/app
 
-# Copy "package.json" and "package-lock.json" before other files
-# Utilise Docker cache to save re-installing dependencies if unchanged
-COPY ./package*.json ./
+COPY ./package.json ./
+COPY ./package-lock.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy all files
-COPY ./ ./
+COPY . .
 
-# Build app
-RUN npm run build
+ARG BASE_URL
+ENV REACT_APP_BASE_URL=${BASE_URL}
 
-# Expose the listening port
-EXPOSE 3000
+RUN yarn build
 
-# Run container as non-root (unprivileged) user
-# The "node" user is provided in the Node.js Alpine base image
-USER node
+### Second Stage ###
+FROM caddy:2.1.1
 
-# Launch app with PM2
-CMD ["node_modules/.bin/next", "start"]
+ARG CADDYFILE
+COPY ${CADDYFILE} /etc/caddy/Caddyfile
+
+COPY --from=builder /usr/src/app/ /srv
+
+EXPOSE 80
+
+EXPOSE 443 
