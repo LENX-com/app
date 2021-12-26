@@ -9,7 +9,7 @@ services:
     image: nginx-image
     build: ./frontend/nginx
     ports:
-      - 80:80
+      - 80:443
     depends_on:
         - react-app 
   server :
