@@ -21,7 +21,7 @@ FROM caddy:2.1.1
 ARG CADDYFILE
 COPY ${CADDYFILE} /etc/caddy/Caddyfile
 
-COPY --from=builder .. /srv
+COPY --from=builder /usr/src/app/* /srv
 
 EXPOSE 80
 
