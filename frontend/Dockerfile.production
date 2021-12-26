@@ -16,6 +16,8 @@ ENV REACT_APP_BASE_URL=${BASE_URL}
 
 CMD ["node_modules/.bin/next", "start"]
 
+EXPOSE 3000
+
 # RUN npm run start
 
 
