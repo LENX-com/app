@@ -54,3 +54,7 @@ push:
 
 build-nginx: 
 	cd frontend && cd nginx && docker build -t nginx-image -f Dockerfile .
+
+remove-everything: 
+	docker rm -vf $(docker ps -aq)
+	docker rmi -f $(docker images -aq)
