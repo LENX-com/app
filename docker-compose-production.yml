@@ -16,10 +16,12 @@ services:
         - react-app 
         - server
   server :
-    image: server 
-    env_file: ./Server/.env
+    build: ./server
+    image: server
+    restart: on-failure
     ports:
       - "4000:4000"
+    env_file: ./Server/.env
     networks:
       - server
 networks:
