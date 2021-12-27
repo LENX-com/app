@@ -16,7 +16,7 @@ services:
         - react-app 
         - server
   server :
-    build: ./server
+    build: ./Server
     image: server
     restart: on-failure
     ports:
