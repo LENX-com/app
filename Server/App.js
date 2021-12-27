@@ -68,7 +68,7 @@ App.get('/api/config/paypal', (req, res) => {
 App.use(passport.initialize());
 require("./middlewares/jwt")(passport);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const server = http.listen(port, () => {
   console.log(`Server hosted on: http://localhost:${port}`);
