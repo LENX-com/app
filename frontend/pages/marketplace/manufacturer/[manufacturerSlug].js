@@ -293,8 +293,9 @@ const handleFollow = (profile) => {
                     } 
                   </div>
                 </div>
+                { profile.skilss &&
                 <div className="grid grid-cols-4 gap-5 my-5">
-                  {profile.skills.map( (data, i) =>
+                  {profile.skills?.map( (data, i) =>
                   <div key={i}>
                     <div className="px-3 py-2 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer"> 
                       {data.skill}
@@ -302,6 +303,7 @@ const handleFollow = (profile) => {
                   </div>  
                   )}
                </div>
+               }
          
               <div>
               <div className="my-2 pb-3 lg:text-center text-Black-text">
