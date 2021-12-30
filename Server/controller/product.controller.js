@@ -254,8 +254,6 @@ exports.getBrands = async (req, res) => {
     // Check if categories is undefined and remove it from filter 
     Object.keys(filters).forEach(key => filters[key] === undefined ? delete filters[key] : {});
 
-    console.log({...filters})
-
     const user = await User.find({...filters})
     .sort("-createdAt")
     .limit(perPage)
@@ -289,7 +287,8 @@ exports.getBrands = async (req, res) => {
        about: user[i].about,
        rating: rating,
        slug: user[i].slug,
-       categories: user[i].categories
+       categories: user[i].categories,
+       mobile: user[i].mobile,
       })
     }
     

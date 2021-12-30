@@ -15,11 +15,11 @@ const routes = [
     icon: 'ChatIcon',
     name: 'Chat',
   },
-  {
-    path: `${address}/blog`,
-    icon: 'Blog',
-    name: 'Blogs',
-  },
+  // {
+  //   path: `${address}/blog`,
+  //   icon: 'Blog',
+  //   name: 'Blogs',
+  // },
   {
     path: `${address}/wishlist`,
     icon: 'Wishlist',

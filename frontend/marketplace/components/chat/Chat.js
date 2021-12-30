@@ -15,6 +15,8 @@ const Chat = ({receiver}) => {
   const [ error, setError ] = useState(false)
   const dispatch = useDispatch()
 
+  console.log({receiver})
+
 //   useEffect(() => {
 //     socket.current = io("http://localhost:5000");
 //   }, []);
@@ -76,10 +78,27 @@ const Chat = ({receiver}) => {
                         </div>
                     </div> 
                     <div className="sticky bottom-0 border-t-2 border-Grey-border p-2 bg-white w-full">
-                        <div className="grid px-2">
-                            <Button className="bg-Black text-white font-bold text" type="submit "> Send message </Button>
+                        <div className="grid grid-cols-2">
+                            <div className="ml-auto my-auto">
+                            <Button 
+                                className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
+                                >
+                                <a href={`tel:${receiver.mobile}`}>
+                                { receiver.mobile }
+                                </a>
+                            </Button>
+                            </div>
+                            <div className="mr-auto">
+                                <Button
+                                onClick={() => setIsOpen(true)} 
+                                className="bg-Blue text-white flex border-2 border-Blue"
+                                >
+                                <AiFillWechat className="my-auto text-lg mr-2"/>
+                                Chat now
+                                </Button>
+                            </div>
                         </div>
-                    </div>
+                    </div>  
                 </form>
             }
         </>

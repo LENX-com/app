@@ -13,17 +13,17 @@ import Link from 'next/link'
 const banners = [
     {
         title: "Choose what you want",
-        text: "text",
+        text: "Find the right person for your project.",
         image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639073084/istockphoto-1298550035-170667a_esvmii.jpg'
     },
     {
         title: "Know who you are hiring",
-        text: "text",
+        text: "Hire a reliable and trusted professional, with full transparency.",
         image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639076227/photo-1461938337379-4b537cd2db74_gnwhl3.jpg'
     },
     {
         title: "Get the best quality/value",
-        text: "text",
+        text: "Hiring professionals was never easier, cheaper and faster.",
         image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639076011/istockphoto-1333405308-170667a_dlx5re.jpg'
     },
 ]
@@ -68,9 +68,13 @@ const Banner = ({products, isTabletOrMobile}) => {
                                     >
                                         {banners.map( data => 
                                             <SwiperSlide className="h-80 rounded-md w-5/6" style={{background:'#F6F7F8'}}>
-                                                <div className="h-44 p-10">
-                                                    <h2 className="font-bold text-xl text-Black"> {data.title} </h2>
-                                                    <p className="text mt-6"> { data.text } </p>
+                                                <div className="h-44 p-8">
+                                                    <div className="h-1/2">
+                                                        <h2 className="font-bold text-xl text-Black"> {data.title} </h2>
+                                                    </div>
+                                                    <div className="h-1/2">
+                                                        <p className="text mt-4"> { data.text } </p>
+                                                    </div>
                                                 </div>
                                                 <section 
                                                     className="bg-cover bg-center h-36 w-full rounded-b-md" 

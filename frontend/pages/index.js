@@ -4,6 +4,7 @@ import Banner from '@/marketplace/components/banner/Banner';
 import NameSlider from '@/marketplace/components/home/NameSlider';
 // import StoresHome from '@/marketplace/components/home/StoresHome';
 import LinkToProducts from '@/marketplace/components/home/LinkToProducts';
+import { NextSeo } from 'next-seo';
 import HowItWorks from '@/marketplace/components/home/HowItWorks'
 import BannerBotom from '@/marketplace/components/home/BannerBottom'
 import { useMediaQuery } from 'react-responsive'
@@ -35,6 +36,30 @@ const Home = () => {
     }, [])
     
     return (
+        <>
+        <NextSeo
+         title="Wabei"
+         openGraph={{
+             title: 'Wabei',
+             description: 'Wabei helps you find reliable professionals',
+             openGraph: {
+             type: 'website',
+             locale: 'en_IE',
+             url: 'https://www.wabei.co.uk',
+             title: 'Next.js Seo',
+             description: 'Wabei is the marketplace to find profesionals',
+             image:
+                 'https://prismic-io.s3.amazonaws.com/gary-blog%2F3297f290-a885-4cc6-9b19-3235e3026646_default.jpg',
+             site_name: 'wabei.co.uk',
+             imageWidth: 1200,
+             imageHeight: 1200
+             },
+             twitter: {
+             handle: '@wabei',
+             cardType: 'summary_large_image'
+             }
+         }}
+         />
         <Layout>
             <div className="relative"> 
                  <main className="lg:w-5/6 m-auto pb-12">
@@ -53,6 +78,7 @@ const Home = () => {
                 </main>
             </div>
         </Layout>
+        </>
     )
 };
 
