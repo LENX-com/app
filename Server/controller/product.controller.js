@@ -164,10 +164,6 @@ exports.getProductBySlug = async (req, res) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug })
     .populate(
-      "category",
-      "_id name"
-    )
-    .populate(
       "author"
     );
 
@@ -176,7 +172,7 @@ exports.getProductBySlug = async (req, res) => {
     }
     return res.status(200).json({ data: product });
   } catch (error) {
-    console.log(error);
+    console.log(error);  
     return res.status(500).json({ error: error });
   }
 };

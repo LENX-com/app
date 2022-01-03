@@ -108,7 +108,7 @@ const Banner = ({products, isTabletOrMobile}) => {
                                 },
                             }}
                         >
-                        { products && products.map( data => (
+                        { products && products.slice(0, 6).map( data => (
                             <SwiperSlide className="shadow-product rounded-md m-2 h-28 mobile:w-5/6">
                                 <div className="flex h-full">
                                     <div className="w-1/3 h-full bg-cover bg-center rounded-tl-md rounded-bl-md mobile:w-2/4" style = {{background: `url("${data.photo[0].url}")`}}/>

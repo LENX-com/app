@@ -75,7 +75,7 @@ const Home = () => {
                         <LinkToProducts categories = {categories} products = {products} isTabletOrMobile ={ isTabletOrMobile }/>
                     }
                     <BannerBotom /> 
-                </main>
+                </main>  
             </div>
         </Layout>
         </>

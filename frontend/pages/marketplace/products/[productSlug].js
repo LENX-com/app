@@ -10,7 +10,7 @@ import Card from '@/components/Cards/Card'
 import Layout from '@/containers/Layout'
 import SignInPop from '@/marketplace/components/auth/SignInPop'
 import SectionTitle from '@/components/Typography/SectionTitle'
-import { getProduct, getProductReviews } from "@/redux/actions/productAction";
+import { getProduct, getProductReviews, getProductByCategory } from "@/redux/actions/productAction";
 import Profile from '@/marketplace/components/profile/Profile'
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from 'next/router'
@@ -24,55 +24,27 @@ const Product = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
-  const [relatedProduct, setRelatedProduct] = useState([]);
   const [error, setError] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [ isOpen, setIsOpen ] = useState(false)
   const [ content, setContent ] = useState("") 
-  const [ isOpenSign, setIsOpenSign ] = useState(false)
   const { productSlug } = router.query
+
+  console.log(product)
   
 
   //changed api endpoint to redux
   useEffect(() => {  ;
     dispatch(getProduct(productSlug));
   }, [props, dispatch, productSlug]);
-  
-    const { toggleSidebar } = useContext(SignInContext)
 
-    const fakeRelatedProducts = [
-        {
-            name:"Car",
-            photo:"https://sc04.alicdn.com/kf/U8e44807a809f41cda1d93b2781e935adK.jpg",
-            _id:"325235235",
-            price: 22,
-        },
-        {
-            name:" Red ",
-            photo:"https://sc04.alicdn.com/kf/U8e44807a809f41cda1d93b2781e935adK.jpg",
-            _id:"325235235",
-            price: 22,
-        },
-        {
-            name:" Screen ",
-            photo:"https://sc04.alicdn.com/kf/U8e44807a809f41cda1d93b2781e935adK.jpg",
-            _id:"325235235",
-            price: 22,
-        },
-        {
-            name:" Tabasco",
-            photo:"https://sc04.alicdn.com/kf/U8e44807a809f41cda1d93b2781e935adK.jpg",
-            _id:"325235235",
-            price: 22,
-        },
-        {
-            name:" Wallet",
-            photo:"https://sc04.alicdn.com/kf/U8e44807a809f41cda1d93b2781e935adK.jpg",
-            _id:"325235235",
-            price: 22,
-        },
-    ] 
+  useEffect(() => {
+    dispatch(getProductByCategory(product.category))
+  }, [dispatch, product])
+  
+    const { toggleSidebar } = useContext(SignInContext)  
+ 
 
     const handleProfile = (e) => {
       e.preventDefault();
@@ -133,7 +105,7 @@ const Product = (props) => {
                   <RelatedProducts  relatedProduct= {relatedProduct}/>  
                 } 
               </div>
-
+  
               
               { !isTabletOrMobile &&
                 <div className="col-span-1">

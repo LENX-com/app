@@ -35,22 +35,22 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
   const categories = [
      {
         icon: <Carpenter className="w-7 h-7"/>,
-        link: "/marketplace/category/carpenter",
+        link: "/marketplace?search=&category=61b8fb54aa811f3180b0867a",
         name: "Carpenter"
       },
     {
         icon: <Plumber className="w-7 h-7"/>,
-        link: "/marketplace/category/plumber",
+        link: "/marketplace?search=&category=61d3000f5e525e607ccef250",
         name:"Plumber"
     },
     {
         icon: <Electrician className="w-7 h-7"/>,
-        link: "/marketplace/category/electrician",
+        link: "/marketplace?search=&category=61d300535e525e607ccef253",
         name:"Electrician"
     },
     {
         icon: <Handyman className="w-7 h-7"/>,
-        link: "/marketplace/category/handyman",
+        link: "/marketplace?search=&category=61d301b35e525e607ccef256",
         name:"Handyman"
     },
 ]
@@ -195,7 +195,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link href= {'/marketplace/stores'}
+                        <Link href= {'/blogs'}
                               onClick={() => setIsOpen(false)}
                         >
                             <div className="flex py-3">
@@ -228,7 +228,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                 </>
                     ) : (
                     <>
-                         <Link href= {'/user/dashboard/settings'}
+                         <Link href= {'/user/dashboard/profile'}
                               onClick={() => setIsOpen(false)}
                         >
                             <div className="flex py-3">
