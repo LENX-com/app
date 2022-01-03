@@ -24,7 +24,8 @@ const Product = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
-  const relatedProduct = useSelector((state) => state.product.products.products);
+  const relatedProduct = useSelector((state) => state.product.productsByCategory);
+  const { productByCategory } = useSelector((state) => state.product);
   const [error, setError] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -33,7 +34,7 @@ const Product = (props) => {
   const { productSlug } = router.query
 
   //changed api endpoint to redux
-  useEffect(() => {  ;
+  useEffect(() => {
     dispatch(getProduct(productSlug));
   }, [props, dispatch, productSlug]);
 
@@ -42,10 +43,9 @@ const Product = (props) => {
       dispatch(getProductByCategory(product.category))
     }
   }, [dispatch, product])
-  
+
     const { toggleSidebar } = useContext(SignInContext)  
  
-
     const handleProfile = (e) => {
       e.preventDefault();
       setIsOpen(true)

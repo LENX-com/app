@@ -1,7 +1,8 @@
 const initialState = {
   products: [],
+  productsByCategory: [],
   productsBySell: [],
-  productsByArrival: [],
+  productsByArrival: [],  
   productsByFilter: [],
   productsSearched: [],
   product: null,

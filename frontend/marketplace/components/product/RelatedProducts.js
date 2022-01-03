@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '../../../components/Cards/Card'
-import ProductCard from '../product/ProductCard'
+import CategoryProduct from "@/marketplace/components/product/CategoryProduct";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 const RelatedProducts = ( {relatedProduct, product} ) => {
@@ -15,7 +15,7 @@ const RelatedProducts = ( {relatedProduct, product} ) => {
             >
                 {relatedProduct && relatedProduct.map( data => (
                     <SwiperSlide className="p-2 w-9/12">
-                        <ProductCard  product= {data} />
+                        <CategoryProduct  product= {data} />
                     </SwiperSlide>
                 ))}
             </Swiper>
