@@ -47,7 +47,7 @@ export  const getBrands = (page= 0 , params) => async (dispatch) => {
     dispatch({  
       type: "PRODUCT_ERROR",
     });
-  }
+  }  
 };
 
 // all products

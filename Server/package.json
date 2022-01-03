@@ -36,7 +36,7 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "start": "nodemon App.js"
+    "start": "pm2 start App.js"
   },
   "eslintConfig": {
     "extends": [

@@ -268,12 +268,12 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link href= {'/'}
+                        <div href= {'/'}
                               onClick={() =>
                                signout(() => {
                                    Router.push('/')
                                    dispatch ({
-                                       type: "LOGOUT",
+                                       type: "LOGOUT",  
                                        payload: null
                                    })
                                })
@@ -285,7 +285,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                     <h2 className="text ml-2 font-bold text-Black-text my-auto"> Sign Out </h2>
                                 </div>
                             </div>
-                        </Link>
+                        </div>
                     </>
                 )}
                 </div>
