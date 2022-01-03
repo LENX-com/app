@@ -38,7 +38,9 @@ const Product = (props) => {
   }, [props, dispatch, productSlug]);
 
   useEffect(() => {
-    dispatch(getProductByCategory(product.category))
+    if(product){
+      dispatch(getProductByCategory(product.category))
+    }
   }, [dispatch, product])
   
     const { toggleSidebar } = useContext(SignInContext)  
