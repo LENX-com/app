@@ -24,6 +24,7 @@ const Product = (props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
+  const relatedProduct = useSelector((state) => state.product.products);
   const [error, setError] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -110,7 +111,7 @@ const Product = (props) => {
               { !isTabletOrMobile &&
                 <div className="col-span-1">
                   <Card title="Related services">
-                    { fakeRelatedProducts.map( (data, i) => (
+                    { relatedProduct.map( (data, i) => (
                       <div className="my-1 p-3"
                            key={i}
                       >
