@@ -25,7 +25,9 @@ import { AiOutlineHome,
           AiOutlineCrown, 
           AiOutlineDollarCircle, 
           AiOutlineDashboard, 
-          AiOutlineMenu }  from "react-icons/ai"
+          AiOutlineMenu,
+          AiOutlineMessage 
+      }  from "react-icons/ai"
 import axios from 'axios'
 import moment from 'moment'
 import { useMediaQuery } from 'react-responsive'
@@ -292,12 +294,12 @@ export default function Header() {
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
                         </DropdownItem>
                         <DropdownItem tag="div" className="justify-between">
-                          <Link href={`/shipping`}>
+                          <Link href={`/support`}>
                             <a className="flex">
                               <div className="bg-Grey-dashboard p-2 rounded-full mr-3"> 
-                                <HiOutlineTruck className="text-xl text-Black" />
+                                <AiOutlineMessage className="text-xl text-Black" />
                               </div>
-                              <div className="text-base font-bold my-auto"> Find my order </div>
+                              <div className="text-base font-bold my-auto"> Support </div>
                             </a>
                           </Link>
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
@@ -375,7 +377,7 @@ export default function Header() {
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
                         </DropdownItem>
                         <DropdownItem tag="div" className="justify-between">
-                          <Link href={`/marketplace/faq`}>
+                          <Link href={`/faq`}>
                             <a className="flex">
                               <div className="bg-Grey-dashboard p-2 rounded-full mr-3">
                                 <AiOutlineUser className="text-xl text-Black" />
@@ -386,17 +388,28 @@ export default function Header() {
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
                         </DropdownItem>
                         <DropdownItem tag="div" className="justify-between">
-                          <Link href={`/marketplace/become-seller`}>
+                          <Link href={`/apply`}>
                             <a className="flex">
                               <div className="bg-Grey-dashboard p-2 rounded-full mr-3"> 
                                 <AiOutlineDollarCircle className="text-xl text-Black" />
                               </div>
-                              <div className="text-base font-bold my-auto"> Become a seller </div>
+                              <div className="text-base font-bold my-auto"> Become a professional </div>
                             </a>
                           </Link>
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
                         </DropdownItem>
-                       <DropdownItem tag="div" className="justify-between">
+                        <DropdownItem tag="div" className="justify-between">
+                          <Link href={`/support`}>
+                            <a className="flex">
+                              <div className="bg-Grey-dashboard p-2 rounded-full mr-3"> 
+                                <AiOutlineMessage className="text-xl text-Black" />
+                              </div>
+                              <div className="text-base font-bold my-auto"> Support </div>
+                            </a>
+                          </Link>
+                          <AiOutlineRight className="text-Black my-auto text-lg"/>
+                        </DropdownItem>
+                       {/* <DropdownItem tag="div" className="justify-between">
                           <Link href={`/shipping`}>
                             <a className="flex">
                               <div className="bg-Grey-dashboard p-2 rounded-full mr-3"> 
@@ -406,7 +419,7 @@ export default function Header() {
                             </a>
                           </Link>
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
-                        </DropdownItem>
+                        </DropdownItem> */}
                       </Dropdown>
                   </div>
               ) : (

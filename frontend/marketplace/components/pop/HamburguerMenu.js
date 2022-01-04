@@ -147,7 +147,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                             </div>
                             <div className="my-4 grid grid-cols-2 gap-4">
 
-                                <Link href= {'/marketplace'}
+                                {/* <Link href= {'/marketplace'}
                                       onClick={() => setIsOpen(false)}
                                 >
                                     <div className="flex py-3">
@@ -156,8 +156,8 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                             <h2 className="text ml-2 font-bold text-Black-text my-auto"> Services </h2>
                                         </div>
                                     </div>
-                                </Link>
-                                <Link href= {'/marketplace/stores'}
+                                </Link> */}
+                                <Link href= {'/marketplace'}
                                       onClick={() => setIsOpen(false)}
                                 >
                                     <div className="flex py-3">
@@ -185,8 +185,8 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link href= {'/marketplace/become-seller'}
-                              onClick={() => setIsOpen(false)}
+                        <Link href= {'/apply'}
+                              onClick={() => setIsOpen(false)}s
                         >
                             <div className="flex py-3">
                                 <div className="flex">
@@ -205,7 +205,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link href= {'/marketplace/stores'}
+                        <Link href= {'/support'}
                               onClick={() => setIsOpen(false)}
                         >
                             <div className="flex py-3">

@@ -72,7 +72,7 @@ const ApplyToBecomeSeller = () => {
                 <div className="my-4 text-center">
                     <p className="text-Black-medium"> You will be notified of the outcome of your application.
                          <br />
-                         Due to the high volume of application, we can only accept a limited number of appliicants - in order to ensure the high quality of the platform. 
+                         Due to the high volume of applications, we can only accept a limited number of applicants - in order to ensure the high quality of the platform. 
                     </p>
                 </div>
             </div>
@@ -83,13 +83,13 @@ const ApplyToBecomeSeller = () => {
 const validatorForm = Yup.object().shape({
                  name: 
                     Yup.string()
-                    .required("Required"),
+                    .required("Your name is required"),
                 summary: 
                     Yup.string()
                     .required("A summary is required"),
                 email: 
                     Yup.string().email()
-                    .required("Required"),
+                    .required("A valid email is required"),
                 
                 mobile: 
                     Yup.string()
@@ -167,7 +167,7 @@ const validatorForm = Yup.object().shape({
                             <Card className="lg:col-span-2">
                                 <div className="mb-4">
                                 <Label>
-                                    <span className="text-base font-medium"> Brand Name </span>
+                                    <span className="text-base font-medium"> Your name </span>
                                     <div className="mt-1 p-2 rounded-md shadow-button">
                                         <Input 
                                             valid
@@ -184,7 +184,7 @@ const validatorForm = Yup.object().shape({
                                 )}
                             </div>
                             <div className="my-2">
-                                <span className="text-base font-medium p-2"> Company summary </span>
+                                <span className="text-base font-medium p-2"> Summary of your services</span>
                                 <Field name="summary">
                                     {({ field }) => <ReactQuill className="products" value={field.value} onChange={field.onChange(field.name)} />}
                                 </Field>
@@ -231,7 +231,7 @@ const validatorForm = Yup.object().shape({
                     </div>
                         <div className="w-full z-50 lg:relative lg:mb-10 text-center">
                             <Button className="bg-Black text-white w-3/5 ml-3" type="submit" onClick={() => setIsSubmitting(true)}>
-                                Apply
+                                Apply   
                             </Button>
                         </div>
                 </form>
