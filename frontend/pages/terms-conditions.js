@@ -7,10 +7,10 @@ const TermsConditions = () => {
         <Layout>
             <div className="my-6 pb-12">
                 { /* strips design  */}
-                    <div class="SupportSite-BackgroundStripes z-50">
-                        <div class="SupportSite-BackgroundStripes-Stripe-1" />
-                        <div class="SupportSite-BackgroundStripes-Stripe-2" />
-                        <div class="SupportSite-BackgroundStripes-Stripe-3" />
+                    <div className="SupportSite-BackgroundStripes z-50">
+                        <div className="SupportSite-BackgroundStripes-Stripe-1" />
+                        <div className="SupportSite-BackgroundStripes-Stripe-2" />
+                        <div className="SupportSite-BackgroundStripes-Stripe-3" />
                     </div>
                 {/*  */}
                 <div className="relative mobile:px-5 container lg:w-3/5 mx-auto my-12">
