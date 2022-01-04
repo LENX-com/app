@@ -1,12 +1,11 @@
 import React from 'react'
 import {Fade, Slide, Zoom} from "react-reveal";
 import Layout from '@/containers/Layout'
-import Features from '@/components/About/Features'
 import Faq from '@/components/About/Faq'
-import Button from '@/components/Buttons/Button'
-import Link from "next/link"
-import PageTitle from '@/components/Typography/PageTitle'
-import SectionTitle from '@/components/Typography/SectionTitle'
+import Build from "@/assets/lotties/build";
+import DisplayLottie from "@/components/DisplayLottie/DisplayLottie";
+import { AiTwotoneShop, AiOutlineUser, AiOutlineMessage } from 'react-icons/ai'
+import { BiCheckShield } from "react-icons/bi";
 
 const About = () => {
 
@@ -16,6 +15,45 @@ const About = () => {
         lineHeight: "32px",
         color: "#424770"
     }
+
+    const Features = () => (
+        <div className="bg-Black py-8 lg:pb-28 mobile:-mt-14">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-5 container lg:w-3/5 mx-auto mobile:px-3">
+                <Fade bottom duration={1000} distance="20px">
+                    <div className="text-center my-auto lg:text-left">
+                        <h1 className="text-3xl mobile:text-2xl font-bold text-white mb-5 mobile:mt-4">
+                            How does Wabei work?
+                        </h1>
+                        <div className="grid gap-5 mobile:p-4 my-3  container lg:w-3/5 mx-auto lg:grid-cols-1">
+                            <Fade left duration={1000} distance="20px">
+                                <div className="bg-white border-box p-3 text-Black-text lg:p-6">
+                                    <h1 className="text-lg font-bold my-1">1. Search the professional</h1>
+                                    <p className="text-base"> Create an account and start connecting directly with professionals free of charge in the marketplace. </p>
+                                </div>
+                            </Fade>
+                            <Fade right duration={1000} distance="20px">
+                                <div className="bg-white border-box p-3 text-Black-text lg:p-6">
+                                    <h1 className="text-lg font-bold my-1">2. Contact the professional</h1>
+                                    <p className="text-base"> 
+                                        Chech the professional's profile, reviews and projects. If you feel there is a good fit, do not hesitate to contact them directly to book their services.
+                                    </p>
+                                </div>
+                            </Fade>
+                            <Fade bottom duration={1000} distance="20px">
+                                <div className="bg-white border-box p-3 text-Black-text lg:p-6">
+                                    <h1 className="text-lg font-bold my-1">3. Rate the professional</h1>
+                                    <p className="text-base">In order to maintain Wabei's high quality platform, your reviews are what gives life to the marketplace. Once the job is completed succesfuly give your honest feedback</p>
+                                </div>
+                            </Fade>
+                        </div>
+                    </div>
+                    <div className="skills-image mx-auto my-auto">
+                        <DisplayLottie animationData={Build} />
+                    </div>
+                </Fade>
+            </div>
+        </div>
+    )
 
     return (
         <Layout>

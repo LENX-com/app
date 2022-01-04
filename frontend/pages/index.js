@@ -17,7 +17,7 @@ import SwiperCore, {
 
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination]);
-
+ 
 const Home = () => {
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const [ categories, setCategories ] = useState();
