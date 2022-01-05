@@ -7,7 +7,7 @@ import { BiCheckShield } from "react-icons/bi";
 
 const Features = () => {
     return (
-        <div className="bg-Black pb-8 lg:pb-28 mobile:-mt-14">
+        <div className="bg-Black pb-8 lg:pb-28 mobile:-mt-16">
             <div className="lg:grid lg:grid-cols-2 lg:gap-5 container lg:w-3/5 mx-auto mobile:px-3">
                 <Fade bottom duration={1000} distance="20px">
                     <div className="text-center my-auto lg:text-left">
