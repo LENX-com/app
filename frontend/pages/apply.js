@@ -113,30 +113,29 @@ const Wabei = () => {
                             <Fade left duration={1000} distance="20px">
                                 <div className="bg-white border-box p-3 text-Black-text lg:p-6">
                                     <h1 className="text-lg font-bold my-1">1. Create an account</h1>
-                                    <p className="text-base"> Apply to open a store in Wabei's marketplace. </p>
+                                    <p className="text-base"> Apply to open an account in Wabei's marketplace. </p>
                                 </div>
                             </Fade>
                             <Fade right duration={1000} distance="20px">
                                 <div className="bg-white border-box p-3 text-Black-text lg:p-6">
-                                    <h1 className="text-lg font-bold my-1">2. Upload your products</h1>
+                                    <h1 className="text-lg font-bold my-1">2. Upload your photos and services</h1>
                                     <p className="text-base"> 
-                                        Upload your products, so users across the UK, can notice you and start purchasing your products.
-                                        Use our inbuilt tools to optimise inventory, track sales and analyse your revenue growth.
+                                        Upload your summary and complete your profile, so customers can see how amazing your work is. Keep it simple and concise, show customers what you are capable of.
                                     </p>
                                 </div>
                             </Fade>
                             <Fade bottom duration={1000} distance="20px">
                                 <div className="bg-white border-box p-3 text-Black-text lg:p-6">
-                                    <h1 className="text-lg font-bold my-1">3. Delight customers with a seamless shopping experience</h1>
-                                    <p className="text-base">Interact with your customers through our encrypted chat system. Post blogs and update your profile to keep your audience informed.</p>
+                                    <h1 className="text-lg font-bold my-1">3. Delight customers with a seamless experience</h1>
+                                    <p className="text-base">Interact with your customers through our encrypted chat system. Customers will be able to reliably hire you based on your work and reviews.</p>
                                 </div>
                             </Fade>
                             <Fade left duration={1000} distance="20px">
                                 <div className="bg-white border-box p-3 text-Black-text lg:p-6">
-                                    <h1 className="text-lg font-bold my-1">4. Grow your brand and sales</h1>
+                                    <h1 className="text-lg font-bold my-1">4. Grow your sales</h1>
                                     <p className="text-base">
-                                        Wabei's technology takes care of all the tedious tasks, such as keeping track of your inventory and managing invoices. 
-                                        Our platform provides you with all the infrastucture neccesary to sell and run your business within one tab, so you can focus on doing what matters the most: building your product.
+                                        Wabei's technology takes care of all the tedious tasks, such as lead search and managing invoices. 
+                                        Our platform provides you with all the infrastucture neccesary to run your business within one tab, so you can focus on doing what matters the most: creating.
                                     </p>
                                 </div>
                             </Fade>

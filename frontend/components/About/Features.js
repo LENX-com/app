@@ -7,7 +7,7 @@ import { BiCheckShield } from "react-icons/bi";
 
 const Features = () => {
     return (
-        <div className="bg-Black py-8 lg:pb-28 mobile:-mt-14">
+        <div className="bg-Black pb-8 lg:pb-28 mobile:-mt-14">
             <div className="lg:grid lg:grid-cols-2 lg:gap-5 container lg:w-3/5 mx-auto mobile:px-3">
                 <Fade bottom duration={1000} distance="20px">
                     <div className="text-center my-auto lg:text-left">
@@ -71,7 +71,7 @@ const Features = () => {
                                 </p>
                             </div>
                         </div>
-                        {/* <div className="">
+                        <div className="mobile:hidden">
                             <div className="flex-shrink-0">
                             <div className="bg-icon flex items-center justify-center h-10 w-10 rounded-md bg-orange text-white">
                                 <BiCheckShield className=" h-6 w-6" />
@@ -79,14 +79,13 @@ const Features = () => {
                             </div>
                             <div className="my-auto">
                                 <h2 className="text-base text-left font-bold text-white mt-2 mb-3">
-                                    Secure payments
+                                    Quality customers
                                 </h2>
                                 <p className="text text-Grey text-left">
-                                    We provide the technology behind the Wabei marketplace, helping buyers and sellers connect and exchange on Wabei.
-                                    Keeping those connections safe, fun and secure is our priority, and we’re always here to help you grow.
+                                    Choose the location you want to work in, and let customers find you.
                                 </p>
                             </div>
-                        </div> */}
+                        </div>
                         </div>
                     </div>
                     </div>
