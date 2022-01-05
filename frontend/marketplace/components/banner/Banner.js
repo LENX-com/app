@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Card from '../../../components/Cards/Card'
+import Card from '@/components/Cards/Card'
 import Link from 'next/link'
 
  const textStyle = {

@@ -38,14 +38,14 @@ const Wabei = () => {
             <div className="relative my-8 lg:my-12 mobile:-mb-24 lg:-mb-20">
                 <div className="z-20 container lg:w-3/5 mx-auto">
                     <div className="mobile:text-center lg:text-left mobile:px-5 mobile:mb-2">
-                        <h1 className="mt-6 mb-3 text-3xl mobile:text-2xl font-bold">
-                            We’re reimagining E-commerce so every growing company can realize their full potential.
+                        <h1 className="mt-6 mb-3 text-3xl mobile:text-2xl font-bold">  
+                             Work the way you want.
                         </h1>
                     </div>
                     <div className="mobile:px-5">
                         <span style={textStyle}>
-                            Wabei is a <span style={{color:'#32bdc3'}}> social marketplace platform</span> created to connect small businesses directly with customers. 
-                            We help our <span style={{color:'#32bdc3'}}> community of sellers to reach millions of shoppers accross the UK </span> within our marketplace.
+                            Wabei is a <span style={{color:'#32bdc3'}}> social marketplace platform</span> created to connect your services to users throughtout the U.K. 
+                            We help our <span style={{color:'#32bdc3'}}> community of services providers to reach millions of customers accross the UK </span> within our marketplace.
                         </span>
                     </div>
                      { isTabletOrMobile ? (
@@ -144,7 +144,7 @@ const Wabei = () => {
                     </div>
                     <div className="lg:mt-6 pb-12">
                         <a href="#become" className="grid w-3/4 mx-auto px-4 py-2 shadow-button font-bold text-base text-white bg-Blue rounded-md text-center lg:w-1/5">
-                            Open your Wabei shop
+                            Create your profile
                         </a>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ const Wabei = () => {
                     <div className="SupportSite-BackgroundStripes-Stripe-3" />
                 </div>
             {/*  */}
-            <div className="my-4">
+            <div className="">
                 <Tab.Group>
                     <Tab.List>
                         <div className="container mx-auto lg:w-3/5">

@@ -35,7 +35,7 @@ const About = () => {
                                 <div className="bg-lightBlack rounded-md p-3 text-Grey lg:p-6">
                                     <h1 className="text-lg font-bold my-1">2. Contact the professional</h1>
                                     <p className="text-base"> 
-                                        Chech the professional's profile, reviews and projects. If you feel there is a good fit, do not hesitate to contact them directly to book their services.
+                                        Check the professional's profile, reviews and projects. If you feel there is a good fit, do not hesitate to contact them directly to book their services.
                                     </p>
                                 </div>
                             </Fade>
