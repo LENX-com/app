@@ -162,7 +162,7 @@ const Wabei = () => {
                     <div className="SupportSite-BackgroundStripes-Stripe-3" />
                 </div>
             {/*  */}
-            <div className="">
+            <div className="pt-6">
                 <Tab.Group>
                     <Tab.List>
                         <div className="container mx-auto lg:w-3/5">
