@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from '@windmill/react-ui'
 import _ from 'lodash'
 import { AiFillFileImage, AiOutlineClose } from "react-icons/ai";
+import withAuth from '@/components/auth'
 import * as Yup from "yup";
 import Dropzone from "react-dropzone";
 import { Formik, Field, useFormikContext } from "formik";
