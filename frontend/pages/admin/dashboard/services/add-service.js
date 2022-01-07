@@ -207,7 +207,7 @@ const validatorForm = Yup.object().shape({
                     </div>
                 }
                 
-                <div className="lg:grid lg:grid-cols-3 gap-4 mb-8">
+                <div className="lg:grid lg:grid-cols-3 gap-4 pb-12">
                     <Card className="lg:col-span-2">
                         <div className="mb-4">
                         <Label>
@@ -270,16 +270,16 @@ const validatorForm = Yup.object().shape({
                     <div className="shadow-separator px-3 py-2">
                         <Label className="mb-3">
                             <span> Service Status </span>
-                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize">
+                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize text-Black">
                                 <Select className="Selection text-Black"
                                         name="status"
                                         value={values.status}
                                         onChange={handleChange}
                                         onBlur={handleBlur}>
-                                        <option value="" label="Select a Status " />
-                                        <option value="active" label="active" />
-                                        <option value="draft" label="draft" />
-                                        <option value="inactive" label="inactive" />
+                                        <option value="" label="Select a Status " className="text-Black">
+                                        <option value="active" label="active" className="text-Black"/>
+                                        <option value="draft" label="draft" className="text-Black"/>
+                                        <option value="inactive" label="inactive" className="text-Black"/>
                                 </Select>
                             </div>
                         </Label>
@@ -346,14 +346,14 @@ const validatorForm = Yup.object().shape({
                                         onKeyPress={event => {
                                             if (event.key === "Enter") {
                                                 event.preventDefault();
-                                                values.tags.length < 4 && setFieldValue( "tags" ,[...values.tags, event.target.value]);
+                                                values.tags.length < 4 && event.target.value !== "" && setFieldValue( "tags" ,[...values.tags, event.target.value]);
                                                 event.target.value = "";
                                             }
                                         }}
                                     />
                                 </div>
                                 <ul className="TagList">
-                                    {values.tags && values.tags.map((tag, I) => (
+                                    {values.tags && values.tags.map((tag, i) => (
                                         <li 
                                             className="Tag capitalize mb-5"
                                             key = {i}
@@ -441,11 +441,8 @@ const validatorForm = Yup.object().shape({
                 </div>
 
             </div>
-                    <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey z-50 lg:relative lg:mb-10">
-                        <div className="flex my-2 p-3 m-auto">
-                            <Button type="button" className="lg:bg-white mobile:hidden">
-                                Save as draft
-                            </Button>
+                    <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey lg:relative lg:mb-10" style={{zIndex:'9999'}}>
+                        <div className="flex my-2 px-3 m-auto">
                             <Button className="bg-Black text-white w-3/5 ml-3" type="submit" onClick={() => setIsSubmitting(true)}>
                                 Save Product
                             </Button>
