@@ -354,7 +354,7 @@ const validatorForm = Yup.object().shape({
                         )}
                     </div>
 
-                    <div className='mt-5 px-3'>
+                    <div className='mt-5 px-3 pb-5'>
                         <span className="text-base font-medium"> Add or change tags (up to 4) so buyers know more about your product </span>
                             <div className="Form">
                                 <div className="TagForm mt-3">
@@ -370,7 +370,6 @@ const validatorForm = Yup.object().shape({
                                                 event.target.value = "";
                                             }
                                         }}
-                                        autoFocus
                                     />
                                 </div>
                                 <ul className="TagList">

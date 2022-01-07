@@ -17,7 +17,7 @@ const Profile = () => {
   const [load, setload] = useState(false);
   const [ isSubmitting, setIsSubmitting ] = useState(false)
   const [ isCreated, setIsCreated] = useState(false)
-
+  
   const thumbsContainer = {
   display: 'flex',
   flexDirection: 'row',

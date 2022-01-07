@@ -212,14 +212,15 @@ const validatorForm = Yup.object().shape({
                         <div className="mb-4">
                         <Label>
                             <span className="text-base font-medium"> Add Title </span>
+                            <div className={`mt-1 p-2 rounded-md shadow-button`}>
                             <Input 
                                 valid
-                                className={`mt-1 p-2 rounded-md shadow-button`}
                                 id="name"
                                 name="name" 
                                 type="text"
                                 value={values.name}
                                 onChange={handleChange} />
+                            </div>
                         </Label>
                         {errors.name && (
                         <div className="input-feedback">{errors.name}</div>
@@ -243,8 +244,15 @@ const validatorForm = Yup.object().shape({
                                 <span className="text-base font-medium"> Pricing </span>
                                 <div className="relative">
                                     <span className="input-symbol"> £ </span>
-                                    <Input className="mt-1 p-2 rounded-md shadow-button pl-6" type="number" id="price" name="price" min="1" 
-                                    value={values.price} onChange={handleChange} />
+                                    <div className="mt-1 p-2 rounded-md shadow-button pl-6" >
+                                    <Input 
+                                            type="number" 
+                                            id="price" 
+                                            name="price" 
+                                            min="1" 
+                                            value={values.price} 
+                                            onChange={handleChange} 
+                                    />
                                 </div>
                             </Label>
                         {errors.price && (
@@ -261,16 +269,18 @@ const validatorForm = Yup.object().shape({
                     <div className="shadow-separator px-3 py-2">
                         <Label className="mb-3">
                             <span> Service Status </span>
-                            <Select className="Selection mt-1 p-2 rounded-md shadow-button bg-white capitalize"
-                                    name="status"
-                                    value={values.status}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}>
-                                    <option value="" label="Select a Status " />
-                                    <option value="active" label="active" />
-                                    <option value="draft" label="draft" />
-                                    <option value="inactive" label="inactive" />
-                            </Select>
+                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize">
+                                <Select className="Selection"
+                                        name="status"
+                                        value={values.status}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}>
+                                        <option value="" label="Select a Status " />
+                                        <option value="active" label="active" />
+                                        <option value="draft" label="draft" />
+                                        <option value="inactive" label="inactive" />
+                                </Select>
+                            </div>
                         </Label>
                         {errors.status && (
                         <div className="input-feedback">{errors.status}</div>
@@ -280,18 +290,20 @@ const validatorForm = Yup.object().shape({
                     <div className="shadow-separator px-3 py-3">
                         <Label className="my-2">
                             <span> Category </span>
-                            <Select className="Selection mt-1 p-2 rounded-md shadow-button bg-white capitalize" name="category" id="category"
-                                        value={values.category}
-                                        onChange={handleCategory}>
+                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize">
+                                <Select className="Selection" name="category" id="category"
+                                            value={values.category}
+                                            onChange={handleCategory}>
 
-                                <option value="" label="Select a Category " />           
-                                { categories &&
-                                    categories.map((c, i) => (
-                                    <option className="px-2" key={i} value={c._id}>
-                                        {c.name}
-                                    </option>
-                                    ))}
-                            </Select>
+                                    <option value="" label="Select a Category " />           
+                                    { categories &&
+                                        categories.map((c, i) => (
+                                        <option className="px-2" key={i} value={c._id}>
+                                            {c.name}
+                                        </option>
+                                        ))}
+                                </Select>
+                            </div>
                             {errors.category && (
                             <div className="input-feedback">{errors.category}</div>
                             )}
@@ -302,24 +314,26 @@ const validatorForm = Yup.object().shape({
                         
                     <Label className="my-3">
                         <span> Subcategory </span>
-                        <Select className="Selection mt-1 p-2 rounded-md shadow-button bg-white capitalize" name="subs" id="subs"
-                                value={values.subs}
-                                onChange={handleChange}>
+                        <div className="mt-1 p-2 rounded-md bg-white capitalize shadow-button">
+                            <Select className="Selection" name="subs" id="subs"
+                                    value={values.subs}
+                                    onChange={handleChange}>
 
-                                <option value="" label="Select Subacategory"/> 
-                                { subs && subs.map( (sub, i ) => (
-                                <option className="px-2" key={i} value={sub._id}>
-                                    {sub.name}
-                                </option>
-                                ))}
-                        </Select>
+                                    <option value="" label="Select Subacategory"/> 
+                                    { subs && subs.map( (sub, i ) => (
+                                    <option className="px-2" key={i} value={sub._id}>
+                                        {sub.name}
+                                    </option>
+                                    ))}
+                            </Select>
+                        </div>
                     </Label>
                     {errors.subs && (
                         <div className="input-feedback">{errors.subs}</div>
                         )}
                     </div>
 
-                    <div className='mt-5 px-3'>
+                    <div className='mt-5 px-3 pb-5'>
                         <span className="text-base font-medium"> Add or change tags (up to 4) so buyers know more about your product </span>
                             <div className="Form">
                                 <div className="TagForm mt-3">
@@ -335,7 +349,6 @@ const validatorForm = Yup.object().shape({
                                                 event.target.value = "";
                                             }
                                         }}
-                                        autoFocus
                                     />
                                 </div>
                                 <ul className="TagList">
