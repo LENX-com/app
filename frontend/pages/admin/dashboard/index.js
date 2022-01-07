@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import InfoCard from '@/admin/components/Cards/InfoCard'
 import SectionTitle from '@/admin/components/Typography/SectionTitle'
-import { ChatIcon, CartIcon, MoneyIcon, PeopleIcon } from '@/admin/icons'
+import { Service } from '@/admin/icons'
 import RoundIcon from '@/admin/components/RoundIcon'
 import withAuth from '@/components/auth'
 import Link from 'next/link'
@@ -55,7 +55,7 @@ function Dashboard() {
                         <a className="px-3 flex text-Black-text">
                             <AiOutlinePlusSquare className=" h-5 w-5 my-auto"/>
                             <span className="font-bold text-base my-auto ml-2">
-                                Add service
+                                Post service
                             </span>
                         </a>
                     </Link>
@@ -91,11 +91,11 @@ function Dashboard() {
                       </Link>
                   </div>
                   <div className="py-3 shadow-separator">
-                      <Link href="/admin/dashboard/chat">
+                      <Link href="/admin/dashboard/services">
                           <a className="px-3 flex text-Black-text">
-                              <AiOutlineMessage className="w-5 h-5 my-auto"/>
+                              <Service className="w-6 h-6 my-auto"/>
                               <span className="font-bold text-base my-auto ml-2">
-                                  Services
+                                  My posts
                               </span>
                           </a>
                       </Link>

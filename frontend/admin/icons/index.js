@@ -29,6 +29,8 @@ import OutlineLogoutIcon from './outlineLogout.svg'
 import order from './order.svg'
 import conversation from './conversation.svg'
 import Information from './information.svg'
+import Service from './service.svg'
+
 
 export {
   ButtonsIcon,  
@@ -61,5 +63,6 @@ export {
   OutlineLogoutIcon,
   order,
   conversation,
-  Information
+  Information,
+  Service
 }
