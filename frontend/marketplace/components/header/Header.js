@@ -113,8 +113,12 @@ export default function Header() {
                 </NavLink>
               </div>
               <div className="text-Grey hover:bg-lightBlack px-3 rounded-md my-1">
-                <NavLink href="/user/dashboard" className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" activeClassName=" border-b-2 border-orange text-orange" >
-                  <AiOutlineDashboard className="w-7 h-7 my-auto" />
+                <NavLink 
+                        href={user?.role === 1 ? '/admin/dashboard' : '/user/dashboard'} 
+                        className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" 
+                        activeClassName=" border-b-2 border-orange text-orange" >
+                  <AiOutlineDashboard className="w-7 h-7 my-auto" 
+                />
                 </NavLink>
               </div>
             </div>
@@ -165,7 +169,9 @@ export default function Header() {
                         <div>
                           <SectionTitle> Messages </SectionTitle>
                         </div>
-                        <Link href="/user/dashboard/chat">
+                        <Link 
+                          href={user?.role === 1 ? '/admin/dashboard/chat' : '/user/dashboard/chat'}
+                        >
                           <div className="cursor-pointer">
                             <AiOutlineExpand className="my-auto text-lg "/>
                           </div>
@@ -177,7 +183,7 @@ export default function Header() {
                        ( conversations.map((data, i) => (   
                           <DropdownItem tag="div" className="py-4 relative" key={i}>
                             <Link 
-                                  href= {`/user/dashboard/chat/room/${data._id}`} 
+                                  href= {user?.role === 1 ? `/admin/dashboard/chat/${data._id}` : `/user/dashboard/chat/${data._id}`} 
                                   className="w-full"
                                   onClick={() => dispatch({
                                     type: "CURRENT_CHAT",

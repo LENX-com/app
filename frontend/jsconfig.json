@@ -15,6 +15,7 @@
       "@/context/*": ["context/*"],
       "@/dashboard/*": [ "dashboard/*"],
       "@/chat/*": ["chat/*"],
+      "@/admin/*": ["admin/*"],
     }
   }
 }

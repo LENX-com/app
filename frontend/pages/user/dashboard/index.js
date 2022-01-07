@@ -126,7 +126,7 @@ const Dashboard = () => {
                           </a>
                       </Link>
                   </div>
-                  <div className="py-3 shadow-separator">
+                  {/* <div className="py-3 shadow-separator">
                       <Link href="/user/dashboard/blog">
                           <a className="px-3 flex text-Black-text">
                               <Blog className="w-5 h-5 my-auto"/>
@@ -135,7 +135,7 @@ const Dashboard = () => {
                               </span>
                           </a>
                       </Link>
-                  </div>
+                  </div> */}
                   <div className="py-3 shadow-separator">
                       <Link href="/user/dashboard/wishlist">
                           <a className="px-3 flex text-Black-text">

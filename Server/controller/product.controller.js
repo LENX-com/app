@@ -11,9 +11,9 @@ const { check, validationResult } = require("express-validator/check");
 const {ObjectId} = require('mongodb');
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API,
+    api_secret: process.env.CLOUDINARY_SECRET
 })  
 
 //search system powerd by mongodb text search with indexes
@@ -54,12 +54,29 @@ exports.searchProductsCatalogue = async (req, res) => {
   }
 };
 
+//get product by brands
+exports.getProductsByAuthor= async (req, res) => {
+
+  try {
+    const products = await Product.find({ author: req.user._id});
+    
+    return res.status(200).json({ products });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error });
+  }
+};
 
 
 //create a product route accessible by only manufacturer(role 1) and add category from req.body.category
 exports.createProduct = async (req, res) => {
+  const cloudinary = require("cloudinary").v2;
+  cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_NAME,
+      api_key: process.env.CLOUDINARY_API,
+      api_secret: process.env.CLOUDINARY_SECRET
+  })  
   const file = req.files;
-  
   
   try {
   

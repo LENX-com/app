@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,qBAAqB,CAAC,aAAa;AACnC,qBAAqB,CAAC,UAAU,CAAC;EAC7B,UAAU,EAAE,KAAK;CACpB",
+    "sources": [
+        "quill.scss"
+    ],
+    "names": [],
+    "file": "quill.css"
+}

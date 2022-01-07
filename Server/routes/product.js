@@ -23,6 +23,7 @@ const {
   listCategories,
   productById,
   listBySearch,
+  getProductsByAuthor,
   photo,
   listSearch,
   searchFilters, 
@@ -63,6 +64,8 @@ router.get("/product/:slug", getProductBySlug);
 router.get("/product/by/brands/:page", getBrands );
  
 router.post("/brand/category/:categoryId", getBrandByCategory);
+router.post("/by/author", auth, getProductsByAuthor);
+
 
 router.get("/products/:slug", getProductsBySlug);   
 router.post("/tags", getProductByTags);

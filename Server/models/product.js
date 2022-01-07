@@ -24,20 +24,10 @@ const productSchema = new mongoose.Schema(
     tags: {
       type: Array,
     },
-    shippingPrice: {
-      type: Number,
-      required: true
-    },
     status: {
       type: String,
       enum: ["active", "draft", "inactive"],
       default: "active",
-      required: true
-    },
-    shippingTime: {
-      type: String,
-      enum: [ "1 Business Day", "1-3 Business Days","3-5 Business Days", "5+ Business Days"],
-      default: "3-5 Business Days",
       required: true
     },
      slug: {
@@ -73,10 +63,6 @@ const productSchema = new mongoose.Schema(
       required: true,
       maxlength: 32,
     },
-
-    discount: {
-      type: Number,
-    },
     ratings: [
       {
         rating: Number,
@@ -91,10 +77,6 @@ const productSchema = new mongoose.Schema(
     brands: {
       type: ObjectId,
       ref: "Brand",
-    },
-    quantity: {
-      type: Number,
-      default: 0,
     },
     sold: {
       type: Number,

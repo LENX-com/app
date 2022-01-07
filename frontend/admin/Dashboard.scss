@@ -1,0 +1,150 @@
+@import "src/variables.scss";
+
+
+.sidebar{
+    background: $dark-gradient;
+    z-index: 99;
+   
+    a.active {
+        color:$orange;
+    }
+    a {
+        color:$gray;
+
+        &:hover{
+            color:$orange;  
+        }
+    }
+      
+}
+
+.link-marketplace{
+    background: $orange;
+}
+
+// .header{
+//     display: none;
+// }
+
+// .footer{
+//     display: none;
+// }
+
+
+
+// @media screen and (min-width: 768px) {
+//     .swiper-container {
+//         width: 768px;
+//     }
+// }
+
+// @media screen and (min-width: 1040px) {
+//     .swiper-container {
+//         max-width: 740px;
+//     }
+// }
+
+@media screen and (max-width: 360px) {
+    .swiper-container {
+        width: 305px;
+    }
+}
+
+.card-item{
+    box-shadow: $box-shadow-card;
+}
+
+button {
+    padding: 5px 12px 7px 12px !important;
+}
+
+.pagination { 
+    button {
+        box-shadow: RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(0 0 0 / 12%) 0px 1px 1px 0px, RGB(60 66 87 / 16%) 0px 0px 0px 1px, RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(60 66 87 / 8%) 0px 2px 5px 0px;
+        color: $black;
+        background: #fff;
+        
+
+            &:hover{
+            box-shadow: RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(0 0 0 / 0%) 0px 0px 0px 0px,  RGB(0 0 0 / 12%) 0px 1px 1px 0px,RGB(60 66 87 / 16%) 0px 0px 0px 1px,RGB(0 0 0 / 0%) 0px 0px 0px 0px, RGB(60 66 87 / 8%) 0px 3px 9px 0px, RGB(60 66 87 / 8%) 0px 2px 5px 0px;
+            }
+            &:focus{
+                background: #00adb5;
+                color: #fff;
+            }
+        }
+}
+
+.box {
+
+    &::-webkit-scrollbar {
+        width: 0.4em;
+        height: 0.1em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #909090;
+        border-radius: 5px;
+
+        &:hover {
+            background:#cccc;
+        }
+    }
+}
+
+.dashboard-footer {
+    .col {
+        flex: 1;
+        background: white;
+    }
+    .wrapper {
+        text-align: center;
+    }
+    .icon-wrapper {
+       text-align: -webkit-center;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .dashboard-footer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .dashboard-header{
+        max-height:65px;
+}
+}
+
+    .dashboard-header{
+        box-shadow: 0 2px 3px RGB(0 0 0 / 20%);
+}
+
+.Border {
+    border-bottom: solid #eee 1px;
+}
+
+.banner {
+    background: #ff5c00;
+}
+
+//QUILL EDITOR
+@media screen and (min-width: 760px) {
+    .ql-editor {
+        min-height: 400px !important;
+    }
+}
+@media screen and (max-width: 360px) {
+    .ql-editor {
+        min-height: 400px !important;
+    }
+}
+
+   .products .ql-editor {
+        min-height: 200px !important;
+    }
+
+    .response .ql-editor {
+        min-height: 200px !important;
+    }

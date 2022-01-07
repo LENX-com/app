@@ -4,10 +4,11 @@ import { NavLink } from '@/components/NavLink/NavLink'
 import { AiOutlineMessage, AiOutlineShop, AiOutlineShoppingCart } from 'react-icons/ai'
  import {BsPerson } from "react-icons/bs";
 import { useMediaQuery } from 'react-responsive'
+import { useSelector } from 'react-redux'
 
 
 const Footer = () => {
-
+    const { user }  = useSelector( state => state.auth);
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   return (
@@ -30,7 +31,10 @@ const Footer = () => {
                     </div>
                 
                     <div className="col">
-                        <NavLink href= {`/user/dashboard`} activeClassName=" text-Blue font-bold">
+                        <NavLink 
+                            href={user?.role === 1 ? '/admin/dashboard' : '/user/dashboard'}
+                            activeClassName=" text-Blue fontl-bold"
+                        >
                             <div className="wrapper text-center"> 
                                 <div className="icon-wrapper mt-2 text-xl">
                                     <BsPerson className="mx-auto" />
