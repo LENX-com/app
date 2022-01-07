@@ -245,14 +245,15 @@ const validatorForm = Yup.object().shape({
                                 <div className="relative">
                                     <span className="input-symbol"> £ </span>
                                     <div className="mt-1 p-2 rounded-md shadow-button pl-6" >
-                                    <Input 
-                                            type="number" 
-                                            id="price" 
-                                            name="price" 
-                                            min="1" 
-                                            value={values.price} 
-                                            onChange={handleChange} 
-                                    />
+                                        <Input 
+                                                type="number" 
+                                                id="price" 
+                                                name="price" 
+                                                min="1" 
+                                                value={values.price} 
+                                                onChange={handleChange} 
+                                        />
+                                    </div>
                                 </div>
                             </Label>
                         {errors.price && (
@@ -270,7 +271,7 @@ const validatorForm = Yup.object().shape({
                         <Label className="mb-3">
                             <span> Service Status </span>
                             <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize">
-                                <Select className="Selection"
+                                <Select className="Selection text-Black"
                                         name="status"
                                         value={values.status}
                                         onChange={handleChange}
