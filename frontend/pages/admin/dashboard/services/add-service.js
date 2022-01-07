@@ -335,12 +335,15 @@ const validatorForm = Yup.object().shape({
                                                 event.target.value = "";
                                             }
                                         }}
-                                        autofocus
+                                        autoFocus
                                     />
                                 </div>
                                 <ul className="TagList">
-                                    {values.tags && values.tags.map(tag => (
-                                        <li className="Tag capitalize mb-5">
+                                    {values.tags && values.tags.map((tag, I) => (
+                                        <li 
+                                            className="Tag capitalize mb-5"
+                                            key = {i}
+                                        >
                                         {tag}
                                         <AiOutlineClose
                                             className="TagIcon text-lg ml-2"

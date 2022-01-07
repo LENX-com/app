@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Dropdown, DropdownItem, Input } from '@windmill/react-ui'
 import { AiOutlineClose } from 'react-icons/ai'
 import { getReviewsByManufacturer, sendResponse, removeResponse } from '@/redux/actions/userActions'
@@ -60,7 +60,9 @@ const Reviews = () => {
         </div>
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         { reviews && reviews.map((data, i)=> (
-          <ReviewCard i = { i } review={data} setCurrentReview= {setCurrentReview} setIsOpen= {setIsOpen} full= { true } />
+          <Fragment key={i}>
+              <ReviewCard i = { i } review={data} setCurrentReview= {setCurrentReview} setIsOpen= {setIsOpen} full= { true } />
+          </Fragment>
           ))}
         </div>  
       </div>

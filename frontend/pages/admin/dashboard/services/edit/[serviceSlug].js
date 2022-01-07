@@ -22,9 +22,6 @@ import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
-
-
-
 const EditProduct = ({}) => {
     const router = useRouter();
     const categories = useSelector((state) => state.category.categories);
@@ -369,16 +366,19 @@ const validatorForm = Yup.object().shape({
                                         onKeyPress={event => {
                                             if (event.key === "Enter") {
                                                 event.preventDefault();
-                                                values.tags.length < 4 && setFieldValue( "tags" ,[...values.tags, event.target.value]);
+                                                values.tags.length < 4 && event.target.value !== "" && setFieldValue( "tags" ,[...values.tags, event.target.value]);
                                                 event.target.value = "";
                                             }
                                         }}
-                                        autofocus
+                                        autoFocus
                                     />
                                 </div>
                                 <ul className="TagList">
-                                    {values.tags && values.tags.map(tag => (
-                                        <li className="Tag capitalize mb-5">
+                                    {values.tags && values.tags.map((tag, i) => (
+                                        <li 
+                                            className="Tag capitalize mb-5"
+                                            key={i}    
+                                        >
                                         {tag}
                                         <AiOutlineClose
                                             className="TagIcon text-lg ml-2"
