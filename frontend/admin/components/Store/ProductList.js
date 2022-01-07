@@ -59,12 +59,12 @@ const ProductList = ({products, status }) => {
                 <Link href = { `/admin/dashboard/services/edit/${product.slug}` } >
                     <DropdownItem tag="div"  className="flex">
                         <div> <AiOutlineEdit className="my-auto mr-2 text-lg" /> </div>
-                    <div className="text-Black-medium">Edit Product</div>
+                        <div className="text-Black-medium">Edit Product</div>
                     </DropdownItem>
                 </Link>
                 <DropdownItem className="flex mb-auto" onClick={ () => removeProduct(product._id) } >
-                <div> <AiOutlineClose className="my-auto mr-2 text-lg" /> </div>
-                <div  className="text-Black-medium truncate "> Remove Product</div>
+                    <div> <AiOutlineClose className="my-auto mr-2 text-lg" /> </div>
+                    <div  className="text-Black-medium truncate "> Remove Product</div>
                 </DropdownItem>
             </Dropdown>
         )

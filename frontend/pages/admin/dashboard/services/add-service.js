@@ -270,11 +270,12 @@ const validatorForm = Yup.object().shape({
                     <div className="shadow-separator px-3 py-2">
                         <Label className="mb-3">
                             <span> Service Status </span>
-                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize text-Black">
-                                <Select className="Selection"
+                            <div>
+                                <Select
                                         name="status"
                                         value={values.status}
                                         onChange={handleChange}
+                                        className="mt-1 p-2 rounded-md bg-white capitalize text-Black Selection shadow-button"
                                         onBlur={handleBlur}>
                                         <option value="" label="Select a Status ">
                                             Select a Status
@@ -302,8 +303,8 @@ const validatorForm = Yup.object().shape({
                     <div className="shadow-separator px-3 py-3">
                         <Label className="my-2">
                             <span> Category </span>
-                            <div className="mt-1 p-2 rounded-md shadow-button bg-white capitalize">
-                                <Select className="Selection" name="category" id="category"
+                            <div>
+                                <Select className="Selection mt-1 p-2 rounded-md bg-white capitalize shadow-button" name="category" id="category"
                                             value={values.category}
                                             onChange={handleCategory}>
 
@@ -328,10 +329,13 @@ const validatorForm = Yup.object().shape({
                         
                     <Label className="my-3">
                         <span> Subcategory </span>
-                        <div className="mt-1 p-2 rounded-md bg-white capitalize shadow-button">
-                            <Select className="Selection" name="subs" id="subs"
+                        <div>
+                            <Select className="Selection mt-1 p-2 rounded-md bg-white capitalize shadow-button" 
+                                    name="subs" 
+                                    id="subs"
                                     value={values.subs}
-                                    onChange={handleChange}>
+                                    onChange={handleChange}
+                            >
 
                                     <option value="" label="Select Subacategory">
                                         Select Subacategory

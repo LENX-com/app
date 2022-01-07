@@ -147,7 +147,7 @@ const validatorForm = Yup.object().shape({
          */}
 
         { singleProduct && ok ? 
-        <div className="px-6">
+        <div className="lg:px-6">
         <div className="relative my-2 h-10 ">
             <div className=" absolute top-2 left-0 z-50">
                 <div className="flex">
@@ -301,10 +301,20 @@ const validatorForm = Yup.object().shape({
                                     value={values.status}
                                     onChange={handleChange}
                                     onBlur={handleBlur}>
-                                    <option value="" label="Select a Status " />
-                                    <option value="active" label="active" />
-                                    <option value="draft" label="draft" />
-                                    <option value="inactive" label="inactive" />
+                                <option value="" label="Select a Status ">
+                                    Select a Status
+                                </option>
+                                <option value="active" label="active">
+                                    Active
+                                </option>
+
+                                <option value="draft" label="draft">
+                                    Draft
+                                </option>
+
+                                <option value="inactive" label="inactive">
+                                    Inactive
+                                </option>
                             </Select>
                         </Label>
                         {errors.status && (
@@ -319,7 +329,9 @@ const validatorForm = Yup.object().shape({
                                         value={values.category}
                                         onChange={handleCategory}>
 
-                                <option value="" label="Select a Category " />           
+                                <option value="" label="Select a Category ">
+                                    Select a Category 
+                                </option>           
                                 { categories &&
                                     categories.map((c, i) => (
                                     <option className="px-2" key={i} value={c._id}>
@@ -341,7 +353,9 @@ const validatorForm = Yup.object().shape({
                                 value={values.subs}
                                 onChange={handleChange}>
 
-                                <option value="" label="Select Subacategory"/> 
+                                <option value="" label="Select Subacategory">
+                                    Select Subacategory
+                                </option> 
                                 { subs && subs.map( (sub, i ) => (
                                 <option className="px-2" key={i} value={sub._id}>
                                     {sub.name}
@@ -461,8 +475,8 @@ const validatorForm = Yup.object().shape({
                 </div>
 
             </div>
-                    <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey z-50 lg:relative lg:mb-10">
-                        <div className="m-auto p-3">
+                    <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey lg:relative lg:mb-10" style={{zIndex:'1000'}}>
+                        <div className="flex my-2 px-3 m-auto">
                             <Button className="bg-Black text-white w-3/5 ml-3" type="submit" onClick={() => setIsSubmitting(true)}>
                                 Save Product
                             </Button>

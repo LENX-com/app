@@ -50,8 +50,8 @@ function Dashboard() {
 
   return (
     <Layout>
-      <UserCard user= {user} />
-      { isTabletOrMobile ?
+        <UserCard user= {user} />
+        { isTabletOrMobile ?
               (
               <div className="bg-white mt-14">
                   <div className="py-3 shadow-separator">
@@ -106,56 +106,6 @@ function Dashboard() {
                   </div>
               </div>
       ) : (
-      <>
-      <section style={{background: `url('https://images.unsplash.com/photo-1595853035070-59a39fe84de3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3925&q=80')`, width: "100vw"}} className="h-40 bg-cover bg-center relative">
-          <div className="Center w-full">
-            <div
-                className="bg-cover bg-center shadow-button h-20 w-20 rounded-sm bg-white m-auto"
-                style={{backgroundImage: 'url("https://http2.mlstatic.com/D_Q_NP_871989-MLA25801430807_072017-T.webp")'}} />
-            <div className="text-center">
-              <h1 className="font-bold text-lg mt-1"> Cooperative </h1>
-            </div>
-          </div>
-      </section>
-      {/* <!-- Cards -->
-      <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-        <InfoCard title="Total clients" value="6389">
-          <RoundIcon
-            icon={PeopleIcon}
-            iconColorClass="text-orange-500 dark:text-orange-100"
-            bgColorClass="bg-orange-100 dark:bg-orange-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="Account balance" value="$ 46,760.89">
-          <RoundIcon
-            icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-green-100 dark:bg-green-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="New sales" value="376">
-          <RoundIcon
-            icon={CartIcon}
-            iconColorClass="text-blue-500 dark:text-blue-100"
-            bgColorClass="bg-blue-100 dark:bg-blue-500"
-            className="mr-4"
-          />
-        </InfoCard>
-
-        <InfoCard title="Pending contacts" value="35">
-          <RoundIcon
-            icon={ChatIcon}
-            iconColorClass="text-teal-500 dark:text-teal-100"
-            bgColorClass="bg-teal-100 dark:bg-teal-500"
-            className="mr-4"
-          />
-        </InfoCard>
-      </div> */}
-
     <div className="my-3">
       <SectionTitle> Customers </SectionTitle>
       <TableContainer>
@@ -202,7 +152,6 @@ function Dashboard() {
         </TableFooter>
       </TableContainer>
       </div>
-    </>
     )}
     </Layout>
   )

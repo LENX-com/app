@@ -3,11 +3,11 @@ import Card from './Card'
 
 const UserCard = ({user, description}) => {
   return( 
-        <div className="mt-12">
+        <div className="pt-20">
         <div className="flex items-center justify-center mb-10">
           <div className=" px-5 py-3 bg-white rounded-sm shadow-button mx-auto">
             <div className="" style={{clipPath: 'url(#roundedPolygon)'}}>
-              <img className="w-auto h-16 -mt-12 rounded-md mb-3 mx-auto" src={user.avatar} alt="WABEI" />
+              <img className="w-16 h-16 -mt-12 rounded-md mb-3 mx-auto" src={user.avatar} alt="WABEI" />
             </div>
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col items-center md:items-start">
