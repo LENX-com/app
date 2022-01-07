@@ -126,8 +126,11 @@ const Reviews = () => {
                     {/* Check if the admin has already responded the review  */}
                     {currentReview.responses.some(e => e.user ===  _id) ? 
                         //filter the reviews then map the one from the manufacturer  
-                        currentReview.responses.filter(e => e.user ===  _id).map(e => (
-                            <div className="bg-white border-box p-4">
+                        currentReview.responses.filter(e => e.user ===  _id).map((e, i) => (
+                            <div 
+                                className="bg-white border-box p-4"
+                                key={i}
+                            >
                                 <div className="font-bold text-lg my-2"> Your response </div>
                                 { parse(e.response) }
                                 <button className="my-2 underline text-red-500 flex" onClick={removeResponseHandler}>
