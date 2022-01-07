@@ -276,7 +276,7 @@ const validatorForm = Yup.object().shape({
                                         value={values.status}
                                         onChange={handleChange}
                                         onBlur={handleBlur}>
-                                        <option value="" label="Select a Status " className="text-Black">
+                                        <option value="" label="Select a Status " className="text-Black"/>
                                         <option value="active" label="active" className="text-Black"/>
                                         <option value="draft" label="draft" className="text-Black"/>
                                         <option value="inactive" label="inactive" className="text-Black"/>
