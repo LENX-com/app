@@ -51,7 +51,7 @@ router.post(
   auth,
   protected(1),
   createProduct
-);  
+);   
 router.get("/query-catalogues", searchCatalogue);
 router.get("/query-products", searchProductsCatalogue);  
 router.get("/query-stores", searchStoresCatalogue);

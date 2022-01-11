@@ -15,4 +15,4 @@ router.put("/skill/:slug", auth, protected(1), update);
 router.delete("/skill/:slug", auth, protected(1), remove);
 
 
-module.exports = router;  
+module.exports = router;    

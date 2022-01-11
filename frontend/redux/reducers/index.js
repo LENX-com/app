@@ -13,6 +13,7 @@ import { searchProductReducer } from './searchProductReducer';
 import { questionReducer } from './questionReducer';
 import { adminReducer } from './adminReducer';
 import { manufacturerReducer } from './manufacturerReducer';
+import { locationReducer } from './locationReducer';
 import { orderReducer as order }
 from './orderReducer'
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   questions : questionReducer,
   admin: adminReducer,
   manufacturer: manufacturerReducer,
+  locations: locationReducer,
   order,
 });
 

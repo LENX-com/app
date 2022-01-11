@@ -63,37 +63,66 @@ exports.addManufacturerCategories = async (req, res) => {
 
 
 exports.updateUser = async (req, res) => {
-  console.log(req.file);
-  try {
-    const cloudinary = require("cloudinary").v2;
-      cloudinary.config({
-          cloud_name: process.env.CLOUDINARY_NAME,
-          api_key: process.env.CLOUDINARY_API,
-          api_secret: process.env.CLOUDINARY_SECRET
+  console.log({req: req.body});
+  console.log({files: req.files});
+
+  
+  const cloudinary = require("cloudinary").v2;
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API,
+        api_secret: process.env.CLOUDINARY_SECRET
       })
-      
+  try {
+    const user = await User.findById(req.user._id);
     const { ...args } = req.body;
+
+    var imageList =  JSON.parse(args.currentPhoto);
+    var imageList = imageList.filter(value => Object.keys(value).length !== 0);
+
+    // delete all the images from cloudinary  
+      const deletedImages = user.photos.filter(({ public_id: id1 }) => !imageList.some(({ public_id: id2 }) => id2 === id1));
+      for (const image of deletedImages) {
+        console.log("image.public_id", image.public_id)
+        await cloudinary.uploader.destroy(image.public_id);
+      }
     
-    const shippingDetails = {
-      address: args.address,
-      city: args.city,
-      mobile: args.mobile,
-      postalCode: args.postalCode,
-    }
+    console.log("deletedImages", deletedImages);
+
+    console.log("user.photos", user.photos);
+    console.log("imageList", imageList);
+
 
     if(req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        resource_type: "auto",
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      resource_type: "auto",
         invalidate: true,
       });
       args.avatar = result.secure_url;
       args.avatarId = result.public_id;
     }
 
-    const user = await User.findOneAndUpdate({ _id: req.user._id }, args, {
-      new: true,
-    });
-    return res.json(user);
+    console.log("files", req.files)
+
+    if (req.files && user.photos.length <= 12) {
+    
+    for(var i=0;i<req.files.length;i++){
+      var locaFilePath = req.files[i].path
+      var result = await cloudinary.uploader.upload( locaFilePath )
+      imageList.push({
+        url : result.url,
+        public_id : result.public_id
+      })
+    }
+  }
+  args.photos = imageList;
+  // cloudinary.uploader.destroy('sample', function(result) { console.log(result) });
+
+  const updatedUser = await User.findOneAndUpdate({ _id: req.user._id }, args, {
+    new: true,
+  });
+  
+    return res.json(updatedUser);
   } catch (error) {
     console.log(error);
   }

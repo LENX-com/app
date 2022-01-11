@@ -6,7 +6,7 @@ const initialState = {
   singleBlog: undefined,
   reviews: false,
   loading: false,
-  reviewsTest: "",
+  locations: [],
 };
 
 export const adminReducer = (state = initialState, action) => {
@@ -55,10 +55,10 @@ export const adminReducer = (state = initialState, action) => {
         ...state,
         reviews: action.payload.data,
       };
-      case "REVIEWS_TEST":
+      case "LOCATIONS_ADMIN":
         return {
         ...state,
-        reviewsTest: "test",
+        locations: actions.payload,
       };
       case "REVIEWS_ADMIN_ERROR":
         return {

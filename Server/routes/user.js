@@ -49,7 +49,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 //******************************User Crud.********************** */
-router.post("/user/update", upload.single("file"), auth, updateUser);  
+router.post(
+  "/user/update", 
+  upload.array("photos", 6),
+  // upload.single("file"), 
+  auth, 
+  updateUser
+  );    
 //******************************User Crud.********************** */
 
 //****************************Following manufacturer feature************************************** */

@@ -124,18 +124,23 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                                     className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
                                     style= {{backgroundImage: `url(${brand.avatar})`}} 
                                 />
-                                <SwiperSlide 
-                                    className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                    style= {{backgroundImage: `url(${brand.photos[0]?.url})`}} 
-                                />
-                                <SwiperSlide 
-                                    className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                    style= {{backgroundImage: `url(${brand.photos[1]?.url})`}} 
-                                />
-                                <SwiperSlide 
-                                    className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                    style= {{backgroundImage: `url(${brand.photos[2]?.url})`}} 
-                                />
+                                {
+                                    brand.photos?.length > 0 &&
+                                    <>
+                                        <SwiperSlide 
+                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
+                                            style= {{backgroundImage: `url(${brand.photos[0]?.url})`}} 
+                                        />
+                                        <SwiperSlide 
+                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
+                                            style= {{backgroundImage: `url(${brand.photos[1]?.url})`}} 
+                                        />
+                                        <SwiperSlide 
+                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
+                                            style= {{backgroundImage: `url(${brand.photos[2]?.url})`}} 
+                                        />
+                                    </>
+                                }
                             </Swiper>
                         </section>
                         {

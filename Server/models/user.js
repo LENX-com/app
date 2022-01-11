@@ -54,18 +54,18 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      trim: true,
+      trim: true,  
       required: true,
       maxlenght: 32,
     },
     mobile: { type: String },
-    skills: [
-      {
-        type: ObjectId,
-        ref: "Skills",
-      },
-    ],
-    locations: { type: Array},
+    skills: {
+      type: Array,
+    },
+    locations: [{
+      type: ObjectId,
+      ref: "Location",
+    }],
     slug: {
       type: String,
       lowercase: true,
@@ -124,26 +124,14 @@ const userSchema = new mongoose.Schema(
     avatarId: {
       type: String,
     },
-    bgImage: {
-      type: String,
-    },
-    bgId: {
-      type: String,
-    },
     categories: [{
       type: ObjectId,
       ref: "Category"
     }],
-    photos: [
-      {
-      url :{
-        type: String
-      },
-      public_id: {
-        type:String
-      },
-      },
-    ],
+    photos: {
+      type: Array,
+      default: [],
+    },
     reviews: [{
       type: ObjectId,
       ref: "Review"

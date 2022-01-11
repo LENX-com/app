@@ -306,3 +306,17 @@ export const getSingleProduct = (productId) => async (dispatch) => {
     });
   }
 };
+
+export const getLocations = () => async (dispatch) => {
+  try {
+    const res = await api.get(`${API}/locations`);
+    dispatch({
+      type: "GET_LOCATIONS",
+      payload: res,
+    });
+  } catch (err) {
+    dispatch({
+      type: "LOCATIONS_ERROR",
+    });
+  }
+};
