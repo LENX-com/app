@@ -160,7 +160,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
             <form 
                   onSubmit={handleSubmit} 
                   className="bg-white border-box"
-                  enctype="multipart/form-data"
+                  encType="multipart/form-data"
             >
               <div className="">
                 <div className="px-4 py-5  space-y-6 sm:p-6">
