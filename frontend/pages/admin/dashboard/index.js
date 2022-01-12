@@ -6,7 +6,7 @@ import RoundIcon from '@/admin/components/RoundIcon'
 import withAuth from '@/components/auth'
 import Link from 'next/link'
 import { AiOutlineUser, AiOutlineMessage, AiOutlinePlusSquare } from 'react-icons/ai'
-import UserCard from '@/dashboard/components/Cards/UserCard'
+import UserCard from '@/admin/components/Cards/UserCard'
 import { Order } from '@/marketplace/assets/icons'
 import { data as table } from '@/admin/utils/demo/tableData'
 import Layout from '@/admin/containers/Layout'
@@ -151,7 +151,7 @@ function Dashboard() {
             />
         </TableFooter>
       </TableContainer>
-      </div>
+      </div>  
     )}
     </Layout>
   )

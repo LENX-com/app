@@ -49,7 +49,7 @@ exports.searchProductsCatalogue = async (req, res) => {
       $text: { $search: req.query.value },
     });
     return res.json(catalogue);
-  } catch (err) {
+  } catch (err) {  
     console.log(err);
   }
 };
@@ -118,7 +118,7 @@ exports.editProduct = async (req, res) => {
     if (file) {
     var imageList = []
     
-    for(var i=0;i<req.files.length;i++){
+    for(var i=0;i<req.files.length;i++){  
       var locaFilePath = req.files[i].path
       var result = await cloudinary.uploader.upload( locaFilePath )
       console.log(result)

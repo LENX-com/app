@@ -56,7 +56,7 @@ const img = {
   height: '100%'
 };
 
-const title = "text-lg font-bold text-Black-medium";
+const title = "text-lg font-bold text-Black-medium pb-2";
 
   const validatorForm = Yup.object().shape({
                 name: 
@@ -167,12 +167,11 @@ const title = "text-lg font-bold text-Black-medium";
                   <div className="grid grid-cols-3 gap-6"></div>
 
                   <div>
-                    <label
-                      htmlFor="about"
+                    <h2
                       className={title}
                     >
                       About
-                    </label>
+                    </h2>
                     <div className="mt-1 rounded-md shadow-button p-2">
                       <textarea
                         id="about"
@@ -187,9 +186,9 @@ const title = "text-lg font-bold text-Black-medium";
                   </div>
 
                   {/* <div>
-                    <label className={title}>
+                    <h2 className={title}>
                       Profile Picture
-                    </label>
+                    </h2>
                     <div className="mt-1 flex items-center">
                       <Avatar src={user.avatar} size="large"/>
                     </div>
@@ -258,13 +257,12 @@ const title = "text-lg font-bold text-Black-medium";
 
                 <div className="">
                   <div className="px-6 mobile:px-3">
-                    <div className="pb-6">
-                      <label
-                        htmlFor="first_name"
+                    <div className="pb-7">
+                      <h2
                         className={title}
                       >
                         Name
-                      </label>
+                      </h2>
                       {errors.name && (
                         <div className="input-feedback">{ errors.name }</div>
                       )}
@@ -281,13 +279,12 @@ const title = "text-lg font-bold text-Black-medium";
                       </div>
                     </div>
 
-                    <div className="pb-6">
-                      <label
-                        htmlFor="mobile"
+                    <div className="pb-7">
+                      <h2
                         className={title}
                       >
                         Mobile
-                      </label>
+                      </h2>
                       {errors.mobile && (
                         <div className="input-feedback">{ errors.mobile }</div>
                       )}
@@ -302,13 +299,12 @@ const title = "text-lg font-bold text-Black-medium";
                       />
                     </div>
                   </div>
-                  <div className='px-6 mobile:px-3 pb-6'>
-                    <label
-                      htmlFor="skills"
+                  <div className='px-6 mobile:px-3 pb-7'>
+                    <h2
                       className={title}
                     >
                       Skills
-                    </label>
+                    </h2>
                     <h3 className="text-base font-medium mt-2"> Add or change skills (up to 4) so buyers know more about your product </h3>
                     <div className="Form">
                         <div className="TagForm mt-3">
@@ -348,7 +344,7 @@ const title = "text-lg font-bold text-Black-medium";
                     )}
                 </div>
 
-                <div className="pb-6 px-6 mobile:px-3">
+                <div className="pb-7 px-6 mobile:px-3">
                     <h2 className={title}> Locations that you cover </h2>
                     <div className="m-auto">
                       <select     
@@ -372,9 +368,12 @@ const title = "text-lg font-bold text-Black-medium";
                       <div className="input-feedback">{errors.locations}</div>
                     )}
                 </div>
-                <div className="px-6 mobile:px-3 pb-6">
+                <div className="px-6 mobile:px-3 pb-7">
                     <div>
-                    <h2 className={title}> Add media </h2>
+                    <h2 className={title}> 
+                        Add media 
+                        <em className="text-xs text-Black-medium pl-2">(Include high-quality images of your work to attract more customers.)</em>
+                    </h2>
                         <FieldArray
                             name="photos"
                             render={arrayHelpers => (
@@ -390,14 +389,13 @@ const title = "text-lg font-bold text-Black-medium";
                         }))));
                         }}>
                                 {({ getRootProps, getInputProps }) => (
-                        <section className="container p-2 border-box">
+                        <section className="container p-2 border-box lg:w-3/5">
                             <div {...getRootProps({ className: "dropzone text-center" })}>
                                 <input name="file" {...getInputProps()} />
                                 <div clasName="p-2 mx-auto">
                                     <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
                                     <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add Files </div>
                                 </div>
-                                <em className="text-xs text-Black-medium">(Include high-quality images of your work to attract more customers.)</em>
                             </div>
                         </section>
                     )}

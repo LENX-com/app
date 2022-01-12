@@ -63,9 +63,6 @@ exports.addManufacturerCategories = async (req, res) => {
 
 
 exports.updateUser = async (req, res) => {
-  console.log({req: req.body});
-  console.log({files: req.files});
-
   
   const cloudinary = require("cloudinary").v2;
     cloudinary.config({
@@ -87,12 +84,6 @@ exports.updateUser = async (req, res) => {
         await cloudinary.uploader.destroy(image.public_id);
       }
     
-    console.log("deletedImages", deletedImages);
-
-    console.log("user.photos", user.photos);
-    console.log("imageList", imageList);
-
-
     if(req.file) {
     const result = await cloudinary.uploader.upload(req.file.path, {
       resource_type: "auto",
