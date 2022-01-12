@@ -15,6 +15,7 @@ const {
   update,
   purchaseHistory, 
   updateUser,
+  updateProfilePicture,
   addShippingInfo,
   updateShippingInfo,
   followUser,
@@ -55,7 +56,14 @@ router.post(
   // upload.single("file"), 
   auth, 
   updateUser
-  );    
+  ); 
+  
+router.post(
+  "/user/update/profile-picture", 
+  upload.single("file"), 
+  auth, 
+  updateProfilePicture
+  ); 
 //******************************User Crud.********************** */
 
 //****************************Following manufacturer feature************************************** */

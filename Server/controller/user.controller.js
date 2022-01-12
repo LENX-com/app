@@ -119,6 +119,43 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+exports.updateProfilePicture = async (req, res) => {
+  console.log("req.body", req.body)
+  console.log("req.file", req.file)
+  
+  const cloudinary = require("cloudinary").v2;
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API,
+        api_secret: process.env.CLOUDINARY_SECRET
+      })
+
+  try {
+    const user = await User.findById(req.user._id);
+      
+    const { ...args } = req.body;
+    
+    if(req.file) {
+      await cloudinary.uploader.destroy(user.avatarId);
+      const result = await cloudinary.uploader.upload(req.file.path, {
+          resource_type: "auto",
+            invalidate: true,
+          });
+      args.avatar = result.secure_url;
+      args.avatarId = result.public_id;
+    }
+
+  const updatedUser = await User.findOneAndUpdate({ _id: req.user._id }, args, {
+    new: true,
+  });
+  
+    return res.json(updatedUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 exports.userById = (req, res, next, id) => {
   User.findById(id)
     .populate("session")

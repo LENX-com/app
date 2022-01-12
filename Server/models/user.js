@@ -128,6 +128,9 @@ const userSchema = new mongoose.Schema(
       type: ObjectId,
       ref: "Category"
     }],
+    title: {
+      type: String,
+    },
     photos: {
       type: Array,
       default: [],

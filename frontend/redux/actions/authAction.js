@@ -135,6 +135,21 @@ export const userProfileUpdate = (formdata) => async (dispatch) => {
   }
 };
 
+//************************User crud profile update************************ */
+export const updateProfilePicture = (formdata) => async (dispatch) => {
+  try {
+    const res = await api.post(`${API}/user/update/profile-picture`, formdata);
+    dispatch({
+      type: "UPDATE_USER_PROFILE",
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_USER_PROFILE_ERROR",
+    });
+  }
+};
+
 //******************************shipping details******************************
 
 //add order shipping info

@@ -56,10 +56,13 @@ const img = {
   height: '100%'
 };
 
-const title = "text-lg font-bold text-Black-medium pb-2";
+const title = "text-lg font-bold text-Black-medium pb-1";
 
   const validatorForm = Yup.object().shape({
                 name: 
+                    Yup.string()
+                    .required("Required"),
+                title: 
                     Yup.string()
                     .required("Required"),
                 locations:
@@ -93,6 +96,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
             about: user.about,
             file: [],
             photos: user.photos ? user.photos : [],
+            title: user.title ? user.title : "",
             locations:user.locations ? user.locations : [],
             skills: user.skills ? user.skills : [],
             mobile: user.mobile ? user.mobile : "",
@@ -107,6 +111,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
             let formData = new FormData();
 
             formData.append("name", values.name);
+            formData.append("title", values.title);
             formData.append("about", values.about);
             formData.append("mobile", values.mobile);
 
@@ -257,7 +262,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
 
                 <div className="">
                   <div className="px-6 mobile:px-3">
-                    <div className="pb-7">
+                    <div className="pb-8">
                       <h2
                         className={title}
                       >
@@ -274,12 +279,34 @@ const title = "text-lg font-bold text-Black-medium pb-2";
                           value={values.name}
                           id="name"
                           autoComplete="given-name"
-                          className=""
+                          className="w-full"
                         />
                       </div>
                     </div>
 
-                    <div className="pb-7">
+                    <div className="pb-8">
+                      <h2
+                        className={title}
+                      >
+                        Job Title 
+                      </h2>
+                      {errors.title && (
+                        <div className="input-feedback">{ errors.title }</div>
+                      )}
+                      <div className="px-3 shadow-button w-full rounded-md py-1">
+                        <input
+                          type="text"
+                          name="title"
+                          onChange={handleChange}
+                          value={values.title}
+                          id="title"
+                          autoComplete="given-name"
+                          className="w-full"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="pb-8">
                       <h2
                         className={title}
                       >
@@ -288,24 +315,26 @@ const title = "text-lg font-bold text-Black-medium pb-2";
                       {errors.mobile && (
                         <div className="input-feedback">{ errors.mobile }</div>
                       )}
-                      <input
-                        type="number"
-                        name="mobile"
-                        value={values.mobile}
-                        onChange={handleChange}
-                        id="mobile"
-                        autoComplete="postal-code"
-                        className="px-3 py-1 shadow-button w-full rounded-md"
-                      />
+                      <div className="px-3 py-1 shadow-button w-full rounded-md">
+                        <input
+                          type="number"
+                          name="mobile"
+                          value={values.mobile}
+                          onChange={handleChange}
+                          id="mobile"
+                          autoComplete="postal-code"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className='px-6 mobile:px-3 pb-7'>
+                  <div className='px-6 mobile:px-3 pb-8'>
                     <h2
                       className={title}
                     >
                       Skills
                     </h2>
-                    <h3 className="text-base font-medium mt-2"> Add or change skills (up to 4) so buyers know more about your product </h3>
+                    
+                    <em className="text-xs text-Black-medium"> Add or change skills (up to 4) so buyers know more about your product </em>
                     <div className="Form">
                         <div className="TagForm mt-3">
                             <AiFillTags className="InputIcon text-lg mx-2" />
@@ -344,7 +373,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
                     )}
                 </div>
 
-                <div className="pb-7 px-6 mobile:px-3">
+                <div className="pb-8 px-6 mobile:px-3">
                     <h2 className={title}> Locations that you cover </h2>
                     <div className="m-auto">
                       <select     
@@ -368,7 +397,7 @@ const title = "text-lg font-bold text-Black-medium pb-2";
                       <div className="input-feedback">{errors.locations}</div>
                     )}
                 </div>
-                <div className="px-6 mobile:px-3 pb-7">
+                <div className="px-6 mobile:px-3 pb-8">
                     <div>
                     <h2 className={title}> 
                         Add media 
