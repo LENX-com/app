@@ -30,6 +30,8 @@ import order from './order.svg'
 import conversation from './conversation.svg'
 import Information from './information.svg'
 import Service from './service.svg'
+import Review from './review.svg'
+
 
 
 export {
@@ -58,6 +60,7 @@ export {
   BellIcon,
   MenuIcon,
   DropdownIcon,
+  Review,
   OutlinePersonIcon,
   OutlineCogIcon,
   OutlineLogoutIcon,

@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { Dropdown, DropdownItem, Input } from '@windmill/react-ui'
 import { AiOutlineClose } from 'react-icons/ai'
 import { getReviewsByManufacturer, sendResponse, removeResponse } from '@/redux/actions/userActions'
-import PageTitle from '@/components/Typography/PageTitle'
+import PageHeader from '@/admin/components/Header/PageHeader'
 import Button from '@/components/Buttons/Button'
 import ReviewCard from '@/admin/components/reviews/ReviewCard'
 import dynamic from 'next/dynamic'
@@ -107,9 +107,8 @@ const Reviews = () => {
 
     return (
         <Layout>
-            <PageTitle>Reviews</PageTitle>
+            <PageHeader title="Reviews" />
             <Card>
-                {/* <SelectionMenu /> */}
                 <ReviewList />
             </Card>
 

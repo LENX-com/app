@@ -16,9 +16,9 @@ const UserCard = ({ user }) => {
   }, [selectedFile]);
 
   return(
-      <div className="mobile:bg-white py-3">
-        <div className="flex px-6 mobile:px-3 mt-8">
-            <div className="my-auto">
+      <div className="mobile:bg-white py-5">
+        <div className="flex px-6 mobile:px-5">
+            <div className="my-auto mr-5">
               <div className="h-28 w-28 md rounded-full bg-cover bg-center relative border-2 border-lightBlack" style={{background: `url('${user.avatar}')`}}>
                 <div className="absolute right-0 bottom-0 rounded-full bg-blue-400 p-2">
                   <label className="cursor-pointer ">
@@ -32,7 +32,7 @@ const UserCard = ({ user }) => {
               </div>
               </div>
             </div>
-            <div className="my-auto pl-5">
+            <div className="my-auto">
               <h2 className="text-lg font-bold text-Black capitalize">{user.name}</h2>
               <h3 className="text text-Black">Plumber</h3>
             </div>

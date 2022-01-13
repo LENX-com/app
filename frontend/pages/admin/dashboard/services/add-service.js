@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Field, FieldArray } from "formik";
 import Dropzone from "react-dropzone";
 import { AiFillFileImage, AiOutlineClose, AiFillTags } from "react-icons/ai";
-import { MdArrowBack } from "react-icons/md";
+import PageHeader from '@/admin/components/Header/PageHeader'
 import * as Yup from "yup";
 import { Alert } from '@windmill/react-ui'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
-import SectionTitle from "@/components/Typography/SectionTitle";
+import SectionTitle from '@/components/Typography/SectionTitle'
 import Layout from '@/admin/containers/Layout'
 import { useDispatch, useSelector } from 'react-redux' 
 import { getSubs, getSubByCategory } from "@/redux/actions/subCategoryAction";
@@ -31,7 +30,6 @@ const AddProduct = () => {
     const [ subs, setSubs ] = useState('')
     const [ isSubmitting, setIsSubmitting ] = useState(false)
     const [ isCreated, setIsCreated] = useState(false)
-    const router = useRouter();
 
      const dispatch = useDispatch();
 
@@ -115,20 +113,7 @@ const validatorForm = Yup.object().shape({
 
     return (
     <Layout>
-        <div className="relative my-2 h-10 ">
-            <div className=" absolute top-2 left-0 z-50">
-                <div className="flex">
-                    <button
-                        className="rounded-full w-8 h-8 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white ml-4"
-                        onClick={() => setTimeout(() => router.back(), 150)}>
-                        <MdArrowBack className="w-5 h-5"/>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div className="px-2 mt-2">
-            <SectionTitle> Add a service (you have a maximum of 3) </SectionTitle>
-        </div>
+      <PageHeader title="Add a service (you have a maximum of 3)" /> 
       <div className="relative">
         <Formik
           initialValues={{

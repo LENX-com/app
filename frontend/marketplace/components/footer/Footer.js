@@ -33,7 +33,7 @@ const Footer = () => {
                     <div className="col">
                         <NavLink 
                             href={user?.role === 1 ? '/admin/dashboard' : '/user/dashboard'}
-                            activeClassName=" text-Blue fontl-bold"
+                            activeClassName=" text-Blue font-bold"
                         >
                             <div className="wrapper text-center"> 
                                 <div className="icon-wrapper mt-2 text-xl">

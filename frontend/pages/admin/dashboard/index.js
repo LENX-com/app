@@ -1,53 +1,48 @@
 import React, { useState, useEffect, useRef } from 'react'
 import InfoCard from '@/admin/components/Cards/InfoCard'
 import SectionTitle from '@/admin/components/Typography/SectionTitle'
-import { Service } from '@/admin/icons'
-import RoundIcon from '@/admin/components/RoundIcon'
+import { Service, Review } from '@/admin/icons'
 import withAuth from '@/components/auth'
-import Link from 'next/link'
-import { AiOutlineUser, AiOutlineMessage, AiOutlinePlusSquare } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlineMessage, AiOutlinePlusSquare, AiOutlinePlus } from 'react-icons/ai'
+import {  adminProducts } from "@/redux/actions/productAction";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useDispatch } from 'react-redux'
 import UserCard from '@/admin/components/Cards/UserCard'
+import Link from 'next/link'
+import { NotFound } from '@/marketplace/assets/icons'
+import Button from '@/components/Buttons/Button'
 import { Order } from '@/marketplace/assets/icons'
-import { data as table } from '@/admin/utils/demo/tableData'
 import Layout from '@/admin/containers/Layout'
 import { useMediaQuery } from 'react-responsive'
-import {
-  TableBody,
-  TableContainer,
-  Table,
-  TableHeader,
-  TableCell,
-  TableRow,
-  TableFooter,
-  Avatar,
-  Badge,
-  Pagination,
-} from '@windmill/react-ui'
 import { useSelector } from 'react-redux'
 
 function Dashboard() {
-  const [page, setPage] = useState(1)
-  const [data, setData] = useState([])
+  const dispatch = useDispatch();
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
-
-
-  // pagination setup
-  const resultsPerPage = 10
-  const totalResults = table.length
-
-  // pagination change control
-  function onPageChange(p) {
-    setPage(p)
-  }
-
-  // on page change, load new sliced data
-  // here you would make another server request for new data
+  const { user }  = useSelector( state => state.auth);
+  const { products } = useSelector((state) => state.admin.products);
+  
   useEffect(() => {
-    setData(table.slice((page - 1) * resultsPerPage, page * resultsPerPage))
-  }, [page])
+      dispatch(adminProducts({authorId : user._id }))
+  }, [])
 
-  const { user, isAuthenticated }  = useSelector( state => state.auth);
-
+  const NoResultsFound = () =>(
+    <div className="mb-4 mx-auto">
+      <div className="m-auto text-center">
+          <NotFound className="text-center mx-auto my-2"/>
+          <span className="font-bold capitalize"> Sorry you have not upload any service </span>
+      </div>
+      <div className="my-3">
+        <Link href= {`/admin/dashboard/services/add-service`}>
+            <Button className="text-base bg-white flex mx-auto"> 
+              <AiOutlinePlus className="my-auto mr-2"/>
+              <span className="font-bold"> Add a service </span>
+            </Button>
+        </Link>
+      </div>
+    </div>
+  )
+  
   return (
     <Layout>
         <UserCard user= {user} />
@@ -104,12 +99,45 @@ function Dashboard() {
                           </a>
                       </Link>
                   </div>
+                  <div className="py-3 shadow-separator">
+                      <Link href="/admin/dashboard/reviews">
+                          <a className="px-3 flex text-Black-text">
+                              <Review className="w-5 h-5 my-auto"/>
+                              <span className="font-bold text-base my-auto ml-2">
+                                  My reviews
+                              </span>
+                          </a>
+                      </Link>
+                  </div>
               </div>
       ) : (
     <div className="my-3">
       <SectionTitle> My Services </SectionTitle>
         <div>
-
+          { products.length === 0 ? 
+              <div className="mt-4 overflow-hidden p-3">
+                  <NoResultsFound />
+              </div>
+                : 
+          <Swiper
+            slidesPerView= {3}
+            spaceBetween={25}
+            freeMode={true}
+          >
+            {products?.map( (data, i) => (
+              <SwiperSlide className="shadow-product rounded-md m-2 h-28 mobile:w-5/6 bg-white" key={i}>
+                <div className="flex h-full">
+                    <div className="w-1/3 h-full bg-cover bg-center rounded-tl-md rounded-bl-md mobile:w-2/4" style = {{background: `url("${data.photo[0].url}")`}}/>
+                    <div className="w-2/3 text-center font-bold text-Black my-auto mobile:w-2/4">
+                        <Link href= {`/marketplace/products/${data.slug}`} className="font-bold text-Black-text capitalize">
+                            { data.name }
+                        </Link>
+                    </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+         }
         </div>
       </div>  
     )}

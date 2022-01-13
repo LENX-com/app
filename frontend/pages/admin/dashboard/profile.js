@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from '@windmill/react-ui'
 import _ from 'lodash'
 import { AiFillFileImage, AiOutlineClose, AiFillTags } from "react-icons/ai";
+import PageHeader from '@/admin/components/Header/PageHeader'
 import Card from '@/components/Cards/Card';
 import * as Yup from "yup";
 import withAuth from '@/components/auth'
@@ -87,7 +88,8 @@ const title = "text-lg font-bold text-Black-medium pb-1";
 
   return (
     <Layout>
-      <div className="mt-10">
+      <PageHeader title="Profile" />
+      <div className="mt-6">
         <div className="">
           <div className="my-6">
            <Formik
@@ -162,326 +164,328 @@ const title = "text-lg font-bold text-Black-medium pb-1";
         } = formik;
 
           return (
-            <form 
-                  onSubmit={handleSubmit} 
-                  className="bg-white border-box"
-                  encType="multipart/form-data"
-            >
-              <div className="">
-                <div className="px-4 py-5  space-y-6 sm:p-6">
-                  <div className="grid grid-cols-3 gap-6"></div>
+              <Card>
+                <form 
+                      onSubmit={handleSubmit} 
+                      className=""
+                      encType="multipart/form-data"
+                >
+                <div className="">
+                  <div className="px-4 py-5  space-y-6 sm:p-6">
+                    <div className="grid grid-cols-3 gap-6"></div>
 
-                  <div>
-                    <h2
-                      className={title}
-                    >
-                      About
-                    </h2>
-                    <div className="mt-1 rounded-md shadow-button p-2">
-                      <textarea
-                        id="about"
-                        name="about"
-                        onChange={handleChange}
-                        value={values.about}
-                        rows={3}
-                        className="focus:ring-indigo-500 focus:border-indigo-500 mt-1 w-full"
-                        placeholder="Brief description for your profile."
-                      />
+                    <div>
+                      <h2
+                        className={title}
+                      >
+                        About
+                      </h2>
+                      <div className="mt-1 rounded-md shadow-button p-2">
+                        <textarea
+                          id="about"
+                          name="about"
+                          onChange={handleChange}
+                          value={values.about}
+                          rows={3}
+                          className="focus:ring-indigo-500 focus:border-indigo-500 mt-1 w-full"
+                          placeholder="Brief description for your profile."
+                        />
+                      </div>
                     </div>
+
+                    {/* <div>
+                      <h2 className={title}>
+                        Profile Picture
+                      </h2>
+                      <div className="mt-1 flex items-center">
+                        <Avatar src={user.avatar} size="large"/>
+                      </div>
+                    </div>
+
+                  { values.file.length < 1 &&
+                          <Dropzone  
+                              accept="image/jpeg, image/png"
+                              minSize={1024}
+                              maxSize={3072000}
+                              multiple = {false }
+                              onDrop={(acceptedFiles) => {
+                          // on drop we add to the existing files
+                          setFieldValue("file", values.file.concat(acceptedFiles.map( file => Object.assign(file, {
+                              preview: URL.createObjectURL(file)
+                          }))));
+                          }}>
+                                  {({ getRootProps, getInputProps }) => (
+                          <section className="container p-2 border-box mt-2">
+                              <div {...getRootProps({ className: "dropzone text-center" })}>
+                                  <input name="file" {...getInputProps()} />
+                                  <div clasName="p-2 mx-auto">
+                                      <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
+                                      <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add a file </div>
+                                  </div>
+                                  <em className="text-xs text-Black-medium">(Include an image for your profile Avatar.)</em>
+                              </div>
+                          </section>
+                      )}
+                          </Dropzone>
+                      }
+                              <div className="px-4 my-2">
+                              { values.file.length > 0 && 
+                              <>
+                                <strong>New Avatar:</strong>
+                                <ul className="list-disc my-2">
+                                    <aside style={thumbsContainer}>
+                                            <div style={thumb} className="relative">
+                                                <div style={thumbInner}>
+                                                    <img
+                                                    alt="preview"
+                                                    src={values.file[0].preview}
+                                                    style={img}
+                                                    />
+                                                </div>
+                                                <div className=" absolute top-2 right-1 z-50">     
+                                                    <button
+                                                        onClick = { (event) => {
+                                                            event.preventDefault();
+                                                            setFieldValue("file", _.remove())
+                                                }}
+                                                        className="rounded-full w-5 h-5 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white">
+                                                        <AiOutlineClose className="w-3 h-3"/>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                    </aside>
+                                </ul>
+                              </>
+                            }
+                              {errors.file && (
+                              <div className="input-feedback">{errors.file}</div>
+                              )}
+                          </div> */}
                   </div>
 
-                  {/* <div>
-                    <h2 className={title}>
-                      Profile Picture
-                    </h2>
-                    <div className="mt-1 flex items-center">
-                      <Avatar src={user.avatar} size="large"/>
+                  <div className="">
+                    <div className="px-6 mobile:px-3">
+                      <div className="pb-8">
+                        <h2
+                          className={title}
+                        >
+                          Name
+                        </h2>
+                        {errors.name && (
+                          <div className="input-feedback">{ errors.name }</div>
+                        )}
+                        <div className="px-3 shadow-button w-full rounded-md py-1">
+                          <input
+                            type="text"
+                            name="name"
+                            onChange={handleChange}
+                            value={values.name}
+                            id="name"
+                            autoComplete="given-name"
+                            className="w-full"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="pb-8">
+                        <h2
+                          className={title}
+                        >
+                          Job Title 
+                        </h2>
+                        {errors.title && (
+                          <div className="input-feedback">{ errors.title }</div>
+                        )}
+                        <div className="px-3 shadow-button w-full rounded-md py-1">
+                          <input
+                            type="text"
+                            name="title"
+                            onChange={handleChange}
+                            value={values.title}
+                            id="title"
+                            autoComplete="given-name"
+                            className="w-full"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="pb-8">
+                        <h2
+                          className={title}
+                        >
+                          Mobile
+                        </h2>
+                        {errors.mobile && (
+                          <div className="input-feedback">{ errors.mobile }</div>
+                        )}
+                        <div className="px-3 py-1 shadow-button w-full rounded-md">
+                          <input
+                            type="number"
+                            name="mobile"
+                            value={values.mobile}
+                            onChange={handleChange}
+                            id="mobile"
+                            autoComplete="postal-code"
+                          />
+                        </div>
+                      </div>
                     </div>
+                    <div className='px-6 mobile:px-3 pb-8'>
+                      <h2
+                        className={title}
+                      >
+                        Skills
+                      </h2>
+                      
+                      <em className="text-xs text-Black-medium"> Add or change skills (up to 4) so buyers know more about your product </em>
+                      <div className="Form">
+                          <div className="TagForm mt-3">
+                              <AiFillTags className="InputIcon text-lg mx-2" />
+                              <input
+                                  className="p-2"
+                                  type="text"
+                                  placeholder="Add a skill..."
+                                  onKeyPress={event => {
+                                      if (event.key === "Enter") {
+                                          event.preventDefault();
+                                          values.skills.length < 4 && event.target.value !== "" && setFieldValue( "skills" ,[...values.skills, event.target.value]);
+                                          event.target.value = "";
+                                      }
+                                  }}
+                              />
+                          </div>
+                          <ul className="TagList">
+                              {values.skills && values.skills.map((tag, i) => (
+                                  <li 
+                                      className="Tag capitalize mb-5"
+                                      key = {i}
+                                  >
+                                  {tag}
+                                  <AiOutlineClose
+                                      className="TagIcon text-lg ml-2"
+                                      onClick={() => {
+                                      setFieldValue("skills", [...values.skills.filter(word => word !== tag)]);
+                                      }}
+                                  />
+                                  </li>
+                              ))}
+                          </ul>
+                      </div>
+                      {errors.skills && (
+                          <div className="input-feedback -m-mt-2">{ errors.skills }</div>
+                      )}
                   </div>
 
-                 { values.file.length < 1 &&
-                        <Dropzone  
-                            accept="image/jpeg, image/png"
-                            minSize={1024}
-                            maxSize={3072000}
-                            multiple = {false }
-                            onDrop={(acceptedFiles) => {
-                        // on drop we add to the existing files
-                        setFieldValue("file", values.file.concat(acceptedFiles.map( file => Object.assign(file, {
-                            preview: URL.createObjectURL(file)
-                        }))));
-                        }}>
-                                {({ getRootProps, getInputProps }) => (
-                        <section className="container p-2 border-box mt-2">
-                            <div {...getRootProps({ className: "dropzone text-center" })}>
-                                <input name="file" {...getInputProps()} />
-                                <div clasName="p-2 mx-auto">
-                                    <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
-                                    <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add a file </div>
-                                </div>
-                                <em className="text-xs text-Black-medium">(Include an image for your profile Avatar.)</em>
-                            </div>
-                        </section>
-                    )}
-                        </Dropzone>
-                    }
-                            <div className="px-4 my-2">
-                            { values.file.length > 0 && 
-                            <>
-                              <strong>New Avatar:</strong>
+                  <div className="pb-8 px-6 mobile:px-3">
+                      <h2 className={title}> Locations that you cover </h2>
+                      <div className="m-auto">
+                        <select     
+                                    className="Selection mt-1 p-2 rounded-md shadow-button bg-white capitalize mobile:w-full" 
+                                    name="locations" 
+                                    id="locations"
+                                    value={values.locations}
+                                    onChange={handleChange}
+                                    multiple="multiple"
+                        >
+
+                          { locations &&
+                              locations.map((c, i) => (
+                              <option className="px-2" key={i} value={c._id}>
+                                  {c.location}
+                              </option>
+                          ))}
+                        </select>
+                      </div>
+                      {errors.locations && (
+                        <div className="input-feedback">{errors.locations}</div>
+                      )}
+                  </div>
+                  <div className="px-6 mobile:px-3 pb-8">
+                      <div>
+                      <h2 className={title}> 
+                          Add media 
+                          <em className="text-xs text-Black-medium pl-2">(Include high-quality images of your work to attract more customers.)</em>
+                      </h2>
+                          <FieldArray
+                              name="photos"
+                              render={arrayHelpers => (
+                          <>
+                          <Dropzone  
+                              accept="image/jpeg, image/png"
+                              minSize={1024}
+                              maxSize={3072000}
+                              onDrop={(acceptedFiles) => {
+                          // on drop we add to the existing files
+                          setFieldValue("photos", values.photos.concat(acceptedFiles.map(file => Object.assign(file, {
+                              preview: URL.createObjectURL(file)
+                          }))));
+                          }}>
+                                  {({ getRootProps, getInputProps }) => (
+                          <section className="container p-2 border-box lg:w-3/5">
+                              <div {...getRootProps({ className: "dropzone text-center" })}>
+                                  <input name="file" {...getInputProps()} />
+                                  <div clasName="p-2 mx-auto">
+                                      <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
+                                      <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add Files </div>
+                                  </div>
+                              </div>
+                          </section>
+                      )}
+                          </Dropzone>
+                              <div className="px-4 my-2">
+                              <strong>Files:</strong>
                               <ul className="list-disc my-2">
                                   <aside style={thumbsContainer}>
-                                          <div style={thumb} className="relative">
+                                      {values.photos?.map((data, i) => {
+                                          return (
+                                          <div style={thumb} key={data.name} className="relative">
                                               <div style={thumbInner}>
                                                   <img
                                                   alt="preview"
-                                                  src={values.file[0].preview}
+                                                  src={data.preview ? data.preview : data.url }
                                                   style={img}
                                                   />
                                               </div>
                                               <div className=" absolute top-2 right-1 z-50">     
                                                   <button
-                                                      onClick = { (event) => {
-                                                          event.preventDefault();
-                                                          setFieldValue("file", _.remove())
-                                              }}
-                                                      className="rounded-full w-5 h-5 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white">
+                                                      className="rounded-full w-5 h-5 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white"
+                                                      onClick={ () => arrayHelpers.remove(i) }>
                                                       <AiOutlineClose className="w-3 h-3"/>
                                                   </button>
                                               </div>
                                           </div>
+                                          )
+                                      })}
                                   </aside>
                               </ul>
-                            </>
-                          }
-                            {errors.file && (
-                            <div className="input-feedback">{errors.file}</div>
-                            )}
-                        </div> */}
-                </div>
-
-                <div className="">
-                  <div className="px-6 mobile:px-3">
-                    <div className="pb-8">
-                      <h2
-                        className={title}
-                      >
-                        Name
-                      </h2>
-                      {errors.name && (
-                        <div className="input-feedback">{ errors.name }</div>
-                      )}
-                      <div className="px-3 shadow-button w-full rounded-md py-1">
-                        <input
-                          type="text"
-                          name="name"
-                          onChange={handleChange}
-                          value={values.name}
-                          id="name"
-                          autoComplete="given-name"
-                          className="w-full"
-                        />
+                              {errors.photos && (
+                              <div className="input-feedback">{errors.photos}</div>
+                              )}
+                          </div>
+                          </>
+                          )}
+                          />
                       </div>
-                    </div>
-
-                    <div className="pb-8">
-                      <h2
-                        className={title}
-                      >
-                        Job Title 
-                      </h2>
-                      {errors.title && (
-                        <div className="input-feedback">{ errors.title }</div>
-                      )}
-                      <div className="px-3 shadow-button w-full rounded-md py-1">
-                        <input
-                          type="text"
-                          name="title"
-                          onChange={handleChange}
-                          value={values.title}
-                          id="title"
-                          autoComplete="given-name"
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="pb-8">
-                      <h2
-                        className={title}
-                      >
-                        Mobile
-                      </h2>
-                      {errors.mobile && (
-                        <div className="input-feedback">{ errors.mobile }</div>
-                      )}
-                      <div className="px-3 py-1 shadow-button w-full rounded-md">
-                        <input
-                          type="number"
-                          name="mobile"
-                          value={values.mobile}
-                          onChange={handleChange}
-                          id="mobile"
-                          autoComplete="postal-code"
-                        />
-                      </div>
-                    </div>
                   </div>
-                  <div className='px-6 mobile:px-3 pb-8'>
-                    <h2
-                      className={title}
+
+
+
+
+
+
+                  
+                  </div>
+                  <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    <button
+                      type="submit"
+                      className="inline-flex justify-center py-1 px-4 border border-transparent bg-Blue text-white text font-bold rounded-md"
                     >
-                      Skills
-                    </h2>
-                    
-                    <em className="text-xs text-Black-medium"> Add or change skills (up to 4) so buyers know more about your product </em>
-                    <div className="Form">
-                        <div className="TagForm mt-3">
-                            <AiFillTags className="InputIcon text-lg mx-2" />
-                            <input
-                                className="p-2"
-                                type="text"
-                                placeholder="Add a skill..."
-                                onKeyPress={event => {
-                                    if (event.key === "Enter") {
-                                        event.preventDefault();
-                                        values.skills.length < 4 && event.target.value !== "" && setFieldValue( "skills" ,[...values.skills, event.target.value]);
-                                        event.target.value = "";
-                                    }
-                                }}
-                            />
-                        </div>
-                        <ul className="TagList">
-                            {values.skills && values.skills.map((tag, i) => (
-                                <li 
-                                    className="Tag capitalize mb-5"
-                                    key = {i}
-                                >
-                                {tag}
-                                <AiOutlineClose
-                                    className="TagIcon text-lg ml-2"
-                                    onClick={() => {
-                                    setFieldValue("skills", [...values.skills.filter(word => word !== tag)]);
-                                    }}
-                                />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    {errors.skills && (
-                        <div className="input-feedback -m-mt-2">{ errors.skills }</div>
-                    )}
+                    Save
+                    </button>
                 </div>
-
-                <div className="pb-8 px-6 mobile:px-3">
-                    <h2 className={title}> Locations that you cover </h2>
-                    <div className="m-auto">
-                      <select     
-                                  className="Selection mt-1 p-2 rounded-md shadow-button bg-white capitalize mobile:w-full" 
-                                  name="locations" 
-                                  id="locations"
-                                  value={values.locations}
-                                  onChange={handleChange}
-                                  multiple="multiple"
-                      >
-
-                        { locations &&
-                            locations.map((c, i) => (
-                            <option className="px-2" key={i} value={c._id}>
-                                {c.location}
-                            </option>
-                        ))}
-                      </select>
-                    </div>
-                    {errors.locations && (
-                      <div className="input-feedback">{errors.locations}</div>
-                    )}
                 </div>
-                <div className="px-6 mobile:px-3 pb-8">
-                    <div>
-                    <h2 className={title}> 
-                        Add media 
-                        <em className="text-xs text-Black-medium pl-2">(Include high-quality images of your work to attract more customers.)</em>
-                    </h2>
-                        <FieldArray
-                            name="photos"
-                            render={arrayHelpers => (
-                        <>
-                        <Dropzone  
-                            accept="image/jpeg, image/png"
-                            minSize={1024}
-                            maxSize={3072000}
-                            onDrop={(acceptedFiles) => {
-                        // on drop we add to the existing files
-                        setFieldValue("photos", values.photos.concat(acceptedFiles.map(file => Object.assign(file, {
-                            preview: URL.createObjectURL(file)
-                        }))));
-                        }}>
-                                {({ getRootProps, getInputProps }) => (
-                        <section className="container p-2 border-box lg:w-3/5">
-                            <div {...getRootProps({ className: "dropzone text-center" })}>
-                                <input name="file" {...getInputProps()} />
-                                <div clasName="p-2 mx-auto">
-                                    <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
-                                    <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add Files </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-                        </Dropzone>
-                            <div className="px-4 my-2">
-                            <strong>Files:</strong>
-                            <ul className="list-disc my-2">
-                                <aside style={thumbsContainer}>
-                                    {values.photos?.map((data, i) => {
-                                        return (
-                                        <div style={thumb} key={data.name} className="relative">
-                                            <div style={thumbInner}>
-                                                <img
-                                                alt="preview"
-                                                src={data.preview ? data.preview : data.url }
-                                                style={img}
-                                                />
-                                            </div>
-                                            <div className=" absolute top-2 right-1 z-50">     
-                                                <button
-                                                    className="rounded-full w-5 h-5 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white"
-                                                    onClick={ () => arrayHelpers.remove(i) }>
-                                                    <AiOutlineClose className="w-3 h-3"/>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        )
-                                    })}
-                                </aside>
-                            </ul>
-                            {errors.photos && (
-                            <div className="input-feedback">{errors.photos}</div>
-                            )}
-                        </div>
-                        </>
-                        )}
-                        />
-                    </div>
-                </div>
-
-
-
-
-
-
-                
-                </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center py-1 px-4 border border-transparent bg-Blue text-white text font-bold rounded-md"
-                  >
-                   Save
-                  </button>
-              </div>
-              </div>
-            </form>
+              </form>
+            </Card>
 
           )} 
         }
