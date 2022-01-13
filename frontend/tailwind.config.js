@@ -1,14 +1,16 @@
 const colors = require('tailwindcss/colors')
 
   module.exports = {
-       purge: [
+  content: [
         './pages/**/*.{js,ts,jsx,tsx}',
         './components/**/*.{js,ts,jsx,tsx}',
         './containers/**/*.{js,ts,jsx,tsx}',
         './marketplace/**/*.{js,ts,jsx,tsx}',
+        './dashboard/**/*.{js,ts,jsx,tsx}',
+        './admin/**/*.{js,ts,jsx,tsx}',
+        './chat/**/*.{js,ts,jsx,tsx}',
         // Add more here
     ],
-   darkMode: false, // or 'media' or 'class'
    theme: {
     screens: {
       mobile:{'max': '575px'},
