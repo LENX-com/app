@@ -326,6 +326,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                             onChange={handleChange}
                             id="mobile"
                             autoComplete="postal-code"
+                            className="w-full"
                           />
                         </div>
                       </div>

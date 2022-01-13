@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Formik, Field, FieldArray } from "formik";
 import Dropzone from "react-dropzone";
 import { AiFillFileImage, AiOutlineClose, AiFillTags } from "react-icons/ai";
@@ -6,17 +6,19 @@ import PageHeader from '@/admin/components/Header/PageHeader'
 import * as Yup from "yup";
 import { Alert } from '@windmill/react-ui'
 import Link from 'next/link'
+import { Listbox, Transition } from '@headlessui/react'
 import SectionTitle from '@/components/Typography/SectionTitle'
 import Layout from '@/admin/containers/Layout'
 import { useDispatch, useSelector } from 'react-redux' 
 import { getSubs, getSubByCategory } from "@/redux/actions/subCategoryAction";
 import { createProduct } from "@/admin/ApiAdmin";
-import { Input, Label, Select } from '@windmill/react-ui'
+import { Label, Select } from '@windmill/react-ui'
 import _ from 'lodash'
 import withAuth from '@/components/auth'
 import { getCategories} from "@/redux/actions/categoryAction";
 import Card from '@/components/Cards/Card';
 import Button from '@/components/Buttons/Button';
+import { HiCheck, HiSelector }  from "react-icons/hi";
 import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
@@ -39,7 +41,7 @@ const AddProduct = () => {
 
     useEffect(() => {
       if(category) {
-    getSubByCategory(category).then((res) => setSubs(res.data));
+    getSubByCategory(category._id).then((res) => setSubs(res.data));
       }
   }, [category]);
 
@@ -75,6 +77,8 @@ const img = {
   height: '100%'
 };
 
+const title = "text-lg font-bold text-Black-medium pb-1";
+
 const validatorForm = Yup.object().shape({
                  name: 
                     Yup.string()
@@ -87,12 +91,8 @@ const validatorForm = Yup.object().shape({
                     .min(1),
 
                 subs:
-                    Yup.string()
-                    .required("Required"),
-
-                status:
-                    Yup.string()
-                    .required("Required"),
+                    Yup.mixed()
+                    .required("A subcategory is required"),
                 
                 file: 
                     Yup.mixed()
@@ -120,8 +120,7 @@ const validatorForm = Yup.object().shape({
             name: '',
             price: 1,
             subs: "",
-            status:"",
-            category: '',
+            category: categories[0],
             description: '',
             file: [],
             tags: [],
@@ -138,12 +137,10 @@ const validatorForm = Yup.object().shape({
 
             formData.append("name", values.name);
             formData.append("price", values.price);
-            formData.append("subs", values.subs);
-            formData.append("status", values.status);
-            formData.append("category", values.category);
+            formData.append("subs", values.subs._id);
+            formData.append("category", values.category._id);
             formData.append("quantity", values.quantity);
             formData.append("description", values.description);
-            formData.append("shippingTime", values.shippingTime);
 
             // we loop the tags array and assign a value to each task in the form, if any tag is undefined its value will not be looped.           
             for (let i = 0; i <= values.tags.length; i++) {
@@ -175,9 +172,15 @@ const validatorForm = Yup.object().shape({
         } = formik;
         
         const handleCategory = (e) => {
-            setFieldValue("category", e.target.value)
-            setCategory(e.target.value)
+            setFieldValue("category", e)
+            setCategory(e)
         }
+        
+        const handleSub = (e) => {
+            setFieldValue("subs", e)
+        }
+        
+        console.log("values.subs._id", values.subs._id)
         
          return (
             <form onSubmit={handleSubmit}>
@@ -192,27 +195,27 @@ const validatorForm = Yup.object().shape({
                     </div>
                 }
                 
-                <div className="lg:grid lg:grid-cols-3 gap-4 pb-12">
-                    <Card className="lg:col-span-2">
-                        <div className="mb-4">
-                        <Label>
-                            <span className="text-base font-medium"> Add Title </span>
-                            <div className={`mt-1 p-2 rounded-md shadow-button`}>
-                            <Input 
-                                valid
+                <div>
+                    <Card>
+                        <div className="my-8">
+                            <h2 className={title}> Add Title </h2>
+                            <div className={`rounded-md border-box`}>
+                            <input 
                                 id="name"
                                 name="name" 
                                 type="text"
                                 value={values.name}
-                                onChange={handleChange} />
+                                onChange={handleChange}
+                                className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
+                            />
                             </div>
-                        </Label>
                         {errors.name && (
                         <div className="input-feedback">{errors.name}</div>
                         )}
                     </div>
-                    <div className="my-2">
-                        <span className="text-base font-medium p-2"> Add Description </span>
+
+                    <div className="my-8">
+                        <span className={title}> Add Description </span>
                         <Field name="description">
                             {({ field }) => <ReactQuill className="products" value={field.value} onChange={field.onChange(field.name)} />}
                         </Field>
@@ -220,125 +223,154 @@ const validatorForm = Yup.object().shape({
                             <div className="input-feedback">{errors.description}</div>
                         )}
                     </div>
-                </Card>
-   
-                <div>
-                    <Card title="Pricing" className="">
-                        <div className="mb-4">
-                            <Label valid={errors.price}>
-                                <span className="text-base font-medium"> Pricing </span>
-                                <div className="relative">
-                                    <span className="input-symbol"> £ </span>
-                                    <div className="mt-1 p-2 rounded-md shadow-button pl-6" >
-                                        <Input 
-                                                type="number" 
-                                                id="price" 
-                                                name="price" 
-                                                min="1" 
-                                                value={values.price} 
-                                                onChange={handleChange} 
-                                        />
-                                    </div>
+
+                    <div className="my-8">
+                            <h2 className={title}> Pricing </h2>
+                            <div className="relative focus:outline-none focus:ring focus:border-blue-500 w-full border-box px-3">
+                                <span className="input-symbol"> £ </span>
+                                <div className=" pl-6"
+                                >
+                                    <input 
+                                            type="number" 
+                                            id="price" 
+                                            name="price" 
+                                            min="1" 
+                                            value={values.price} 
+                                            onChange={handleChange}
+                                            className="w-full p-2"
+                                      
+                                    />
                                 </div>
-                            </Label>
+                            </div>
                         {errors.price && (
                             <div className="input-feedback">{errors.price}</div> 
-                            )}
-                        </div>
-                    </Card>
-                </div>
-
-                <div className="bg-white rounded-sm shadow-button relative my-2 lg:col-span-2">
-                    <div className="px-3 py-1">
-                        <SectionTitle> Service Details</SectionTitle>
-                    </div>
-                    <div className="shadow-separator px-3 py-2">
-                        <Label className="mb-3">
-                            <span> Service Status </span>
-                            <div>
-                                <Select
-                                        name="status"
-                                        value={values.status}
-                                        onChange={handleChange}
-                                        className="mt-1 p-2 rounded-md bg-white capitalize text-Black Selection shadow-button"
-                                        onBlur={handleBlur}>
-                                        <option value="" label="Select a Status ">
-                                            Select a Status
-                                        </option>
-                                        <option value="active" label="active">
-                                            Active
-                                        </option>
-
-                                        <option value="draft" label="draft">
-                                            Draft
-                                        </option>
-
-                                        <option value="inactive" label="inactive">
-                                            Inactive
-                                        </option>
-
-                                </Select>
-                            </div>
-                        </Label>
-                        {errors.status && (
-                        <div className="input-feedback">{errors.status}</div>
                         )}
                     </div>
 
-                    <div className="shadow-separator px-3 py-3">
-                        <Label className="my-2">
-                            <span> Category </span>
-                            <div>
-                                <Select className="Selection mt-1 p-2 rounded-md bg-white capitalize shadow-button" name="category" id="category"
-                                            value={values.category}
-                                            onChange={handleCategory}>
-
-                                    <option value="" label="Select a Category " >
-                                        Select a Category
-                                    </option>           
-                                    { categories &&
-                                        categories.map((c, i) => (
-                                        <option className="px-2" key={i} value={c._id}>
-                                            {c.name}
-                                        </option>
-                                        ))}
-                                </Select>
-                            </div>
-                            {errors.category && (
-                            <div className="input-feedback">{errors.category}</div>
-                            )}
-                        </Label>
+                    <div className="my-8">
+                        <h2 className={title}> Category </h2>
+                        <Listbox value={values.category} onChange={handleCategory}>
+                        <div className="relative mt-1">
+                        <Listbox.Button className=" p-3 focus:outline-none focus:ring focus:border-blue-500 relative w-full text-left border-box cursor-pointer ">
+                            <span className="block truncate">{values.category.name}</span>
+                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            <HiSelector
+                                className="w-5 h-5 text-gray-400"
+                                aria-hidden="true"
+                            />
+                            </span>
+                        </Listbox.Button>
+                        <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md z-50 shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {categories.map((category, categoryIdx) => (
+                                <Listbox.Option
+                                key={categoryIdx}
+                                className={({ active }) =>
+                                    `${active ? 'text-blue-600 bg-blue-200' : 'text-black'}
+                                        select-none relative py-2 pl-10 pr-4 cursor-pointer`
+                                }
+                                value={category}
+                                >
+                                {({ selected, active }) => (
+                                    <>
+                                    <span
+                                        className={`${
+                                        selected ? 'font-medium' : 'font-normal'
+                                        } block truncate`}
+                                    >
+                                        {category.name}
+                                    </span>
+                                    {selected ? (
+                                        <span
+                                        className={`${
+                                            active ? 'text-blue-600' : 'text-blue-300'
+                                        }
+                                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                        >
+                                        <HiCheck className="w-5 h-5" aria-hidden="true" />
+                                        </span>
+                                    ) : null}
+                                    </>
+                                )}
+                                </Listbox.Option>
+                            ))}
+                            </Listbox.Options>
+                        </Transition>
+                        </div>
+                    </Listbox>
                         {errors.category && (
                             <div className="input-feedback">{errors.category}</div>
-                            )}
-                        
-                    <Label className="my-3">
-                        <span> Subcategory </span>
-                        <div>
-                            <Select className="Selection mt-1 p-2 rounded-md bg-white capitalize shadow-button" 
-                                    name="subs" 
-                                    id="subs"
-                                    value={values.subs}
-                                    onChange={handleChange}
-                            >
-
-                                    <option value="" label="Select Subacategory">
-                                        Select Subacategory
-                                    </option> 
-                                    { subs && subs.map( (sub, i ) => (
-                                    <option className="px-2" key={i} value={sub._id}>
-                                        {sub.name}
-                                    </option>
-                                    ))}
-                            </Select>
-                        </div>
-                    </Label>
-                    {errors.subs && (
-                        <div className="input-feedback">{errors.subs}</div>
                         )}
                     </div>
 
-                    <div className='mt-5 px-3 pb-5'>
+                    <div className="my-8">
+                        <h2 className={title}> Subcategory </h2>
+                        <Listbox value={values.subs} onChange={handleSub}>
+                        <div className="relative mt-1">
+                        <Listbox.Button className=" p-3 focus:outline-none focus:ring focus:border-blue-500 relative w-full text-left border-box cursor-pointer ">
+                            <span className="block truncate">{values.subs.name ? values.subs.name : "Please select a category"}</span>
+                            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            <HiSelector
+                                className="w-5 h-5 text-gray-400"
+                                aria-hidden="true"
+                            />
+                            </span>
+                        </Listbox.Button>
+                        <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md z-50 shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {subs && subs.map((sub, subIdx) => (
+                                <Listbox.Option
+                                key={subIdx}
+                                className={({ active }) =>
+                                    `${active ? 'text-blue-600 bg-blue-200' : 'text-black'}
+                                        cursor-pointer select-none relative py-2 pl-10 pr-4`
+                                }
+                                value={sub}
+                                >
+                                {({ selected, active }) => (
+                                    <>
+                                    <span
+                                        className={`${
+                                        selected ? 'font-medium' : 'font-normal'
+                                        } block truncate`}
+                                    >
+                                        {sub.name}
+                                    </span>
+                                    {selected ? (
+                                        <span
+                                        className={`${
+                                            active ? 'text-blue-600' : 'text-blue-300'
+                                        }
+                                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                        >
+                                        <HiCheck className="w-5 h-5" aria-hidden="true" />
+                                        </span>
+                                    ) : null}
+                                    </>
+                                )}
+                                </Listbox.Option>
+                            ))}
+                            </Listbox.Options>
+                        </Transition>
+                        </div>
+                    </Listbox>
+                        {errors.subs && (
+                            <div className="input-feedback">{errors.subs}</div>
+                        )}
+                    </div>
+
+                    <div className='my-8'>
+                        <h2 className={title}> Tags </h2>
                         <span className="text-base font-medium"> Add or change tags (up to 4) so buyers know more about your product </span>
                             <div className="Form">
                                 <div className="TagForm mt-3">
@@ -376,11 +408,10 @@ const validatorForm = Yup.object().shape({
                         {errors.tags && (
                             <div className="input-feedback -m-mt-2">{ errors.tags }</div>
                     )}
-                        </div>
-                </div>
+                    </div>
 
-                <div>
-                    <Card title="Add Media" className="lg:col-span-1">
+                <div className="my-8">
+                    <h2 className={title}> Add media </h2>
                         <FieldArray
                             name="file"
                             render={arrayHelpers => (
@@ -396,7 +427,7 @@ const validatorForm = Yup.object().shape({
                         }))));
                         }}>
                                 {({ getRootProps, getInputProps }) => (
-                        <section className="container p-2 border-box">
+                        <section className="container p-2 border-box lg:w-3/5">
                             <div {...getRootProps({ className: "dropzone text-center" })}>
                                 <input name="file" {...getInputProps()} />
                                 <div clasName="p-2 mx-auto">
@@ -441,8 +472,8 @@ const validatorForm = Yup.object().shape({
                         </>
                         )}
                         />
-                    </Card>
                 </div>
+                </Card>
 
             </div>
                     <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey lg:relative lg:mb-10" style={{zIndex:'9999'}}>

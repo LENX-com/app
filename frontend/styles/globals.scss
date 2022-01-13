@@ -282,8 +282,11 @@ html {
     border-radius:10px;
 }
 
-.ql-container .ql-snow{
-    min-height: 200px;
+.ql-editor .ql-blank{
+    min-height: 200px!important;
+}
+.ql-editor {
+    min-height: 200px!important;
 }
 
 .input-feedback {

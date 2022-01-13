@@ -49,10 +49,18 @@ const colors = require('tailwindcss/colors')
       },
       pink: colors.pink,
       orange: {
-        dark: '#ff480e',
-        DEFAULT: '#ff5722',
-        light: '#FE9400',
-      },
+      DEFAULT: '#FF5722',
+      '50': '#FFE3DA',
+      '100': '#FFD3C5',
+      '200': '#FFB49C',
+      '300': '#FF9574',
+      '400': '#FF764B',
+      '500': '#FF5722',
+      '600': '#E93800',
+      '700': '#B12A00',
+      '800': '#791D00',
+      '900': '#410F00'
+    },
       Blue:{
         light: '#99dee1',
         DEFAULT:'#00adb5',
