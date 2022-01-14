@@ -4,7 +4,7 @@ import { Avatar } from '@windmill/react-ui'
 import _ from 'lodash'
 import { AiFillFileImage, AiOutlineClose, AiFillTags } from "react-icons/ai";
 import PageHeader from '@/admin/components/Header/PageHeader'
-import Card from '@/components/Cards/Card';
+import Button from '@/components/Buttons/Button'
 import * as Yup from "yup";
 import withAuth from '@/components/auth'
 import Dropzone from "react-dropzone";
@@ -164,30 +164,31 @@ const title = "text-lg font-bold text-Black-medium pb-1";
         } = formik;
 
           return (
-              <Card>
+            <div className="bg-white rounded-md relative">
+              <div className="p-6 mobile:px-3 relative">
                 <form 
                       onSubmit={handleSubmit} 
                       className=""
                       encType="multipart/form-data"
                 >
                 <div className="">
-                  <div className="px-4 py-5  space-y-6 sm:p-6">
-                    <div className="grid grid-cols-3 gap-6"></div>
+                  <div className="">
+                    <div className=""></div>
 
-                    <div>
+                    <div> 
                       <h2
                         className={title}
                       >
                         About
                       </h2>
-                      <div className="mt-1 rounded-md shadow-button p-2">
+                      <div className="border-box">
                         <textarea
                           id="about"
                           name="about"
                           onChange={handleChange}
                           value={values.about}
                           rows={3}
-                          className="focus:ring-indigo-500 focus:border-indigo-500 mt-1 w-full"
+                          className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                           placeholder="Brief description for your profile."
                         />
                       </div>
@@ -264,8 +265,8 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                   </div>
 
                   <div className="">
-                    <div className="px-6 mobile:px-3">
-                      <div className="pb-8">
+                    <div className="">
+                      <div className="py-8">
                         <h2
                           className={title}
                         >
@@ -274,7 +275,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         {errors.name && (
                           <div className="input-feedback">{ errors.name }</div>
                         )}
-                        <div className="px-3 shadow-button w-full rounded-md py-1">
+                        <div className="border-box">
                           <input
                             type="text"
                             name="name"
@@ -282,12 +283,12 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                             value={values.name}
                             id="name"
                             autoComplete="given-name"
-                            className="w-full"
+                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                           />
                         </div>
                       </div>
 
-                      <div className="pb-8">
+                      <div className="py-8">
                         <h2
                           className={title}
                         >
@@ -296,7 +297,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         {errors.title && (
                           <div className="input-feedback">{ errors.title }</div>
                         )}
-                        <div className="px-3 shadow-button w-full rounded-md py-1">
+                        <div className="border-box">
                           <input
                             type="text"
                             name="title"
@@ -304,12 +305,12 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                             value={values.title}
                             id="title"
                             autoComplete="given-name"
-                            className="w-full"
+                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                           />
                         </div>
                       </div>
 
-                      <div className="pb-8">
+                      <div className="py-8">
                         <h2
                           className={title}
                         >
@@ -318,20 +319,20 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         {errors.mobile && (
                           <div className="input-feedback">{ errors.mobile }</div>
                         )}
-                        <div className="px-3 py-1 shadow-button w-full rounded-md">
+                        <div className="border-box">
                           <input
                             type="number"
                             name="mobile"
                             value={values.mobile}
                             onChange={handleChange}
                             id="mobile"
-                            autoComplete="postal-code"
-                            className="w-full"
+                            autoComplete="mobile-number"
+                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                           />
                         </div>
                       </div>
                     </div>
-                    <div className='px-6 mobile:px-3 pb-8'>
+                    <div className='py-8'>
                       <h2
                         className={title}
                       >
@@ -377,7 +378,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                       )}
                   </div>
 
-                  <div className="pb-8 px-6 mobile:px-3">
+                  <div className="py-8 ">
                       <h2 className={title}> Locations that you cover </h2>
                       <div className="m-auto">
                         <select     
@@ -401,7 +402,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         <div className="input-feedback">{errors.locations}</div>
                       )}
                   </div>
-                  <div className="px-6 mobile:px-3 pb-8">
+                  <div className=" py-8">
                       <div>
                       <h2 className={title}> 
                           Add media 
@@ -476,17 +477,18 @@ const title = "text-lg font-bold text-Black-medium pb-1";
 
                   
                   </div>
-                  <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center py-1 px-4 border border-transparent bg-Blue text-white text font-bold rounded-md"
-                    >
-                    Save
-                    </button>
-                </div>
                 </div>
               </form>
-            </Card>
+            </div>
+                  <div className="px-4 py-3 bg-Grey text-right sm:px-6">
+                    <Button
+                      type="submit"
+                      className=" bg-Blue text-white font-bold"
+                    >
+                    Save
+                    </Button>
+                </div>
+            </div>
 
           )} 
         }

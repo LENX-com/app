@@ -7,15 +7,8 @@ import { login } from "@/redux/actions/authAction";
 import Google from "@/marketplace/containers/social-login/Google";
 import { SignInContext } from '@/context/SignInContext'
 import { useRouter } from 'next/router'
-import { Label, Input } from "@windmill/react-ui";
 import Button from '@/components/Buttons/Button'
-import { GoMarkGithub as GithubIcon } from "react-icons/go";
 import { Formik, Field, FieldArray } from "formik";
-import {
-  AiOutlineTwitter as TwitterIcon,
-  AiFillGoogleCircle as GoogleCircle,
-} from "react-icons/ai";
-import { Desktop, Mobile } from '@/config/ScreenSize' 
 import PopUp from '../pop/PopUp'
 
 const SignInPop = () => {
@@ -90,7 +83,7 @@ const SignInPop = () => {
         <div className="">
           <main className="items-center justify-center">
             <div className="w-full">
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+              <h1 className="mb-4 text-xl font-semibold text-gray-700 ">
                 Support and empower small businesses
               </h1>
               {/* Check whether the email and username are valid */}
@@ -103,9 +96,10 @@ const SignInPop = () => {
                 {errors.email && (
                   <div className="input-feedback">{errors.email}</div>
                 )}
-              <Label className="p-2 border-box rounded-md">
-                <Input
-                  className="mt-1"
+              <div className="border-box">
+                <input
+                  className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 
+                  "
                   type="email"
                   placeholder="Email or Username"
                   value={values.email}
@@ -113,15 +107,15 @@ const SignInPop = () => {
                   id="email"
                   onChange={handleChange}
                 />
-              </Label>
+              </div>
 
               <div className="mt-4">  
                   {errors.password && (
                     <div className="input-feedback">{errors.password}</div>
                   )}
-                <Label className="border-box rounded-md p-2">
-                  <Input
-                    className="mt-1"
+                <div className="border-box">
+                  <input
+                    className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                     value={values.password}
                     type="password"
                     name="password"
@@ -129,7 +123,7 @@ const SignInPop = () => {
                     placeholder="Password"
                     onChange={handleChange}
                   />
-                </Label>
+                </div>
               </div>
 
               <Button
@@ -142,7 +136,7 @@ const SignInPop = () => {
 
               <p className="mt-4">
                 <Link
-                  className="text-sm font-bold text-Black dark:text-purple-400 hover:underline"
+                  className="text-sm font-bold text-Black hover:underline"
                   href="/forgot-password"
                 >
                   Forgot your password?
@@ -160,7 +154,7 @@ const SignInPop = () => {
  
               <p className="mt-3">
                 <button
-                  className="text-sm font-bold text-Black dark:text-purple-400 hover:underline"
+                  className="text-sm font-bold text-Black hover:underline"
                   type="button"
                   onClick= {handleRedirect}
                 >

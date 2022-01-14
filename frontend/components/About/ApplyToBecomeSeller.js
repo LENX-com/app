@@ -7,7 +7,6 @@ import Dropzone from "react-dropzone";
 import { Alert } from '@windmill/react-ui'
 import SectionTitle from "@/components/Typography/SectionTitle";
 import { useDispatch, useSelector } from 'react-redux' 
-import { Input, Label, Select } from '@windmill/react-ui'
 import DisplayLottie from "@/components/DisplayLottie/DisplayLottie";
 import Success from "@/assets/lotties/success";
 import dynamic from 'next/dynamic'
@@ -28,6 +27,7 @@ const ApplyToBecomeSeller = () => {
     
     const dispatch = useDispatch();
     
+    const title = "text-lg font-bold text-Black-medium pb-1";
 
     const thumbsContainer = {
         display: 'flex',
@@ -80,7 +80,7 @@ const ApplyToBecomeSeller = () => {
     )
 
 
-const validatorForm = Yup.object().shape({
+    const validatorForm = Yup.object().shape({
                  name: 
                     Yup.string()
                     .required("Your name is required"),
@@ -163,28 +163,28 @@ const validatorForm = Yup.object().shape({
                 return (
                     <form onSubmit={handleSubmit}>
                         
-                        <div className="lg:grid gap-4 mb-8">
+                        <div className="lg:grid gap-4">
                             <Card className="lg:col-span-2">
-                                <div className="mb-4">
-                                <Label>
-                                    <span className="text-base font-medium"> Your name </span>
-                                    <div className="mt-1 p-2 rounded-md shadow-button">
-                                        <Input 
+                                <div className="my-8">
+                                <div>
+                                    <h2 className={title}> Your name </h2>
+                                    <div className="border-box">
+                                        <input
                                             valid
-                                            className={``}
+                                            className={`focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 `}
                                             id="name"
                                             name="name" 
                                             type="text"
                                             value={values.name}
                                         onChange={handleChange} />
                                     </div>
-                                </Label>
+                                </div>
                                 {errors.name && (
                                 <div className="input-feedback">{errors.name}</div>
                                 )}
                             </div>
-                            <div className="my-2">
-                                <span className="text-base font-medium p-2"> Summary of your services</span>
+                            <div className="my-8">
+                                <h2 className={title}> Summary of your services</h2>
                                 <Field name="summary">
                                     {({ field }) => <ReactQuill className="products" value={field.value} onChange={field.onChange(field.name)} />}
                                 </Field>
@@ -192,36 +192,38 @@ const validatorForm = Yup.object().shape({
                                     <div className="input-feedback">{errors.summary}</div>
                                 )}
                             </div>
-                            <div className="mb-4">
-                                <Label>
-                                    <span className="text-base font-medium"> E-mail </span>
-                                    <div className="mt-1 p-2 rounded-md shadow-button">
-                                        <Input 
+                            <div className="my-8">
+                                <div>
+                                    <h2 className={title}> E-mail </h2>
+                                    <div className="border-box">
+                                        <input
                                             valid
                                             id="email"
                                             name="email" 
+                                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3"
                                             type="text"
                                             value={values.email}
                                         onChange={handleChange} />
                                     </div>
-                                </Label>
+                                {errors.email && (
+                                    <div className="input-feedback">{errors.email}</div>
+                                )}
+                                </div>
                             </div>
-                            {errors.email && (
-                                <div className="input-feedback">{errors.email}</div>
-                            )}
-                            <div className="mb-4">
-                                <Label>
-                                <span className="text-base font-medium text-Black"> Your Mobile Number: <span className="text-sm">(optional)</span></span>
-                                    <div className="mt-1 p-2 rounded-md shadow-button">
-                                        <Input 
+                            <div className="my-8">
+                                <div>
+                                <h2 className={title} > Your Mobile Number: <span className="text-sm">(optional)</span></h2>
+                                    <div className="border-box">
+                                        <input
                                             valid
                                             id="mobile"
-                                            name="mobile" 
+                                            name="mobile"
+                                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3" 
                                             type="number"
                                             value={values.mobile}
                                             onChange={handleChange} />
                                     </div>
-                                </Label>
+                                </div>
                                 {errors.mobile && (
                                 <div className="input-feedback">{errors.mobile}</div>
                                 )}

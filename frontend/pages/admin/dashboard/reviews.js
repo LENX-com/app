@@ -79,6 +79,7 @@ const Reviews = () => {
     const removeResponseHandler = () => {
         if(typeof window !== 'undefined' && window.confirm('Delete the item?')){
             dispatch(removeResponse(currentReview.id))
+            dispatch(getReviewsByManufacturer(slug))
         }
     }
 
@@ -118,43 +119,44 @@ const Reviews = () => {
                     setIsOpen= { setIsOpen }
                     title= {`Respond ${currentReview?.author.name}`}
                 >
-                    <div className="my-3">
-                        <ReviewCard review= {currentReview} />
-                    </div>
-
-                    {/* Check if the admin has already responded the review  */}
-                    {currentReview.responses.some(e => e.user ===  _id) ? 
-                        //filter the reviews then map the one from the manufacturer  
-                        currentReview.responses.filter(e => e.user ===  _id).map((e, i) => (
-                            <div 
-                                className="bg-white border-box p-4"
-                                key={i}
-                            >
-                                <div className="font-bold text-lg my-2"> Your response </div>
-                                { parse(e.response) }
-                                <button className="my-2 underline text-red-500 flex" onClick={removeResponseHandler}>
-                                    <AiOutlineClose className="my-auto mr-2" />
-                                    Remove response
-                                </button>
+                    <div className="mobile:p-4 p-4">
+                        <div className="my-3">
+                            <ReviewCard review= {currentReview} />
+                        </div>
+                        {/* Check if the admin has already responded the review  */}
+                        {currentReview.responses.some(e => e.user ===  _id) ? 
+                            //filter the reviews then map the one from the manufacturer  
+                            currentReview.responses.filter(e => e.user ===  _id).map((e, i) => (
+                                <div 
+                                    className="bg-white border-box p-4"
+                                    key={i}
+                                >
+                                    <div className="font-bold text-lg my-2"> Your response </div>
+                                    { parse(e.response) }
+                                    <button className="my-2 underline text-red-500 flex" onClick={removeResponseHandler}>
+                                        <AiOutlineClose className="my-auto mr-2" />
+                                        Remove response
+                                    </button>
+                                </div>
+                            ))
+                        : 
+                        <form onSubmit={handleSubmit}>
+                            <div className="response p-2">
+                            <ReactQuill
+                                value= {response } 
+                                placeholder= "Type your response here"
+                                className="rounded-md bg-white"
+                                onChange={handleResponse}
+                            />
                             </div>
-                        ))
-                     : 
-                    <form onSubmit={handleSubmit}>
-                        <div className="response p-2">
-                        <ReactQuill
-                            value= {response } 
-                            placeholder= "Type your response here"
-                            className="rounded-md bg-white"
-                            onChange={handleResponse}
-                        />
-                        </div>
-                        <div>
-                            <Button className="my-2 bg-Black text-white" type="submit">
-                                Reply review
-                            </Button>
-                        </div>
-                    </form>
-                    }
+                            <div>
+                                <Button className="my-2 bg-Black text-white" type="submit">
+                                    Reply review
+                                </Button>
+                            </div>
+                        </form>
+                        }
+                    </div>
                 </PopUp>
             }
 
