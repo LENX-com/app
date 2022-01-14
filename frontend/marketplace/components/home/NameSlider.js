@@ -11,7 +11,7 @@ const NameSlider = ({categories}) => {
         <Card className="my-2">
             <div className="flex justify-between">
                 <div>
-                    <h2 className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Search by category</h2>
+                    <h2 className="mb-4 text-lg font-semibold text-Black-text"> Search by category</h2>
                 </div>
                 <div>
                     <Link href="/marketplace/categories" className="text text-Black-text">

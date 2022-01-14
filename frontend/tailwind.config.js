@@ -11,6 +11,8 @@ const colors = require('tailwindcss/colors')
         './chat/**/*.{js,ts,jsx,tsx}',
         // Add more here
     ],
+   mode:'jit',
+   darkMode: false, // or 'media' or 'class'
    theme: {
     screens: {
       mobile:{'max': '575px'},

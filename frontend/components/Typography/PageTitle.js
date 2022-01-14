@@ -3,7 +3,7 @@ import React from 'react'
 function PageTitle({ children }) {
   return (
     <h1 
-      className="text-2xl font-bold"
+      className="text-lg font-bold"
       style={{color:'#32325d'}}
     >
       {children}

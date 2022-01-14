@@ -57,7 +57,6 @@ const EditProduct = ({}) => {
             }, 500)
     }, [])
 
-    
     useEffect(() => {
         dispatch(getCategories())
         dispatch(getProduct(serviceSlug))
@@ -183,7 +182,7 @@ const validatorForm = Yup.object().shape({
           initialValues={{
             name: singleProduct.name,
             price: singleProduct.price,
-            subs: singleProduct.subs,
+            subs: singleProduct.subs.toString(),
             status: singleProduct.status,
             category: singleProduct.category,
             description: singleProduct.description,
@@ -211,7 +210,7 @@ const validatorForm = Yup.object().shape({
             formData.append("currentPhoto", JSON.stringify(currentPhoto))
             formData.append("name", values.name);
             formData.append("price", values.price);
-            formData.append("subs", values.subs._id);
+            formData.append("subs", values.subs._id ? values.subs._id : values.subs);
             formData.append("status", values.status);
             formData.append("category", values.category._id);
             formData.append("description", values.description);
@@ -226,8 +225,7 @@ const validatorForm = Yup.object().shape({
                 }
 
             dispatch(updateProduct( singleProduct._id, formData))
-            setIsCreated(true)
-            setIsSaved(true)
+            router.replace("/admin/dashboard/services")
 
           }}>
 
@@ -253,9 +251,10 @@ const validatorForm = Yup.object().shape({
         const handleSub = (e) => {
             setFieldValue("subs", e)
         }
-        console.log("values.category", values.category.name)
-        
-         return (
+
+        console.log("values.subs", values.subs)
+
+        return (
             <form onSubmit={handleSubmit}>
                 { isCreated && 
                     <div className ="absolute top-0 z-50 w-full rounded-md bg-green-300">

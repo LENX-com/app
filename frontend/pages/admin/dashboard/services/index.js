@@ -53,20 +53,6 @@ function toggleDropdown() {
       setMenu(i)
       setStatus(data)
   }
-
-  const DropdownMenu = () => (
-
-      <Dropdown isOpen={isOpen} onClose={() => setIsOpen(false)} className="z-50 w-auto top-8">
-        <DropdownItem tag="a" href="#" className="flex">
-          <div> <AiFillCamera className="my-auto mr-2 text-lg" /> </div>
-          <div className="text-Black-medium">Update Logo</div>
-        </DropdownItem>
-        <DropdownItem className="flex" >
-          <div> <AiFillFileImage className="my-auto mr-2 text-lg" /> </div>
-          <div  className="text-Black-medium truncate ">Update Frame</div>
-        </DropdownItem>
-      </Dropdown>
-  )
     const SelectionMenu = () => (
         <>
         <div className="shadow-separator">
@@ -84,35 +70,15 @@ function toggleDropdown() {
                 </ul>
             </div>
         </div>
-        {/* <div className="p-2 my-2 shadow-separator">
-            <Input aria-label="Bad" placeholder="Search for products" className="p-2 border-2 border-border rounded-md"/>
-        </div> */}
         </>
     )
 
 
     return (
         <Layout>
-            {/* <div className="flex justify-between px-4 mt-4">
-                <div>
-                    <SectionTitle> Store </SectionTitle>
-                </div>
-                <div className="relative w-1/2 h-10">
-                    <button
-                        className=" border-box absolute right-2 p-2"
-                        onClick={toggleDropdown}>
-                        <div className="m-auto">
-                            <AiOutlineEllipsis className="m-auto text-xl font-bold" />
-                        </div>
-                    </button>
-                    <DropdownMenu />
-                </div>
-            </div> */}
-            
-            {/* <Profile /> */}
 
             <div className="px-4 flex justify-between my-4">
-                <h2 className=" text-lg font-semibold text-gray-600 dark:text-gray-300"> Services </h2>
+                <h2 className=" text-lg font-semibold text-Black-text"> Services </h2>
                 <Link href= {`/admin/dashboard/services/add-service`}>
                     <Button className="text-base bg-white flex "> 
                         <AiOutlinePlus className="my-auto mr-2"/>

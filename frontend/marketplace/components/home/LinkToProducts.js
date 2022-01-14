@@ -39,7 +39,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
         <Card>
             <div className="flex justify-between">
                 <div>
-                    <h2 className="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"> Marketplace </h2>
+                    <h2 className="mb-4 text-lg font-semibold text-Black-text"> Marketplace </h2>
                 </div>
                 <div>
                     <Link href="/marketplace/" className="text-sm text-Black underline">

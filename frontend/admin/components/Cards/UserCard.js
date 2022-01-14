@@ -9,10 +9,12 @@ const UserCard = ({ user }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
-    let formData = new FormData();
-    formData.append("file", selectedFile)
+    if(selectedFile) {
+      let formData = new FormData();
+      formData.append("file", selectedFile)
 
-    dispatch(updateProfilePicture(formData));
+      dispatch(updateProfilePicture(formData));
+    }
   }, [selectedFile]);
 
   return(
@@ -34,7 +36,7 @@ const UserCard = ({ user }) => {
             </div>
             <div className="my-auto">
               <h2 className="text-lg font-bold text-Black capitalize">{user.name}</h2>
-              <h3 className="text text-Black">Plumber</h3>
+              <h3 className="text text-Black">{user.title}</h3>
             </div>
         </div>
       </div>
