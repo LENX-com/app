@@ -10,11 +10,11 @@ const slugify = require("slugify");
 const { check, validationResult } = require("express-validator/check");
 const {ObjectId} = require('mongodb');
 const cloudinary = require("cloudinary").v2;
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_API,
-    api_secret: process.env.CLOUDINARY_SECRET
-})  
+    cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API,
+        api_secret: process.env.CLOUDINARY_SECRET
+      })
 
 //search system powerd by mongodb text search with indexes
 
@@ -112,37 +112,48 @@ exports.createProduct = async (req, res) => {
 
 //edit a product
 exports.editProduct = async (req, res) => {
-  const file = req.file;
-    
+  cloudinary.config({
+        cloud_name: process.env.CLOUDINARY_NAME,
+        api_key: process.env.CLOUDINARY_API,
+        api_secret: process.env.CLOUDINARY_SECRET
+  })
+  const file = req.files;
+  
   try {
-    if (file) {
-    var imageList = []
-    
-    for(var i=0;i<req.files.length;i++){  
-      var locaFilePath = req.files[i].path
-      var result = await cloudinary.uploader.upload( locaFilePath )
-      console.log(result)
-      imageList.push({
-        url : result.url,
-        public_id : result.public_id
-      })
-    }
-
-    }  
-
+    const { ...args } = req.body;
     const product = await Product.findById(req.params.productId);
     if (!product) {
       return res.status(400).json({ error: "no product found with that id" });
     }
+    var imageList =  JSON.parse(args.currentPhoto);
+    var imageList = imageList.filter(value => Object.keys(value).length !== 0);
+    
+  // delete all the images from cloudinary  
+    const deletedImages = product.photo.filter(({ public_id: id1 }) => !imageList.some(({ public_id: id2 }) => id2 === id1));
+    for (const image of deletedImages) {
+      console.log("image.public_id", image.public_id)
+      await cloudinary.uploader.destroy(image.public_id);
+    }
 
-    const { ...args } = req.body;
+    if (file) {
+      for(var i=0;i<req.files.length;i++){  
+        var locaFilePath = req.files[i].path
+        var result = await cloudinary.uploader.upload( locaFilePath )
+        console.log(result)
+        imageList.push({
+          url : result.url,
+          public_id : result.public_id
+        })
+      }
+    }  
+
     args.slug = slugify(req.body.name);
     if ( imageList){ 
     args.photo = imageList;
     }
 
     console.log(args)
-
+  
     const updated = await Product.findOneAndUpdate(req.params.productId, args, {
       new: true,
     });
@@ -181,7 +192,10 @@ exports.getProductBySlug = async (req, res) => {
   try {
     const product = await Product.findOne({ slug: req.params.slug })
     .populate(
-      "author"
+      "author",
+    )
+    .populate(
+      "category, _id name",
     );
 
     if(!product){

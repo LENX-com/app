@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import { Alert } from '@windmill/react-ui'
 import Link from 'next/link'
 import { Listbox, Transition } from '@headlessui/react'
-import SectionTitle from '@/components/Typography/SectionTitle'
 import Layout from '@/admin/containers/Layout'
 import { useDispatch, useSelector } from 'react-redux' 
 import { getSubs, getSubByCategory } from "@/redux/actions/subCategoryAction";
@@ -237,7 +236,7 @@ const validatorForm = Yup.object().shape({
                                             min="1" 
                                             value={values.price} 
                                             onChange={handleChange}
-                                            className="w-full p-2"
+                                            className="w-full p-2 focus:outline-none focus:ring focus:border-blue-500"
                                       
                                     />
                                 </div>
