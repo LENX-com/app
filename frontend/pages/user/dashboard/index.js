@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import CardInfo from '@/dashboard/components/Cards/CardInfo'
 import Layout from '@/dashboard/containers/Layout'
-import UserCard from '@/dashboard/components/Cards/UserCard'
-import PageTitle from '@/components/Typography/PageTitle'
+import UserCard from '@/admin/components/Cards/UserCard'
 import { conversation as Conversation, order, Information} from '@/dashboard/icons'
 import { Order, Blog, Wishlist } from '@/marketplace/assets/icons'
 import RoundIcon from '@/dashboard/components/RoundIcon'
@@ -14,7 +13,7 @@ import Link from 'next/link'
 import { NotFound } from '@/marketplace/assets/icons'
 import { HiChevronRight, HiOutlineChat } from 'react-icons/hi'
 import { AiOutlineMessage, AiOutlineUser } from 'react-icons/ai'
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive'  
 import { NavLink } from '@/components/NavLink/NavLink'
 import moment from 'moment'
 import OrderItem from '@/dashboard/components/orders/OrderItem' 
@@ -89,10 +88,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-          <div className="px-3">
-              <PageTitle>Dashboard</PageTitle>
-          </div>
-          <UserCard user= {user} />
+        <UserCard user= {user} />
               { isTabletOrMobile ?
               (
               <div className="bg-white">

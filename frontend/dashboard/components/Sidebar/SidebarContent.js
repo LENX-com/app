@@ -1,10 +1,8 @@
 import React from 'react'
-import routes from '@/dashboard/routes/sidebar'
 import Link from 'next/link'
 import { NavLink } from '@/components/NavLink/NavLink'
 import * as Icons from '@/marketplace/assets/icons'
-import SidebarSubmenu from '@/dashboard/components/Sidebar/SidebarSubmenu'
-import { Button } from '@windmill/react-ui'
+import Button from '@/components/Buttons/Button'
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon]
@@ -13,32 +11,58 @@ function Icon({ icon, ...props }) {
 
 function SidebarContent() {
   return (
-    <div className="py-4 text-Black text font-bold">
+    <div className="py-4">
       <ul className="mt-6">
-        {routes.map((route) =>
-          route.routes ? (
-            <SidebarSubmenu route={route} key={route.name} />
-          ) : (
-            <li className="relative px-6 py-3" key={route.name}>
-              <NavLink
-                exact href={route.path}
-                className="inline-flex items-center w-full text-sm text-Black-text transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                activeClassName=" font-bold"
-              >
-                <Icon className="w-5 h-5" aria-hidden="true" icon={route.icon} />
-                <h2 className="ml-4 text-Black-text hover:text-Black">{route.name}</h2>
-              </NavLink>
-            </li>
-          )
-        )}
+        <li className="">
+            <NavLink exact href="/user/dashboard" 
+                    activeClassName=" font-bold border-l-4 border-l-Blue icon-active"
+                    className=" flex justify-between uppercase text-Black-text hover:font-bold py-2"
+            >
+                <h2 className=" text-base my-auto ml-4">
+                    Dashboard
+                </h2>
+                <Icon className=" h-5 w-5 my-auto" icon="Home"/>
+          </NavLink>
+        </li>
+
+        <li className="">
+            <NavLink 
+                    href="/user/dashboard/my-orders" 
+                    activeClassName=" border-l-4 border-l-Blue icon-active font-bold"
+                    className=" flex justify-between uppercase text-Black-text hover:font-bold py-2"
+            >
+                <h2 className=" text-base my-auto ml-4">
+                    Orders
+                </h2>
+                <Icon className=" h-5 w-5 my-auto" icon="Order"/>
+          </NavLink>
+        </li> 
+
+        <li className="">
+            <NavLink 
+                    href="/user/dashboard/chat" 
+                    activeClassName=" border-l-4 border-l-Blue icon-active font-bold relative"
+                    className=" flex justify-between uppercase text-Black-text hover:font-bold py-2"
+            >
+                <h2 className="text-base my-auto ml-4">
+                    Chats
+                </h2>
+                <Icon className=" h-5 w-5 my-auto" icon="ChatIcon"/>
+            </NavLink>
+        </li>                  
+        <li className="">
+            <NavLink 
+                    href="/user/dashboard/wishlist" 
+                    activeClassName=" border-l-4 border-l-Blue icon-active font-bold"
+                    className=" flex justify-between uppercase text-Black-text hover:font-bold py-2"
+            >
+                <h2 className=" text-base my-auto ml-4">
+                    Wishlist
+                </h2>
+                <Icon className="w-10 h-10 my-auto pl-4" icon="Wishlist"/>
+            </NavLink>
+        </li>
       </ul>
-      <div className="px-6 my-6">
-        <Link href="/marketplace">
-          <Button className="link-marketplace bg-Blue">
-            Explore Marketplace
-          </Button>
-        </Link>
-      </div>
     </div>
   )
 }

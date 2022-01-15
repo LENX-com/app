@@ -34,24 +34,24 @@ const Wishlist = () => {
                   <div className="col-span-2 mobile:col-span-3">
                     <div className="flex mobile:py-1">
                       <img
-                        src= {data.product.photo[0]?.url}
+                        src= {data.product?.photo[0]?.url}
                         alt="product "
                         className="object-cover w-14 h-14 rounded-sm border-box my-auto"
                       />
                     <Link
-                           href={`/marketplace/products/${data.product.slug}`}      
+                           href={`/marketplace/products/${data.product?.slug}`}      
                     >
                         <a className="text capitalize block ml-2 my-auto mobile:underline">
-                            {data.product.name}
+                            {data.product?.name}
                         </a>
                     </Link>
                     </div>
                   </div>
                   <div className="my-auto">
-                    <span className="font-hk text-secondary">£ <span className="font-bold text text-Black-text">{data.product.price}</span></span>
+                    <span className="font-hk text-secondary">£ <span className="font-bold text text-Black-text">{data.product?.price}</span></span>
                   </div>
                   <div className="my-auto mobile:hidden">
-                    <Link href={`/marketplace/products/${data.product.slug}`}>
+                    <Link href={`/marketplace/products/${data.product?.slug}`}>
                       <Button className="font-bold bg-white text text-Black-text">
                         Order Now
                       </Button>
