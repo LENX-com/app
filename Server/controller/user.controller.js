@@ -173,7 +173,8 @@ exports.userById = (req, res, next, id) => {
 
 exports.getUserBySlug = async (req, res) => {
   try {
-    const user = await User.findOne({ slug: req.params.manufacturerSlug }).populate("skills", "skill")
+    const user = await User.findOne({ slug: req.params.manufacturerSlug })
+      .populate("locations", "city location")
 
     if(!user){
       throw new Error ("user not found")
@@ -183,6 +184,7 @@ exports.getUserBySlug = async (req, res) => {
                                   bgImage: user.bgImage,
                                   about: user.about,
                                   avatar: user.avatar,
+                                  title: user.title,
                                   name: user.name,
                                   id: user._id,
                                   summary: user.summary,

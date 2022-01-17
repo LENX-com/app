@@ -8,7 +8,6 @@ import ProductDescription from '@/marketplace/components/product/ProductDescript
 import ProductCard from '@/marketplace/components/product/ProductCard'
 import Card from '@/components/Cards/Card'
 import Layout from '@/containers/Layout'
-import SignInPop from '@/marketplace/components/auth/SignInPop'
 import SectionTitle from '@/components/Typography/SectionTitle'
 import { getProduct, getProductReviews, getProductByCategory } from "@/redux/actions/productAction";
 import Profile from '@/marketplace/components/profile/Profile'

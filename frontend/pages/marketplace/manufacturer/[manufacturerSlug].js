@@ -3,20 +3,21 @@ import CategoryProduct from "@/marketplace/components/product/CategoryProduct";
 import Card from "@/components/Cards/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { SwiperSlide, Swiper } from 'swiper/react'
+import { Tab } from '@headlessui/react'
 import Layout from '@/containers/Layout'
 import Button from '@/components/Buttons/Button'
+
 import { useRouter } from 'next/router'
-import {followManufacturer, getFollowing } from "@/redux/actions/userActions"
 import Chat from '@/marketplace/components/chat/Chat'
+import { AddLike, RemoveLike } from '@/redux/actions/reviewsAction'
 import {
-  MdArrowBack,
-  MdLocationOn
-} from "react-icons/md";
-import { AiOutlineHeart, AiTwotoneStar, AiFillWechat } from 'react-icons/ai'
+  MdArrowBack, MdLocationOn } from "react-icons/md";
+import { AiFillWechat } from 'react-icons/ai'
 import { getManufacturerProfile, getProductsBySlug } from '@/redux/actions/manufacturerAction'
 import AboutManufacturer from "@/marketplace/components/manufacturer/AboutManufacturer";
 import ReviewCard from '@/marketplace/components/review/ReviewCard'
 import PopUp from '@/marketplace/components/pop/PopUp'
+import { addWishList, getWishList } from "@/redux/actions/wishlistAction";
 import { SignInContext } from '@/context/SignInContext'
 import { getReviewsByManufacturer } from '@/actions/userActions'
 import { useMediaQuery } from 'react-responsive'
@@ -25,17 +26,14 @@ import { Star, NotFound } from '@/marketplace/assets/icons'
 import SwiperCore, {
   Navigation, Pagination
 } from 'swiper';
-// install Swiper modules
-import Rating from 'react-rating'
 
 SwiperCore.use([Navigation, Pagination]);
 
 
-const Manufacturer = ({ match }) => {
+const Manufacturer = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [ isOpen, setIsOpen ] = useState(false)
-  const [ isOpenSign, setIsOpenSign ] = useState(false)
   const { profile, products } = useSelector( state => state.manufacturer)
   const { reviews } = useSelector( state => state.admin)
   const [ rating, setRating ] = useState(false)
@@ -48,71 +46,46 @@ const Manufacturer = ({ match }) => {
   const { manufacturerSlug } = router.query
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
-  const { OpenSign, closeSidebar, toggleSidebar } = useContext(SignInContext)
+  const { toggleSidebar,  OpenSign } = useContext(SignInContext)
+
+  const handleWishlist = (product) => {
+    !isAuthenticated ? toggleSidebar() : dispatch(addWishList(product));
+    dispatch(getWishList())
+  };
+
+    useEffect(() => {
+      dispatch(getWishList())
+    }, [])
 
 
   useEffect(() => {
-    dispatch(getManufacturerProfile(manufacturerSlug))
-    dispatch(getProductsBySlug(manufacturerSlug))
-     getCategories().then( data => {
-           setCategories(data) })
-    }
-  , [dispatch, manufacturerSlug])
+    if(manufacturerSlug){
+      dispatch(getManufacturerProfile(manufacturerSlug))
+      dispatch(getProductsBySlug(manufacturerSlug))
+      dispatch(getReviewsByManufacturer(manufacturerSlug))
+      getCategories().then( data => {
+            setCategories(data) })
+      }
+  }, [dispatch, manufacturerSlug])
 
-  useEffect(() => {
-        dispatch(getReviewsByManufacturer(manufacturerSlug))
-        dispatch(getFollowing())
-    }, [dispatch])
-  
-  var categoryFilter = []
-    for (let i=0; i<products.length; i++) {
-        if(!categoryFilter.includes(products[i].category)){
-    categoryFilter.push(products[i].category)
-    }
-}
-const filteredCategories = categories && categories.filter((el) => {
-  return categoryFilter.some((f) => {
-    return f._id === el.id;
+  const filteredReviews = reviews && reviews.filter(function (el) {
+     return el.rating === rating;
   });
-});
 
-const filteredReviews = reviews && reviews.filter(function (el) {
-   return el.rating === rating;
-});
-
-const filteredProducts = products && products.filter(function (el) {
-   return el.category._id === category;
-});
-
- var total = 0;
+  const NoResult = () => (
+      <div className="mb-4">
+          <div className="m-auto text-center">
+              <NotFound className="text-center mx-auto my-2"/>
+              <span className="font-bold capitalize"> Sorry there are no {content} available </span>
+          </div>
+      </div>
+ )
+ 
+var total = 0;
         for(var i = 0; i < reviews.length; i++) {
         total += reviews[i].rating;  
     }
-    var avg = total / reviews.length;
-
-
-{/* Check if user already follows the manufacturer */}
-const isFollowing = following?.some(e => e.user?._id === profile.id) ? "Unfollow" : "Follow"   
-
-const handleCategory = (id) => {
-  setCategory(id)
-}
-
-const handleFollow = (profile) => {
-  if(isAuthenticated){
-    dispatch(followManufacturer(profile));
-    setTimeout(() =>{
-      dispatch(getFollowing())
-    }, 300)
-  } else {
-    toggleSidebar();
-  }
-}
-
-   const handleProductMenu = () => {
-      setMenu(0)
-      setContent("Products")
-   }
+ var avg = total / reviews.length;
 
     const handleReviewsMenu = () => {
       setMenu(1)
@@ -123,102 +96,54 @@ const handleFollow = (profile) => {
       setRating(data)
       setIsFiltered(true)
     }
-   const handleAboutMenu = () => {
-      setMenu(2)
-      setContent("About")
-   }
+
+    const handleLike = (review) => {
+    if(!isAuthenticated) {
+        toggleSidebar()
+    } 
+    else {
+    dispatch(AddLike(review))
+    }
+  }
+  const handleRemoveLike = (review) => {
+      if(!isAuthenticated) {
+          toggleSidebar()
+      }
+      else { 
+          dispatch(RemoveLike(review))
+      }
+  }
+
 
    const ratings = [1, 2, 3, 4, 5]
-   
-    const NoResult = () => (
-        <div className="mb-4">
-            <div className="m-auto text-center">
-                <NotFound className="text-center mx-auto my-2"/>
-                <span className="font-bold capitalize"> Sorry there are no {content} available </span>
-            </div>
-        </div>
-    )
 
-   const Products = () => (
+
+   const Products = React.memo(() => (
      <div>
-      <div className="lg:w-3/5 my-4">
-          { isTabletOrMobile ?
-            <Swiper
-                    slidesPerView={4}
-            >
-              {filteredCategories && filteredCategories.map( data => 
-                <SwiperSlide
-                  spaceBetween={20}
-                  className={`px-3 py-1 m-1 rounded-md cursor-pointer text-center hover:bg-Grey-hover mobile:w-auto ${ data.id === category ? "bg-Grey-hover" : "bg-Grey-dashboard"}`}
-                  onClick= {() => handleCategory(data.id)}
-                  key={data.id}      
-                >
-                  <span className="text-Black-medium font-bold ml-1 text-center"> {data.name} </span>
-                </SwiperSlide>
-                )}
-            </Swiper>
-              :
-            <div className="grid grid-cols-6 gap-4">
-                {filteredCategories && filteredCategories.map( data => 
-                  <div 
-                    className={`px-3 py-1 rounded-md cursor-pointer text-center hover:bg-Grey-hover mobile:w-auto ${ data.id === category ? "bg-Grey-hover" : "bg-Grey-dashboard"}`}
-                    onClick= {() => handleCategory(data.id)}
-                    key={data.id}      
-                  >
-                    <span className="text-Black-medium font-bold ml-1 text-center"> {data.name} </span>
-                  </div>
-                )}
-            </div>
-          }
-      </div>
-      <div className="grid mobile:grid-cols-2 gap-4 grid-cols-5 my-4">
+      <div className="grid mobile:grid-cols-2 gap-6 grid-cols-2 ">
         {
-            filteredProducts.length  !== 0 ?
-              filteredProducts.map((product, i) =>
-                <Fragment key={i}>
-                  <CategoryProduct product={product} />
-                </Fragment> 
-              )
-                :
-
             products && products.length !== 0 ?
               products.map((product, i) =>
                 <Fragment key={i}> 
-                  <CategoryProduct product={product} />
+                  <CategoryProduct product={product} handleWishlist={handleWishlist}/>
                 </Fragment>
               )
               :
-            <NoResult /> 
-            }
+            <div className="mb-4">
+                <div className="m-auto text-center">
+                    <NotFound className="text-center mx-auto my-2"/>
+                    <span className="font-bold capitalize"> Sorry there are no {content} available </span>
+                </div>
+            </div>
+        }
       </div>
      </div>
-   )
-   
-   // switch case to change the tabs to services, reviews and about
-     const value = () => {
-       switch (content) {
-         case "Products":
-           return (
-             <Products />
-           )
-           ;
-         case "Reviews":
-           return (
-             <Reviews />
-           )
-         case"About":
-           return (
-             <AboutManufacturer profile={profile} isTabletOrMobile={isTabletOrMobile} />
-           )
-         
-         default:
-           return <Products />;
-       }
-     }
+   ));
+  
 
-   const Reviews = () => (
+   const Reviews = React.memo(() => (
      <>
-      <div className="flex w-3/4 px-2 mobile:w-full mobile:grid">
+      <div className="flex w-3/4 px-2 mobile:w-full mobile:grid mb-5">
         <div className="my-auto text-Black-medium mr-5 text-lg">
           Filter
         </div>
@@ -243,7 +168,7 @@ const handleFollow = (profile) => {
         filteredReviews.length !== 0 ?
           filteredReviews.map( (data, i) =>
           <Fragment key={i}> 
-            <ReviewCard review= { data } />
+            <ReviewCard review= { data } handleLike= {handleLike} handleRemoveLike={handleRemoveLike}/>
           </Fragment>   
           )
           :
@@ -253,151 +178,89 @@ const handleFollow = (profile) => {
           reviews && reviews.length !== 0 ? 
             reviews.map( (data, i) =>
             <Fragment key={i}> 
-              <ReviewCard review= { data } />
+              <ReviewCard review= { data } handleLike= {handleLike} handleRemoveLike={handleRemoveLike}/>
             </Fragment>   
             )
           :
           <NoResult />
       }
      </>
-   )
+   ))
 
-  const ManufacturerProfile = () => (
-    <>
-     <div className="relative">
-        {/**/}
-        <div className="lg:grid lg:grid-cols-2 lg:gap-5 lg:p-4">
-          <div className="relative">
-            <div className="lg:Center w-full">
-                <div className="flex justify-center mx-auto text-center">
-                  <div>
-                    <div className="bg-cover bg-center shadow-button h-20 w-20 rounded-lg bg-white m-auto transform transition hover:-rotate-6 cursor-pointer duration-300 border-2 border-white" 
-                          style= {{backgroundImage: `url("${profile.avatar}")`}}
-                    />
-                  </div>
-                  <div className="my-auto pl-3">
-                    <h1 className="font-bold text-2xl capitalize my-auto"> {profile.name} </h1>
-                    {/* If there are no reviews, do not show the rating */}
-                    { reviews.length > 0 &&
-                    <div>
-                      <div className="flex ml-2">  
-                        <Star className= "text-lg my-auto" style={{width:"16px", height: "16px"}}/>
-                        <span className="my-auto text-Black-medium font-bold pl-1"> {avg} </span>
-                        <div className="my-auto pl-2 text font-bold text-Black-medium underline cursor-pointer"
-                          onClick={handleReviewsMenu}
-                        > 
-                          {reviews.length > 1? `(${reviews.length}) reviews` : `(${reviews.length}) review`} 
-                        </div>
-                      </div>
-                    </div>
-                    } 
-                  </div>
+   const Photos = React.memo(() => (     
+      <div className="grid grid-cols-2 gap-6">
+        {
+          profile.photos && profile.photos.length !== 0 ?
+            ( profile.photos.map((photo, i) => (
+                <div key={i} className="w-full cursor-pointer">
+                  <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-sm"/>
                 </div>
-                { profile.skilss &&
-                <div className="grid grid-cols-4 gap-5 my-5">
-                  {profile.skills?.map( (data, i) =>
-                  <div key={i}>
-                    <div className="px-3 py-2 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer"> 
-                      {data.skill}
-                    </div>
-                  </div>  
-                  )}
-               </div>
-               }
-         
-              <div>
-              <div className="my-2 pb-3 lg:text-center text-Black-text">
-                {profile.summary}
-              </div>
-              <div className="grid grid-cols-2">
-                <div className="ml-auto my-auto">
-                  <Button 
-                    className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
-                    >
-                    <a href={`tel:${profile.mobile}`}>
-                      { profile.mobile }
-                    </a>
-                  </Button>
-                </div>
-                <div className="mr-auto">
-                    <Button
-                      onClick={() => setIsOpen(true)} 
-                      className="bg-Blue text-white flex border-2 border-Blue"
-                      >
-                      <AiFillWechat className="my-auto text-lg mr-2"/>
-                      Chat now
-                    </Button>
+              ))
+            ) : (
+              <div className="mb-4 col-span-2">
+                <div className="m-auto text-center">
+                    <NotFound className="text-center mx-auto my-2"/>
+                    <span className="font-bold capitalize"> Sorry there are no photos available </span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-            
-            <div className="lg:w-3/5 mx-auto">
-              { profile.photos && profile.photos.length >= 1 &&
-              <Swiper
-                  freeMode={true}
-                  navigation={true}
-                  className="w-full cursor-pointer rounded-md"
-                  spaceBetween={20}
-                  slidesPerView={1}
-              >
-                  <SwiperSlide 
-                      className="bg-cover bg-center h-72 w-full mobile:h-48 rounded-md m-auto shadow-button" 
-                      style= {{backgroundImage: `url(${profile?.photos[0]?.url})`}} 
-                  />
-                  <SwiperSlide 
-                      className="bg-cover bg-center h-72 w-full mobile:h-48 rounded-md m-auto shadow-button" 
-                      style= {{backgroundImage: `url(${profile?.photos[1]?.url})`}} 
-                  />
-                  <SwiperSlide 
-                      className="bg-cover bg-center h-72 w-full mobile:h-48 rounded-md m-auto shadow-button" 
-                      style= {{backgroundImage: `url(${profile?.photos[2]?.url})`}} 
-                  />
-                  <SwiperSlide 
-                      className="bg-cover bg-center h-72 w-full mobile:h-48 rounded-md m-auto shadow-button" 
-                      style= {{backgroundImage: `url(${profile?.photos[3]?.url})`}} 
-                  />
-              </Swiper>
-              }
-            </div>
-
-          </div>
-        {/**/}
+            ) 
+        }
       </div>
-  
-      </>
-  )
-
+    ))
+   
   const ProfileMenu = () => (
-    <div className="flex justify-between mobile:grid mobile:grid-cols-1 mobile:gap-4">
-      <div className="grid grid-cols-3 gap-3 rounded-none w-1/2 mobile:w-full ">
-        <div
-          className={`text-center font-bold cursor-pointer px-3 py-2 hover:bg-Grey-dashboard ${
-            menu === 0 ? "border-b-2 border-Blue text-Blue" : "text-Black-medium rounded-md"
-          }`}
-          onClick={handleProductMenu}
-        >
-          Services
-        </div>
-        <div
-          className={`text-center font-bold cursor-pointer px-3 py-2 hover:bg-Grey-dashboard ${
-            menu === 1 ? "border-b-2 border-Blue text-Blue" : "text-Black-medium rounded-md"
-          }`}
-          onClick={handleReviewsMenu}
-        >
-          Reviews
-        </div>
-        <div
-          className={`text-center font-bold cursor-pointer px-3 py-2 hover:bg-Grey-dashboard ${
-            menu === 2 ? "border-b-2 border-Blue text-Blue" : "text-Black-medium rounded-md"
-          }`}
-          onClick={handleAboutMenu}
-        >
-          About
-        </div>
-      </div>
-    </div>
+      <Tab.Group>
+            <Tab.List>
+              <div className="mb-5">
+                <Tab as={Fragment}>
+                  {({ selected }) => (
+                    <button
+                      className={
+                        selected ? 'font-bold text-Blue border-b-2 border-blue' : 'bg-white text-Black-text font-bold'
+                      }
+                    >
+                      Services
+                    </button>
+                  )}
+                </Tab>
+                <Tab as={Fragment}>
+                  {({ selected }) => (
+                    <button
+                      className={
+                        selected ? 'font-bold text-Blue border-b-2 border-blue' : 'bg-white text-Black-text font-bold'
+                      }
+                    >
+                      Reviews
+                    </button>
+                  )}
+                </Tab>
+                <Tab as={Fragment}>
+                  {({ selected }) => (
+                    <button
+                      className={
+                        selected ? 'font-bold text-Blue border-b-2 border-blue' : 'bg-white text-Black-text font-bold'
+                      }
+                    >
+                      Photos
+                    </button>
+                  )}
+                </Tab>
+              </div>
+              {/* ...  */}
+            </Tab.List>
+            <Tab.Panels>
+              <Tab.Panel> 
+                <Products /> 
+              </Tab.Panel>
+              <Tab.Panel> 
+                <Reviews /> 
+              </Tab.Panel>
+              <Tab.Panel> 
+                <Photos /> 
+              </Tab.Panel>
+              {/* ... */}
+            </Tab.Panels>
+          </Tab.Group>
   );
 
 
@@ -477,8 +340,8 @@ const handleFollow = (profile) => {
               >
                 {profile.skills?.map( (data, i) =>
                 <Fragment key={i}>
-                  <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer"> 
-                    {data.skill}
+                  <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer capitalize"> 
+                    {data}
                   </SwiperSlide>
                 </Fragment>
                 )}
@@ -493,18 +356,18 @@ const handleFollow = (profile) => {
             <div className="my-3">
               <h2 className="font-bold text-Black-text "> Locations </h2>
               <Swiper
-                slidesPerView={3}
+                slidesPerView={2}
                 freeMode={true}
                 spaceBetween={10}
                 className="mb-3 mt-1"
               >
                 {profile.locations?.map( (data, i) =>
                 <Fragment key={i}>
-                  <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer">
+                  <SwiperSlide className=" w-auto py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer px-2">
                     <div className="flex m-auto">
                       <MdLocationOn className="my-auto ml-1 mr-1"/>
                       <span className="font-bold"> 
-                        {data}
+                        {data.location}
                       </span>
                     </div>
                   </SwiperSlide>
@@ -514,51 +377,31 @@ const handleFollow = (profile) => {
             </div>
           </div>
           <ProfileMenu />
-      </Card>
-      <Card className="min-h-screen">
-        {value()}
-      </Card>
-      <div className="sticky bottom-0 shadow-button bg-white z-50 py-2">
-        <div className="grid grid-cols-2">
-          <div className="ml-auto my-auto">
-            <Button 
-              className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
-            >
-              <a href={`tel:${profile.mobile}`}>
-                { profile.mobile }
-              </a>
-            </Button>
-          </div>
-          <div className="mr-auto">
-            <Button
-              onClick={() => setIsOpen(true)} 
-              className="bg-Blue text-white flex border-2 border-Blue"
-            >
-              <AiFillWechat className="my-auto text-lg mr-2"/>
-              Chat now
-            </Button>
+        </Card>
+
+        <div className="sticky bottom-0 shadow-button bg-white z-50 py-2">
+          <div className="grid grid-cols-2">
+            <div className="ml-auto my-auto">
+              <Button 
+                className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
+              >
+                <a href={`tel: 0${profile.mobile}`}>
+                  {`0${profile.mobile}`}
+                </a>
+              </Button>
+            </div>
+            <div className="mr-auto">
+              <Button
+                onClick={() => setIsOpen(true)} 
+                className="bg-Blue text-white flex border-2 border-Blue"
+              >
+                <AiFillWechat className="my-auto text-lg mr-2"/>
+                Chat now
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-  
-  const DesktopLayout = () => (
-      <Layout>
-        <div className="lg:w-5/6 lg:mx-auto lg:py-3">
-          <Card className="my-2">
-            <ManufacturerProfile/>
-            <ProfileMenu />
-          </Card>
-
-            <Card>
-              {value()}
-            </Card>
-            <PopUp isOpen={isOpen} setIsOpen={setIsOpen} >
-              <Chat receiver={profile} />
-            </PopUp>
-        </div>
-      </Layout>
   )
 
   return (
@@ -566,10 +409,181 @@ const handleFollow = (profile) => {
       {isTabletOrMobile ? (
           <MobileLayout />
       ) : (
-        <DesktopLayout />
+          <Layout>
+            <div className="my-4">
+              <div className="lg:w-4/6 lg:mx-auto lg:py-3 border-box bg-white">
+                <div className="relative">
+                    {/**/}
+                    <div className="">
+                      <div className="relative">
+                        <div className="w-full shadow-separator p-3">
+                          <div className="flex justify-between my-3">
+                            <div className="flex">
+                              <div>
+                                <div className="bg-cover bg-center shadow-button h-20 w-20 rounded-lg bg-white m-auto transform transition hover:-rotate-6 cursor-pointer duration-300 border-2 border-white" 
+                                      style= {{backgroundImage: `url("${profile.avatar}")`}}
+                                />
+                                </div>
+                                <div className="my-auto pl-3">
+                                  <h1 className="font-bold text-2xl capitalize my-auto"> {profile.name} </h1>
+                                  <h2 className="text-base capitalize my-auto"> {profile.title} </h2>
+                                  {/* If there are no reviews, do not show the rating */}
+                                  { reviews.length > 0 &&
+                                  <div>
+                                    <div className="flex ml-2">  
+                                      <Star className= "text-lg my-auto" style={{width:"16px", height: "16px"}}/>
+                                      <span className="my-auto text-Black-medium font-bold pl-1"> {avg} </span>
+                                      <div className="my-auto pl-2 text font-bold text-Black-medium underline cursor-pointer"
+                                        onClick={handleReviewsMenu}
+                                      > 
+                                        {reviews.length > 1? `(${reviews.length}) reviews` : `(${reviews.length}) review`} 
+                                      </div>
+                                    </div>
+                                  </div>
+                                  } 
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2">
+                                <div className="ml-auto my-auto">
+                                  <Button 
+                                    className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
+                                    >
+                                    <a href={`tel: 0${profile.mobile}`}>
+                                      {`0${profile.mobile} `}
+                                    </a>
+                                  </Button>
+                                </div>
+                                <div className="m-auto">
+                                    <Button
+                                      onClick={() => setIsOpen(true)} 
+                                      className="bg-Blue text-white flex border-2 border-Blue"
+                                      >
+                                      <AiFillWechat className="my-auto text-lg mr-2"/>
+                                      Chat now
+                                    </Button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {/**/}
+                    </div>
+                      <Tab.Group>
+                          <div className="grid grid-cols-10">
+                            <div className="col-span-3">
+                            <Tab.List className="shadow-separator w-full">
+                              <div className="shadow-separator w-full p-3">
+                                <Tab as={Fragment}>
+                                  {({ selected }) => (
+                                    <div>
+                                      <button
+                                        className={
+                                          selected ? 'font-bold text-Blue border-l-2 border-Blue' : 'bg-white text-Black-text font-bold'
+                                        }
+                                      >
+                                        Services
+                                      </button>
+                                    </div>
+                                  )}
+                                </Tab>
+                                <Tab as={Fragment}>
+                                  {({ selected }) => (
+                                    <div>
+                                      <button
+                                        className={
+                                          selected ? 'font-bold text-Blue border-l-2 border-Blue' : 'bg-white text-Black-text font-bold'
+                                        }
+                                      >
+                                        Reviews
+                                      </button>
+                                    </div>
+                                  )}
+                                </Tab>
+                                <Tab as={Fragment}>
+                                  {({ selected }) => (
+                                    <div>
+                                      <button
+                                        className={
+                                          selected ? 'font-bold text-Blue border-l-2 border-Blue' : 'bg-white text-Black-text font-bold'
+                                        }
+                                      >
+                                        Photos
+                                      </button>
+                                    </div>
+                                  )}
+                                </Tab>
+                              </div>
+                            {/* ...  */}
+                            </Tab.List>
+                            <div>
+                              <div className="my-3 p-3">
+                                <h2 className="font-bold text-Black-text "> About </h2>
+                                <h3 className="text-Black-medium text mt-2"> { profile.summary } </h3>
+                              </div>
+                              { profile.skills && profile.skills.length !== 0 &&
+                                <div className="my-3 p-3">
+                                  <h2 className="font-bold text-Black-text "> Skills </h2>
+                                  <div className="grid grid-cols-3 gap-5 pt-2">
+                                    {profile.skills?.map( (data, i) =>
+                                      <div key={i} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full">
+                                        <div className="font-bold text-Black-medium text text-center cursor-pointer capitalize"> 
+                                          {data}
+                                        </div>
+                                      </div>  
+                                    )}
+                                  </div>
+                                </div>
+                              }
+                              { profile.locations && profile.locations.length !== 0 &&
+                                <div className="my-3 p-3">
+                                  <h2 className="font-bold text-Black-text"> Locations </h2>
+                                  <div className="grid grid-cols-2 gap-5 pt-2">
+                                    {profile.locations?.map( (data, i) =>
+                                      <div key={i} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full text-center cursor-pointer mx-auto">
+                                        <div className=" capitalize mx-auto text-Black-medium text font-bold text-center">
+                                          {/* <MdLocationOn className="text-Black-medium h-5 w-5 m-auto"/> */}
+                                          {data.location}
+                                        </div>
+                                      </div>  
+                                    )}
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          </div>
+
+                          <div className="col-span-7 border-l border-Grey">
+                            <div className="w-5/6 mx-auto py-10">
+                              <Tab.Panels>
+                                <Tab.Panel> 
+                                  <Products /> 
+                                </Tab.Panel>
+                                <Tab.Panel> 
+                                  <Reviews /> 
+                                </Tab.Panel>
+                                <Tab.Panel> 
+                                  <Photos /> 
+                                </Tab.Panel>
+                                {/* ... */}
+                              </Tab.Panels>
+                            </div>
+                          </div>
+                        </div>
+                      </Tab.Group>
+              </div>
+            </div>
+
+            <div className="lg:w-5/6 lg:mx-auto lg:py-3">
+                <PopUp isOpen={isOpen} setIsOpen={setIsOpen} >
+                  <Chat receiver={profile}/>
+                </PopUp>
+            </div>
+          </Layout>
       )}
     </div>
   );
 };
 
+Manufacturer.whyDidYouRender = true;
 export default Manufacturer;

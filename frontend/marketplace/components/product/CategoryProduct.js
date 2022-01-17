@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { memo } from "react";
 import Link from 'next/link'
-import { addWishList, getWishList } from "@/redux/actions/wishlistAction";
 import { SwiperSlide, Swiper } from 'swiper/react'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { SignInContext } from '@/context/SignInContext'
 import { AiFillStar } from "react-icons/ai";
 import {
@@ -11,29 +10,8 @@ import {
 } from "react-icons/md";
 
 
-const ProductCard = ({
-  product,
-  setRun = (f) => f,
-  run = undefined,
-  rating = false,
-
-  // changeCartSize
-}) => {
-  const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector(state => state.auth)
+const ProductCard = ({product, handleWishlist}) => {
   const { wishlists } = useSelector((state) => state.wishlist);
-  const error = useSelector((state) => state.wishlist.error);
-
-  const { OpenSign, closeSidebar, toggleSidebar } = useContext(SignInContext)
-
-  const handleWishlist = (product) => {
-    !isAuthenticated ? toggleSidebar() : dispatch(addWishList(product));
-    dispatch(getWishList())
-  };
-
-    useEffect(() => {
-    dispatch(getWishList())
-  }, [])
 
   const Like = () => (
     <svg
@@ -87,14 +65,14 @@ const ProductCard = ({
             <h1 className="truncate capitalize"> {product.name} </h1>
           </Link>
           <h3> £ {product.price} </h3>
-          <div className="flex">
+          {/* <div className="flex">
             <AiFillStar className="text-orange text-sm mr-1" />
             <div className="text-xs"> 4.9 </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

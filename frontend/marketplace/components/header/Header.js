@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, useContext } from "react";
+import React, { useState, useRef, useEffect, useMemo, useContext, memo } from "react";
 import logo from "@/marketplace/assets/logoNew.png";
 import { NavLink } from '@/components/NavLink/NavLink'
 import Link from 'next/link'
@@ -37,7 +37,8 @@ import { API } from '@/config/config'
 import { api } from "@/utils/api";
 import _ from 'lodash'
 
-export default function Header() {
+ const Header = () => {
+
   const [isOpen, setIsOpen] = useState(false);
   const Router = useRouter();
   const { isAuthenticated, user } = useSelector(state => state.auth)
@@ -448,4 +449,6 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}
+ Header.whyDidYouRender = true;
+ export default Header; 

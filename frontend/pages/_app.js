@@ -1,5 +1,6 @@
 import '@/styles/globals.scss'
 import { Provider } from 'react-redux'
+import React from 'react'
 import App, { Container } from 'next/app';
 import store from '@/config/store'
 import { SignInProvider } from "@/context/SignInContext";
@@ -15,6 +16,13 @@ import 'swiper/swiper.min.css'
 // modules styles
 import 'swiper/components/navigation/navigation.min.css'
 import 'swiper/components/pagination/pagination.min.css'
+
+if (process.env.NODE_ENV === 'development') {
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+  });
+}
 
 
 

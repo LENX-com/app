@@ -46,28 +46,6 @@ const SingleProduct = ({ product,  isTabletOrMobile, handleProfile, handleChat, 
     !isAuthenticated ? toggleSidebar() : dispatch(addWishList(product._id))
   )
 
-// const CountButton = React.memo(function CountButton({onClick, children, ...buttonProps}) {
-//   return <button onClick={onClick} {...buttonProps} >{children}</button>
-// })
-
-//  const handleDecrease = React.useCallback(() => setCount(Math.min(20, count - 1)), [ count ])
-
-// const handleIncrease = React.useCallback(() => {
-//   setCount(Math.max(1, count + 1))
-//   }
-    // , [ count ])
-
-  const handleIncrease = (e) => {
-    e.preventDefault()
-    setCount(Math.max(1, count + 1))
-  }
-
-  const handleDecrease = (e) => {
-    e.preventDefault()
-    setCount(Math.min(20, count - 1))
-  }
-
-  
     const Feature = [
         {
             name: "Peer reviews",

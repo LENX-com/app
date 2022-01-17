@@ -26,7 +26,7 @@ function Dashboard() {
       dispatch(adminProducts({authorId : user._id }))
   }, [])
 
-  const NoResultsFound = () =>(
+  const NoResultsFound = () =>(  
     <div className="mb-4 mx-auto">
       <div className="m-auto text-center">
           <NotFound className="text-center mx-auto my-2"/>

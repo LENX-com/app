@@ -15,11 +15,11 @@ const colors = require('tailwindcss/colors')
    darkMode: false, // or 'media' or 'class'
    theme: {
     screens: {
-      mobile:{'max': '575px'},
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      'mobile':{'max': '575px'},
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
       '2xl': '1536px',
     },
     colors: {

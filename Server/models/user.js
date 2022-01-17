@@ -54,14 +54,14 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      trim: true,  
+      trim: true,   
       required: true,
       maxlenght: 32,
     },
     mobile: { type: String },
     skills: {
       type: Array,
-    },
+    },  
     locations: [{
       type: ObjectId,
       ref: "Location",

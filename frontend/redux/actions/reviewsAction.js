@@ -3,8 +3,8 @@ import { API } from "@/config/config";
 import queryString from "query-string";
 import axios from 'axios'
 
-
-//Add like to review
+///////////////////////////////// { PRODUCTS REVIEWS //////////////////////////////////
+//Add like to review 
 export const AddLike = (productReviewId) => async (dispatch) => {
   try {
     const res = await api.put(`${API}/product/like/${productReviewId}`,);
@@ -49,4 +49,33 @@ export const RemoveReview = (reviewId) => async (dispatch) => {
 };
 
 
- //Unlike review
+///////////////////////////////// USER REVIEWS //////////////////////////////////
+ 
+export const Upvote = (reviewId) => async (dispatch) => {
+  try {
+    const res = await api.post(`${API}/review/vote`, reviewId);
+    dispatch({
+      type: "USER_REVIEW_UPVOTE",
+      payload: res.data,
+    });
+  } catch (err) {    
+    dispatch({
+      type: "USER_ERROR",
+    });
+  }
+};
+
+
+export const Downvote = (reviewId) => async (dispatch) => {
+  try {
+    const res = await api.post(`${API}/review/downvote`, reviewId);
+    dispatch({
+      type: "USER_REVIEW_DOWNVOTE",
+      payload: res.data,
+    });
+  } catch (err) {    
+    dispatch({
+      type: "USER_ERROR",
+    });
+  }
+};

@@ -194,7 +194,7 @@ exports.getProductBySlug = async (req, res) => {
     const product = await Product.findOne({ slug: req.params.slug })
     .populate(
       "author",
-    )
+    ) 
     .populate(
       "category",
     );
@@ -214,7 +214,6 @@ exports.getProductsBySlug = async (req, res) => {
     const product = await Product.find({ authorName: req.params.slug })
     .populate(
       "category",
-      "_id name"
     )
     .populate(
       "author"

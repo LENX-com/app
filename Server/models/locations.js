@@ -28,4 +28,4 @@ const locationsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Locations", locationsSchema);
+module.exports = mongoose.model("Location", locationsSchema);

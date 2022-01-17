@@ -94,7 +94,7 @@ const productSchema = new mongoose.Schema(
     ],
   },
   { timestamps: true }
-);
+); 
 
 // productSchema
 //   .virtual("categoryId")
