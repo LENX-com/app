@@ -141,7 +141,7 @@ var total = 0;
         {
             products && products.length !== 0 ?
               products.map((product, i) =>
-                <Fragment key={i}> 
+                <Fragment key={i=product._id}> 
                   <CategoryProduct product={product} handleWishlist={handleWishlist}/>
                 </Fragment>
               )
@@ -168,7 +168,7 @@ var total = 0;
           {ratings.map( (data, i) =>
             <div 
               className="px-1"
-              key={i}
+              key={data}
             > 
               <div 
                   className= {`mobile:w-auto px-3 mobile:px-2 py-1 rounded-md flex cursor-pointer hover:bg-Grey-hover ${rating === data ? "bg-Grey-hover" : "bg-Grey-dashboard" }`}
@@ -184,7 +184,7 @@ var total = 0;
       {isFiltered && filteredReviews ?
         filteredReviews.length !== 0 ?
           filteredReviews.map( (data, i) =>
-          <Fragment key={i}> 
+          <Fragment key={data._id}> 
             <ReviewCard review= { data } handleLike= {handleUpvote} handleRemoveLike={handleDownvote}/>
           </Fragment>   
           )
@@ -194,7 +194,7 @@ var total = 0;
           :
           reviews && reviews.length !== 0 ? 
             reviews.map( (data, i) =>
-            <Fragment key={i}> 
+            <Fragment key={data._id}> 
               <ReviewCard review= { data } handleLike= {handleUpvote} handleRemoveLike={handleDownvote}/>
             </Fragment>   
             )
@@ -209,7 +209,7 @@ var total = 0;
         {
           profile.photos && profile.photos.length !== 0 ?
             ( profile.photos.map((photo, i) => (
-                <div key={i} className="w-full cursor-pointer shadow-product">
+                <div key={photo.url} className="w-full cursor-pointer shadow-product">
                   <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-product"/>
                 </div>
               ))
@@ -356,7 +356,7 @@ var total = 0;
                 className="mb-3 mt-1"
               >
                 {profile.skills?.map( (data, i) =>
-                <Fragment key={i}>
+                <Fragment key={data}>
                   <SwiperSlide className=" py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer capitalize"> 
                     {data}
                   </SwiperSlide>
@@ -379,7 +379,7 @@ var total = 0;
                 className="mb-3 mt-1"
               >
                 {profile.locations?.map( (data, i) =>
-                <Fragment key={i}>
+                <Fragment key={data.location}>
                   <SwiperSlide className=" w-auto py-1 font-bold text-Black-medium bg-Grey-dashboard rounded-md text text-center cursor-pointer px-2">
                     <div className="flex m-auto">
                       <MdLocationOn className="my-auto ml-1 mr-1"/>
@@ -542,7 +542,7 @@ var total = 0;
                                   <h2 className="font-bold text-Black-text "> Skills </h2>
                                   <div className="grid grid-cols-3 gap-5 pt-2">
                                     {profile.skills?.map( (data, i) =>
-                                      <div key={i} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full">
+                                      <div key={data} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full">
                                         <div className="font-bold text-Black-medium text text-center cursor-pointer capitalize"> 
                                           {data}
                                         </div>
@@ -556,7 +556,7 @@ var total = 0;
                                   <h2 className="font-bold text-Black-text"> Locations </h2>
                                   <div className="grid grid-cols-2 gap-5 pt-2">
                                     {profile.locations?.map( (data, i) =>
-                                      <div key={i} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full text-center cursor-pointer mx-auto">
+                                      <div key={data._id} className="bg-Grey-dashboard rounded-md px-3 py-2 w-full text-center cursor-pointer mx-auto">
                                         <div className=" capitalize mx-auto text-Black-medium text font-bold text-center">
                                           {/* <MdLocationOn className="text-Black-medium h-5 w-5 m-auto"/> */}
                                           {data.location}
