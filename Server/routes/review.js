@@ -27,7 +27,7 @@ const upload = multer({ storage });
 
 router.post(
   "/review/create/manufacturer/",
-  upload.single("file"),
+  upload.single("file"),  
   auth,
   addReview
 );
@@ -65,7 +65,7 @@ router.post(
 
 router.put("/review/remove/response/:reviewId", auth, removeResponse)
 
-router.post("/review/vote", auth, upVote);
-router.post("/review/downvote", auth, downVote);
+router.put("/review/vote/:reviewId", auth, upVote);
+router.put("/review/downvote/:reviewId", auth, downVote);
 
 module.exports = router;

@@ -9,7 +9,7 @@ import Button from '@/components/Buttons/Button'
 
 import { useRouter } from 'next/router'
 import Chat from '@/marketplace/components/chat/Chat'
-import { AddLike, RemoveLike } from '@/redux/actions/reviewsAction'
+import { AddLike, RemoveLike, Upvote, Downvote } from '@/redux/actions/reviewsAction'
 import {
   MdArrowBack, MdLocationOn } from "react-icons/md";
 import { AiFillWechat } from 'react-icons/ai'
@@ -105,13 +105,30 @@ var total = 0;
     dispatch(AddLike(review))
     }
   }
-  const handleRemoveLike = (review) => {
-      if(!isAuthenticated) {
-          toggleSidebar()
-      }
-      else { 
-          dispatch(RemoveLike(review))
-      }
+
+   const handleUpvote = (reviewId) => {
+     console.log('reviewId', reviewId)
+    if(!isAuthenticated) {
+        toggleSidebar()
+    } 
+    else { 
+      dispatch(Upvote(reviewId))
+      setTimeout(() => {
+        dispatch(getReviewsByManufacturer(manufacturerSlug))
+      },  2000);
+    }
+  }
+
+   const handleDownvote = (reviewId) => {
+    if(!isAuthenticated) {
+        toggleSidebar()
+    } 
+    else {
+    dispatch(Downvote(reviewId))
+    setTimeout(() => {
+      dispatch(getReviewsByManufacturer(manufacturerSlug))
+    },  2000);
+    }
   }
 
 
@@ -120,7 +137,7 @@ var total = 0;
 
    const Products = React.memo(() => (
      <div>
-      <div className="grid mobile:grid-cols-2 gap-6 grid-cols-2 ">
+      <div className="grid mobile:grid-cols-1 gap-6 grid-cols-2 ">
         {
             products && products.length !== 0 ?
               products.map((product, i) =>
@@ -144,7 +161,7 @@ var total = 0;
    const Reviews = React.memo(() => (
      <>
       <div className="flex w-3/4 px-2 mobile:w-full mobile:grid mb-5">
-        <div className="my-auto text-Black-medium mr-5 text-lg">
+        <div className="my-auto text-Black-medium mr-5 text-lg mobile:hidden">
           Filter
         </div>
         <div className={`${!isTabletOrMobile ? "grid grid-cols-5 gap-4" : "flex"} my-3`}>
@@ -168,7 +185,7 @@ var total = 0;
         filteredReviews.length !== 0 ?
           filteredReviews.map( (data, i) =>
           <Fragment key={i}> 
-            <ReviewCard review= { data } handleLike= {handleLike} handleRemoveLike={handleRemoveLike}/>
+            <ReviewCard review= { data } handleLike= {handleUpvote} handleRemoveLike={handleDownvote}/>
           </Fragment>   
           )
           :
@@ -178,7 +195,7 @@ var total = 0;
           reviews && reviews.length !== 0 ? 
             reviews.map( (data, i) =>
             <Fragment key={i}> 
-              <ReviewCard review= { data } handleLike= {handleLike} handleRemoveLike={handleRemoveLike}/>
+              <ReviewCard review= { data } handleLike= {handleUpvote} handleRemoveLike={handleDownvote}/>
             </Fragment>   
             )
           :
@@ -188,12 +205,12 @@ var total = 0;
    ))
 
    const Photos = React.memo(() => (     
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-6 mobile:grid-cols-1">
         {
           profile.photos && profile.photos.length !== 0 ?
             ( profile.photos.map((photo, i) => (
-                <div key={i} className="w-full cursor-pointer">
-                  <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-sm"/>
+                <div key={i} className="w-full cursor-pointer shadow-product">
+                  <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-product"/>
                 </div>
               ))
             ) : (
@@ -211,7 +228,7 @@ var total = 0;
   const ProfileMenu = () => (
       <Tab.Group>
             <Tab.List>
-              <div className="mb-5">
+              <div className="my-5">
                 <Tab as={Fragment}>
                   {({ selected }) => (
                     <button
@@ -434,7 +451,6 @@ var total = 0;
                                       <Star className= "text-lg my-auto" style={{width:"16px", height: "16px"}}/>
                                       <span className="my-auto text-Black-medium font-bold pl-1"> {avg} </span>
                                       <div className="my-auto pl-2 text font-bold text-Black-medium underline cursor-pointer"
-                                        onClick={handleReviewsMenu}
                                       > 
                                         {reviews.length > 1? `(${reviews.length}) reviews` : `(${reviews.length}) review`} 
                                       </div>

@@ -3,6 +3,7 @@ const { User } = require("../models/user");
 const Review = require("../models/review");
 const cloudinary = require("cloudinary").v2;
 const { check, validationResult } = require("express-validator/check");
+ const mongoose = require("mongoose");
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,
@@ -116,8 +117,6 @@ exports.getReviewsByManufacturer = async (req, res) => {
       throw new Error ( "This review does not exist" )
     }
 
-    console.log(review)
-
     return res.json({ data: review });
   } catch (error) {
     console.log(error);
@@ -196,74 +195,124 @@ exports.addResponse =  async (req, res) => {
 }
 
 
+// exports.upVote = async (req, res) => {
+//   try {
+//     const review = await Review.find({ _id: req.body.reviewId });
+//     const { ...args } = req.body;
+//     const upvote = await Upvote.find({
+//       $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
+//     });
+//     console.log(upvote)
+//     const downvote = await Downvote.find({
+//       $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
+//     });
+//     if (downvote.length > 0) {
+//       await Downvote.findByIdAndDelete({ _id: downvote[0]._id });
+//     }
+//     const fields = {
+//       userId: req.user._id,
+//       reviewId: review[0]._id,
+//     };
+//     if (upvote.length > 0) {
+//       return res.json({ error: "already upvoted" });
+//     }
+//     await Upvote.create(fields);
+//     const resp = await Review.findOneAndUpdate(
+//       { _id: req.body.reviewId },
+//       {
+//         $inc: { votes: args.increase },
+//       },
+//       { new: true, upsert: true, setDefaultsOnInsert: true }
+//     );
+//     return res.json(resp);
+//   } catch (error) {
+//     return res.json({ error: error });
+//   }
+// };
+
+// exports.downVote = async (req, res) => {
+//   try {
+//     const review = await Review.find({ _id: req.body.reviewId });
+
+//     const { ...args } = req.body;
+//     const upvote = await Upvote.find({
+//       $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
+//     });
+//     const downvote = await Downvote.find({
+//       $and: [{ userId: req.user._id }, { reviewId: req.body.reviewId }],
+//     });
+//     if (upvote.length > 0) {
+//       await Upvote.findByIdAndDelete({ _id: upvote[0]._id });
+//     }
+//     const fields = {
+//       userId: req.user._id,
+//       reviewId: review[0]._id,
+//     };
+//     if (downvote.length > 0) {
+//       return res.json({ error: "already downvoted" });
+//     }
+//     await Downvote.create(fields);
+//     const resp = await Review.findOneAndUpdate(
+//       { _id: req.body.reviewId },
+//       {
+//         $inc: { votes: args.decrease },
+//       },
+//       { new: true, upsert: true, setDefaultsOnInsert: true }
+//     );
+//     return res.json(resp);
+//   } catch (error) {
+//     return res.json({ error: error });
+//   }
+// };
+
 exports.upVote = async (req, res) => {
+
   try {
-    const review = await Review.find({ _id: req.body.reviewId });
-    const { ...args } = req.body;
-    const upvote = await Upvote.find({
-      $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
-    });
-    console.log(upvote)
-    const downvote = await Downvote.find({
-      $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
-    });
-    if (downvote.length > 0) {
-      await Downvote.findByIdAndDelete({ _id: downvote[0]._id });
+    const review = await Review.findById(req.params.reviewId);
+
+    // Check if the Blog has already been liked
+    if (review.likes.length !== 0 && review.likes.some((like) => like.user.toString() === req.user.id)) {
+      return res.status(400).json({ msg: "Review already liked" });
     }
-    const fields = {
-      userId: req.user._id,
-      reviewId: review[0]._id,
-    };
-    if (upvote.length > 0) {
-      return res.json({ error: "already upvoted" });
-    }
-    await Upvote.create(fields);
-    const resp = await Review.findOneAndUpdate(
-      { _id: req.body.reviewId },
-      {
-        $inc: { votes: args.increase },
-      },
-      { new: true, upsert: true, setDefaultsOnInsert: true }
-    );
-    return res.json(resp);
-  } catch (error) {
-    return res.json({ error: error });
+
+    review.likes.unshift({ user: req.user.id });
+
+    await review.save();
+
+    console.log('review.likes', review.likes)
+    return res.json(review.likes);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
   }
-};
+}
+
+
+// @route    PUT api/Blogs/unlike/:id
+// @desc     Unlike a Blog
+// @access   Private
 
 exports.downVote = async (req, res) => {
   try {
-    const review = await Review.find({ _id: req.body.reviewId });
+    const review = await Review.findById(req.params.reviewId);
 
-    const { ...args } = req.body;
-    const upvote = await Upvote.find({
-      $and: [{ userId: req.user.id }, { reviewId: req.body.reviewId }],
-    });
-    const downvote = await Downvote.find({
-      $and: [{ userId: req.user._id }, { reviewId: req.body.reviewId }],
-    });
-    if (upvote.length > 0) {
-      await Upvote.findByIdAndDelete({ _id: upvote[0]._id });
+    // Check if the Blog has not yet been liked
+    if (!review.likes.some((like) => _.isEqual(like.user, req.user._id))) {
+      return res.status(400).json({ msg: "Product Review has not yet been liked" });
     }
-    const fields = {
-      userId: req.user._id,
-      reviewId: review[0]._id,
-    };
-    if (downvote.length > 0) {
-      return res.json({ error: "already downvoted" });
-    }
-    await Downvote.create(fields);
-    const resp = await Review.findOneAndUpdate(
-      { _id: req.body.reviewId },
-      {
-        $inc: { votes: args.decrease },
-      },
-      { new: true, upsert: true, setDefaultsOnInsert: true }
+
+    // remove the like
+    review.likes = review.likes.filter(
+      ({ user }) => !_.isEqual(user,  req.user._id)
     );
-    return res.json(resp);
-  } catch (error) {
-    return res.json({ error: error });
+
+    await review.save();
+
+    return res.json(review.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
-};
+}
 
 exports.deleteReview = async () => {};

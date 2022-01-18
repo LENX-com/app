@@ -42,6 +42,7 @@ const ProductReviewSchema = new mongoose.Schema(
     {
       user: { 
         type: ObjectId,
+        ref: "User",
       }
     }
   ],

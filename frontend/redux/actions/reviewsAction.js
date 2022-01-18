@@ -53,7 +53,7 @@ export const RemoveReview = (reviewId) => async (dispatch) => {
  
 export const Upvote = (reviewId) => async (dispatch) => {
   try {
-    const res = await api.post(`${API}/review/vote`, reviewId);
+    const res = await api.put(`${API}/review/vote/${reviewId}`);
     dispatch({
       type: "USER_REVIEW_UPVOTE",
       payload: res.data,
@@ -68,7 +68,7 @@ export const Upvote = (reviewId) => async (dispatch) => {
 
 export const Downvote = (reviewId) => async (dispatch) => {
   try {
-    const res = await api.post(`${API}/review/downvote`, reviewId);
+    const res = await api.put(`${API}/review/downvote/${reviewId}`);
     dispatch({
       type: "USER_REVIEW_DOWNVOTE",
       payload: res.data,

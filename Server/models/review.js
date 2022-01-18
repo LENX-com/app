@@ -53,6 +53,15 @@ const ReviewSchema = new mongoose.Schema(
         type: Number,
         default: 0
     },
+    likes: [
+      {
+        user: { 
+          type: ObjectId,
+          ref: "User",
+          required: true,
+        }
+      }
+    ],
     date: {
     type: Date,
     default: Date.now

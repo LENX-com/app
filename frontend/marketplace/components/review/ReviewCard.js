@@ -30,13 +30,13 @@ const ReviewCard = ({review, handleLike, handleRemoveLike}) => {
                     <div className="w-1/10">
                         <div className="text-center">
                             <button className="m-auto cursor-pointer" 
-                                onClick= {() => handleLike (review._id)}
+                                onClick= {() => handleLike (review.id)}
                                 >
                                 <AiOutlineCaretUp className="m-auto  text-Black-medium text-lg mobile:text-sm"/>
                             </button>
-                            <h1 className="text-center  text-Black-medium text-2xl mobile:text-sm"> {review.score } </h1>
+                            <h1 className="text-center  text-Black-medium text-2xl mobile:text-base"> {review.likes.length > 0 ? review.likes.length : '0'} </h1>
                             <button className="m-auto  cursor-pointer"
-                                onClick={() => handleRemoveLike(review._id)}
+                                onClick={() => handleRemoveLike(review.id)}
                                 >
                                 <AiOutlineCaretDown  className=" text-Black-medium text-lg mobile:text-sm"/>
                             </button>
@@ -51,7 +51,7 @@ const ReviewCard = ({review, handleLike, handleRemoveLike}) => {
                                 readonly
                                 initialRating={review.rating}
                             />
-                            <div className="text-Black-medium text-xs capitalize"> {(moment(review.date).startOf('day').fromNow())} </div>
+                            <div className="text-Black-medium text-xs capitalize mobile:hidden"> {(moment(review.date).startOf('day').fromNow())} </div>
                         </div>
                         <div className="mt-2 text-base">
                             {`${review.review.substring(0, MAX_LENGTH)}${review.review >= 100 ? "..." : ""}`}
