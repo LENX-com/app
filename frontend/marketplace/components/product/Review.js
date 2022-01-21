@@ -16,9 +16,8 @@ import HorizontalChart from '../chart/HorizontalChart'
 
 
 
-const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
+const Review = ({product, isTabletOrMobile, toggleSidebar, handleLike, handleRemoveLike}) => {
     const dispatch = useDispatch();
-    const itemReviews = useSelector((state) => state.product.productReviews)
     const profileReviews = useSelector( state => state.admin.reviews)
     const [ menu, setMenu ] = useState({
         tab: 0,
@@ -43,18 +42,13 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
         dispatch(getReviewsByManufacturer(product.author.slug))
     }, [dispatch])
     
-    useEffect(() => {
-        dispatch(getProductReviews(product?._id))
-        setTimeout(() => {
-          setOk(true)  
-        }, 100);
-    }, [hasLiked])
+
 
     var total = 0;
-        for(var i = 0; i < itemReviews.length; i++) {
-        total += itemReviews[i].rating;  
+        for(var i = 0; i < profileReviews.length; i++) {
+        total += profileReviews[i].rating;  
     }
-    var avg = total / itemReviews.length;
+    var avg = total / profileReviews.length;
 
     const CardRating = React.memo(({review}) => (
         <div className="my-auto mobile:col-span-full">
@@ -84,36 +78,10 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
         </div>
     )) 
 
-    const handleLike = (review) => {
-        if(!isAuthenticated) {
-            toggleSidebar()
-        } 
-        else {
-        dispatch(AddLike(review))
-        setHasLiked(true)
-        }
-    }
-     const handleRemoveLike = (review) => {
-        if(!isAuthenticated) {
-            toggleSidebar()
-        }
-        else { 
-            dispatch(RemoveLike(review))
-            setHasLiked(false)
-            setHasUnliked(true)
-        }
-    }
-
     const handleItemReview = () => {
         setMenu ({
             tab: 0,
             content: "Items"
-        })
-    }
-    const handleProfileReview = () => {
-        setMenu ({
-            tab: 1,
-            content: "Profile"
         })
     }
 
@@ -133,13 +101,13 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
             <div className="flex mobile:col-span-full">
                     <div className="text-center p-1 mr-1 lg:mr-3 lg:p-2 my-auto mobile:absolute mobile:top-0 mobile:right-2">
                         <button className="m-auto cursor-pointer" 
-                            onClick= {() => handleLike (review._id)}
+                            onClick= {() => handleLike (review.id)}
                         >
                             <AiOutlineCaretUp className="m-auto  text-Black-medium text-lg mobile:text-sm"/>
                         </button>
                         <h1 className="text-center  text-Black-medium text-2xl mobile:text-sm"> {review.likes?.length} </h1>
                         <button className="m-auto  cursor-pointer"
-                            onClick={() => handleRemoveLike(review._id)}
+                            onClick={() => handleRemoveLike(review.id)}
                         >
                             <AiOutlineCaretDown  className=" text-Black-medium text-lg mobile:text-sm"/>
                         </button>
@@ -169,7 +137,7 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
                     <div className="flex">
                         <h1 className="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex"> 
                     <MdStar className="text-orange"/>
-                        { itemReviews.length === 1 ? `${itemReviews.length} review` : `${itemReviews.length} reviews`}
+                        { profileReviews.length === 1 ? `${profileReviews.length} review` : `${profileReviews.length} reviews`}
                         </h1>
                     </div>
                     <div> 
@@ -187,34 +155,22 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
                         </div>
                     </div>
                     
-                    { itemReviews.length !== 0 ?
+                    { profileReviews.length !== 0 ?
                 
                     <Swiper
                         spaceBetween={20}
                         slidesPerView={1}
                         freeMode= { true }
                     >
-                        { content === "Items" ?
-                            itemReviews && itemReviews.slice(0, 7).map( data => (
-                                 <SwiperSlide
-                                    slidesPerView={1}
-                                    className="m-1 w-9/12 border-box my-4"
-                                    >
-                                    <ReviewCard review={data}/>
-                                </SwiperSlide>
-                            ))
-                                :
-                            content === "Profile" ?
+                        {
                                profileReviews && profileReviews.slice(0, 7).map( data => (
                                    <SwiperSlide
                                     slidesPerView={1}
                                     className="m-1 w-9/12 border-box my-4"
                                     >
-                                        <ReviewCard review={data}/>
+                                        <ReviewCard review={data} handleLike={handleLike} handleRemoveLike={handleRemoveLike}/>
                                     </SwiperSlide>
                                 ))
-                                :
-                              null
                             }
                     </Swiper>
                         :
@@ -234,9 +190,9 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
 
             // Desktop Version
             <>
-                    <Card title= {`Product reviews (${itemReviews.length})`} className="p-0">
-                        { itemReviews.length !== 0 ?
-                            <> 
+                    <Card title= {`Product reviews (${profileReviews.length})`} className="p-0">
+                        { profileReviews.length !== 0 ?
+                            <div className="px-3"> 
                                 <div className="flex">
                                     <div>
                                         <div className="flex">
@@ -249,18 +205,18 @@ const Review = ({product, isTabletOrMobile, toggleSidebar}) => {
                                     </div>
                                     <div className="pl-12">
                                         <div>
-                                        <HorizontalChart />
+                                        <HorizontalChart profileReviews={profileReviews} />
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    {itemReviews && itemReviews.map( review =>
+                                    {profileReviews && profileReviews.map( review =>
                                         <div className="my-3">
-                                            <ReviewCard review={review} />    
+                                            <ReviewCard review={review} handleLike={handleLike} handleRemoveLike={handleRemoveLike}/>    
                                         </div> 
                                     )}
                                 </div>
-                            </>
+                            </div>
                             
                             :
                             

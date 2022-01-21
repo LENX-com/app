@@ -238,7 +238,6 @@ export const deleteProduct = (productId) => async (dispatch) => {
 };
 // get product by id
 export const getProduct = (slug) => async (dispatch) => {
-  console.log(slug)
   try {
     const res = await api.get(`${API}/product/${slug}`);
     dispatch({

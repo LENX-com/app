@@ -4,11 +4,11 @@ import ChatBox from '@/marketplace/components/product/ChatBox'
 import Review from '@/marketplace/components/product/Review'
 import CustomerQuestions from '@/marketplace/components/product/CustomerQuestions'
 import RelatedProducts from '@/marketplace/components/product/RelatedProducts'
-import ProductDescription from '@/marketplace/components/product/ProductDescription'
-import ProductCard from '@/marketplace/components/product/ProductCard'
 import Card from '@/components/Cards/Card'
+import CategoryProduct from "@/marketplace/components/product/CategoryProduct";
+import { getReviewsByManufacturer } from '@/actions/userActions'
 import Layout from '@/containers/Layout'
-import SectionTitle from '@/components/Typography/SectionTitle'
+import { Upvote, Downvote } from '@/redux/actions/reviewsAction'
 import { getProduct, getProductReviews, getProductByCategory } from "@/redux/actions/productAction";
 import Profile from '@/marketplace/components/profile/Profile'
 import { useDispatch, useSelector } from "react-redux";
@@ -35,20 +35,47 @@ const Product = (props) => {
   //changed api endpoint to redux
   useEffect(() => {
     dispatch(getProduct(productSlug));
-  }, [props, dispatch, productSlug]);
+  }, [dispatch, productSlug]);
 
   useEffect(() => {
     if(product){
-      dispatch(getProductByCategory(product.category))
+      dispatch(getProductByCategory(product.category._id))
     }
   }, [dispatch, product])
 
     const { toggleSidebar } = useContext(SignInContext)  
+
+    const handleUpvote = (reviewId) => {
+     console.log('reviewId', reviewId)
+      if(!isAuthenticated) {
+          setIsOpen(false)
+          toggleSidebar()
+      } 
+      else { 
+        dispatch(Upvote(reviewId))
+        setTimeout(() => {
+        dispatch(getReviewsByManufacturer(product.author.slug))
+        },  1000);
+      }
+    } 
+
+   const handleDownvote = (reviewId) => {
+      if(!isAuthenticated) {
+          setIsOpen(false)
+          toggleSidebar()
+      } 
+      else {
+        dispatch(Downvote(reviewId))
+        setTimeout(() => {
+          dispatch(getReviewsByManufacturer(product.author.slug))
+        },  1000);
+      }
+    }
  
     const handleProfile = (e) => {
       e.preventDefault();
       setIsOpen(true)
-      setContent(<Profile author={product.author}/>)
+      setContent(<Profile author={product.author} handleLike= {handleUpvote} handleRemoveLike={handleDownvote}/>)
     }
 
     
@@ -58,10 +85,10 @@ const Product = (props) => {
       setContent(<Chat receiver={product.author}/>)
     }
 
-    
+  
     return (
       <Layout>
-        <div className="container mx-auto">
+        <div className="container mx-auto ">
 
             {product &&
             <>
@@ -77,9 +104,10 @@ const Product = (props) => {
               isTabletOrMobile && 
               <>
                 {/* <ProductDescription product= { product }/> */}
-                <ChatBox product= { product } 
-                         handleChat={handleChat} 
-                         handleProfile={handleProfile}
+                <ChatBox 
+                        product= { product } 
+                        handleChat={handleChat} 
+                        handleProfile={handleProfile}
                 />
               </>
             }
@@ -91,19 +119,27 @@ const Product = (props) => {
                 { 
                    !isTabletOrMobile && 
                    <Card title="Service description">  
-                     <div>
+                     <div className="px-4 pb-2">
                        { parse(product.description)}
                      </div>
                    </Card>
                 }
         
-                <Review product={product} isTabletOrMobile ={ isTabletOrMobile }  toggleSidebar={ toggleSidebar } />
+                <Review 
+                      product={product} 
+                      isTabletOrMobile ={ isTabletOrMobile }  
+                      toggleSidebar={ toggleSidebar }  
+                      handleLike= {handleUpvote} 
+                      handleRemoveLike={handleDownvote} 
+                />
+
+
                 <CustomerQuestions product = { product} toggleSidebar= { toggleSidebar } />
 
                 { isTabletOrMobile &&
                   <RelatedProducts  relatedProduct= {relatedProduct}/>  
                 } 
-              </div>
+              </div>  
   
               
               { !isTabletOrMobile &&
@@ -113,7 +149,7 @@ const Product = (props) => {
                       <div className="my-1 p-3"
                            key={i}
                       >
-                        <ProductCard product= {data} />
+                        <CategoryProduct product= {data} />
                       </div>
                     ))}
                   </Card> 
@@ -138,5 +174,5 @@ const Product = (props) => {
     )
 }
 
-
+Product.whyDidYouRender = true;
 export default memo ( Product )

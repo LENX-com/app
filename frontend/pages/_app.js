@@ -25,8 +25,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-
-
 function MyApp({ Component, pageProps }) {
 
   const DEFAULT_SEO = {

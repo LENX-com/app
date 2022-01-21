@@ -181,7 +181,7 @@ exports.getProductById = async (req, res) => {
       "category",
       "_id name"
     );
-    return res.status(200).json({ data: product });
+    return res.status(200).json({ data: product });  
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: error });
@@ -189,15 +189,22 @@ exports.getProductById = async (req, res) => {
 };
 
 exports.getProductBySlug = async (req, res) => {
-  console.log(req.params.slug)
+  var slug = await req.params.slug 
   try {
-    const product = await Product.findOne({ slug: req.params.slug })
+    const product = await Product.findOne({ slug: slug })
     .populate(
       "author",
     ) 
     .populate(
       "category",
-    );
+    )
+    .populate({
+      path:     'author',			
+      populate: { path:  'locations',
+                  select: 'location city _id',
+                  model: 'Location' 
+                }
+    });
 
     if(!product){
       throw new Error ("Product not found")

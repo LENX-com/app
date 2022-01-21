@@ -60,7 +60,7 @@ router.put("/edit/product/:productId", upload.array('file'), auth, protected(1),
 router.delete("/product/delete/:productId", auth, protected(1), deleteProduct);
 router.get("/products/by/category/:categoryId", getProductByCategory);
 router.get("/brands/:brandId", getProductByBrand);
-router.get("/product/:slug", getProductBySlug);  
+router.get("/product/:slug", getProductBySlug);    
 router.get("/product/by/brands/:page", getBrands );
  
 router.post("/brand/category/:categoryId", getBrandByCategory);

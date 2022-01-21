@@ -309,3 +309,7 @@ html {
 .icon-active svg {
   fill: #00adb5!important;
 }
+
+.Button:hover {
+   box-shadow: RGBA(0, 0, 0, 0) 0px 0px 0px 0px, RGBA(0, 0, 0, 0) 0px 0px 0px 0px, RGBA(0, 0, 0, 0.12) 0px 1px 1px 0px, RGBA(64, 68, 82, 0.16) 0px 0px 0px 1px, RGBA(0, 0, 0, 0) 0px 0px 0px 0px, RGBA(64, 68, 82, 0.08) 0px 3px 9px 0px, RGBA(64, 68, 82, 0.08) 0px 2px 5px 0px !important;
+}

@@ -48,11 +48,11 @@ const Chat = ({receiver}) => {
                 <form className="h-full"
                     onSubmit={handleSubmit}
                 >
-                    <div className="pt-3 h-full bg-Grey-dashboard">
+                    <div className="pt-3 h-full">
                         <div className="p-3">
                             <div className="p-2 rounded-lg bg-lightBlack flex mt-1 mb-4 mr-3">
                                 <AiFillSecurityScan className="my-auto text-xl text-Grey h-10 w-10" />
-                                <h1 className="text-sm text-white ml-2">To protect your orders, always communicate and pay through the Wabei website. </h1>
+                                <h1 className="text-sm text-white ml-2">To protect your orders, always communicate through the Wabei website. </h1>
                             </div>
                             <div className="my-3 flex"
                             >

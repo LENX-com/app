@@ -40,6 +40,7 @@ const ProductCard = ({product, handleWishlist}) => {
 
         <Swiper
           spaceBetween={20}
+          freeMode={true}
           slidesPerView={'auto'}
           pagination={{ "dynamicBullets": true }}
           className="w-full"                

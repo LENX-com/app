@@ -14,7 +14,6 @@ import {
   MdArrowBack, MdLocationOn } from "react-icons/md";
 import { AiFillWechat } from 'react-icons/ai'
 import { getManufacturerProfile, getProductsBySlug } from '@/redux/actions/manufacturerAction'
-import AboutManufacturer from "@/marketplace/components/manufacturer/AboutManufacturer";
 import ReviewCard from '@/marketplace/components/review/ReviewCard'
 import PopUp from '@/marketplace/components/pop/PopUp'
 import { addWishList, getWishList } from "@/redux/actions/wishlistAction";
@@ -45,6 +44,9 @@ const Manufacturer = () => {
   const [ content, setContent ] = useState("Products")
   const { manufacturerSlug } = router.query
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
+
+  console.log("isOpen", isOpen)
+  console.log("amigo")
 
   const { toggleSidebar,  OpenSign } = useContext(SignInContext)
 
@@ -347,8 +349,8 @@ var total = 0;
                 } 
               </div>
             </div>
-            <div className="my-3">
-              <h2 className="font-bold text-Black-text "> Skills </h2>
+            <div className="my-4">
+              <h2 className="font-bold text-Black-text text-lg"> Skills </h2>
               <Swiper
                 slidesPerView={3}
                 freeMode={true}
@@ -364,14 +366,14 @@ var total = 0;
                 )}
               </Swiper>
             </div>
-            <div className="my-3">
-              <h2 className="font-bold text-Black-text pb-1"> Summary </h2>
+            <div className="my-4">
+              <h2 className="font-bold text-Black-text pb-1 text-lg"> Summary </h2>
               <div className="lg:text-center text-Black-text">
                 {profile.summary}
               </div>
             </div>
             <div className="my-3">
-              <h2 className="font-bold text-Black-text "> Locations </h2>
+              <h2 className="font-bold text-Black-text text-lg"> Locations </h2>
               <Swiper
                 slidesPerView={2}
                 freeMode={true}
@@ -590,13 +592,11 @@ var total = 0;
               </div>
             </div>
 
-            <div className="lg:w-5/6 lg:mx-auto lg:py-3">
-                <PopUp isOpen={isOpen} setIsOpen={setIsOpen} >
-                  <Chat receiver={profile}/>
-                </PopUp>
-            </div>
           </Layout>
       )}
+     <PopUp isOpen={isOpen} setIsOpen={setIsOpen} >
+       <Chat receiver={profile}/>
+     </PopUp>
     </div>
   );
 };

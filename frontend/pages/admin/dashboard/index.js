@@ -114,7 +114,7 @@ function Dashboard() {
     <div className="my-3">
       <SectionTitle> My Services </SectionTitle>
         <div>
-          { products.length === 0 ? 
+          { products?.length === 0 ? 
               <div className="mt-4 overflow-hidden p-3">
                   <NoResultsFound />
               </div>

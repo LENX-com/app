@@ -24,6 +24,7 @@ exports.getManufacturerById = async (req, res) => {
       .populate("blogs")
       .populate("products")
       .populate("categories");
+        
     return res.json(manufacturer);
   } catch (err) {
     console.log(err);
