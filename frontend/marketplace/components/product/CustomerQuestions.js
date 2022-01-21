@@ -2,7 +2,6 @@ import React, { useEffect, useState, memo } from 'react'
 import Card from '@/components/Cards/Card'
 import Button from '@/components/Buttons/Button'
 import { useDispatch, useSelector } from 'react-redux'
-import { Input } from '@windmill/react-ui' 
 import { MdChevronRight } from 'react-icons/md'
 import { getQuestionsByProduct, createQuestion } from '@/redux/actions/questionAction'
 import Link from 'next/link'
@@ -57,7 +56,14 @@ const CustomerQuestions = ({product, toggleSidebar}) => {
                 </div>
                 <div className="mx-auto my-3">
                     <div className="max-w-md mx-auto">
-                    <Input className="bg-Grey-dashboard p-3 rounded-md my-2" value={question} onChange={handleChange} placeholder="Type your question here"/>
+                        <div className="border-box my-2">
+                            <input 
+                                    className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
+                                    value={question} 
+                                    onChange={handleChange} 
+                                    placeholder="Type your question here"
+                            />
+                        </div>
                     { error && 
                         <div className="my-2 text-red-500"> { error } </div>
                     }
@@ -93,7 +99,7 @@ const CustomerQuestions = ({product, toggleSidebar}) => {
                 </>
                 :
                 <Link href = {`/marketplace/products/questions/${product._id}`} >
-                    <div className="flex space-between my-3">
+                    <div className="flex space-between my-3 cursor-pointer">
                         <h1 className="ml-2">  See All Questions </h1>
                         <MdChevronRight className="text-2xl"/>
                     </div>

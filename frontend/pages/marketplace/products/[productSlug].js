@@ -46,7 +46,6 @@ const Product = (props) => {
     const { toggleSidebar } = useContext(SignInContext)  
 
     const handleUpvote = (reviewId) => {
-     console.log('reviewId', reviewId)
       if(!isAuthenticated) {
           setIsOpen(false)
           toggleSidebar()

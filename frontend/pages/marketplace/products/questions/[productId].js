@@ -36,8 +36,10 @@ const Questions = (props) => {
     const { productId } = router.query;
 
      useEffect(() => {
-      dispatch(getQuestionsByProduct(productId))
-    }, [up, dispatch, isAnswered])
+        if(productId){
+           dispatch(getQuestionsByProduct(productId))
+        }
+    }, [ dispatch, productId ])
 
     const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const { OpenSign, closeSidebar, toggleSidebar } = useContext(SignInContext)
@@ -58,7 +60,9 @@ const Questions = (props) => {
             },
         };
         dispatch(createQuestion(productId, questionData));
-        dispatch(getQuestionsByProduct(productId))
+        setTimeout(() => {
+            dispatch(getQuestionsByProduct(productId))
+        } , 1000)
     }
     setQuestion("")
   };
@@ -70,6 +74,9 @@ const Questions = (props) => {
       dispatch(createAnswer(question, answerData))
       setAnswer("")
       setIsAnswered(true)
+       setTimeout(() => {
+            dispatch(getQuestionsByProduct(productId))
+        } , 1000)
     }
 
 
@@ -77,16 +84,16 @@ const Questions = (props) => {
   const answerHandler = (question) => {
     setAnswers(question.answers)
     setSingleQuestion(question)
-}
+    }
 
-const handleUpvote = (question) => {
-    dispatch(QuestionUpvote(question))
-    setUp(true)
-}
-const handleDownvote = (question) => {
-    dispatch(QuestionDownvote(question))
-    setUp(true)
-}
+    const handleUpvote = (question) => {
+        dispatch(QuestionUpvote(question))
+        setUp(true)
+    }
+    const handleDownvote = (question) => {
+        dispatch(QuestionDownvote(question))
+        setUp(true)
+    }
 
     //Card to display questions  
     const QuestionCard = ({question}) => (     
@@ -95,10 +102,10 @@ const handleDownvote = (question) => {
                     <div className="flex">
                         <Avatar size="large" src= {question.author.avatar} alt= {question.author.name } />
                         <div className="ml-2">
-                            <p className=" dark:text-gray-300"> {question.author.name} </p>
+                            <p className="font-bold"> {question.author.name} </p>
                         </div>
                     </div>
-                    <p className="my-2 dark:text-gray-300 font-bold ">
+                    <p className="my-2 font-bold ">
                         {question.question}
                     </p>
                     <div className="flex justify-between">
@@ -189,9 +196,15 @@ const handleDownvote = (question) => {
                     <div className="my-3">
                         <SectionTitle> Post your question</SectionTitle>
                         
-                        <Label className="p-2 border-2 border-border rounded-md bg-white"> 
-                            <Input placeholder= "Type in your question" type="text" value={question} onChange={(event) => setQuestion(event.target.value)}/>
-                        </Label>
+                        <div className=" border-box my-3"> 
+                            <input 
+                                    placeholder= "Type in your question"
+                                    className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
+                                    type="text" 
+                                    value={question} 
+                                    onChange={(event) => setQuestion(event.target.value)}
+                            />
+                        </div>
                         <div className="my-2">
                             <Button
                                 className="bg-Blue text-white text-sm shadow-none"
@@ -247,8 +260,6 @@ const handleDownvote = (question) => {
                 }
                 </div>
         
-                { !isAuthenticated && <SignInPop  isOpen={ isOpen } setIsOpen={ setIsOpen } /> }
-                
                 <PopUp isOpen={isOpenAnswer} setIsOpen={setIsOpenAnswer} title="Answer the question">
                     <div className="p-2">
                         {singleQuestion && 
