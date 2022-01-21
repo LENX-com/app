@@ -12,8 +12,9 @@ const RelatedProducts = ( {relatedProduct, product} ) => {
             <Swiper
                 spaceBetween={20}
                 slidesPerView={1}
+                freeMode={true}
             >
-                {relatedProduct && relatedProduct.map( data => (
+                {relatedProduct && relatedProduct.slice(0, 8).map( data => (
                     <SwiperSlide className="p-2 w-9/12">
                         <CategoryProduct  product= {data} />
                     </SwiperSlide>

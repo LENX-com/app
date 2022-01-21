@@ -51,7 +51,7 @@ const Review = ({product, isTabletOrMobile, toggleSidebar, handleLike, handleRem
     var avg = total / profileReviews.length;
 
     const CardRating = React.memo(({review}) => (
-        <div className="my-auto mobile:col-span-full">
+        <div className="my-auto mobile:col-span-full pl-2">
             <Rating
                 className=""
                 fullSymbol= { <Star className= "text-lg" style={{width:"16px", height: "16px"}}/> }
@@ -97,7 +97,7 @@ const Review = ({product, isTabletOrMobile, toggleSidebar, handleLike, handleRem
 
 
     const ReviewCard = ({review}) => (
-        <div className="grid grid-cols-3 gap-4 shadow-separator p-3 mobile:grid-cols-2 relative">
+        <div className="grid grid-cols-3 gap-4 p-3 mobile:grid-cols-2 relative">
             <div className="flex mobile:col-span-full">
                     <div className="text-center p-1 mr-1 lg:mr-3 lg:p-2 my-auto mobile:absolute mobile:top-0 mobile:right-2">
                         <button className="m-auto cursor-pointer" 
@@ -135,24 +135,10 @@ const Review = ({product, isTabletOrMobile, toggleSidebar, handleLike, handleRem
             // Mobile and tablet version
                 <Card className="overflow-x-hidden ">
                     <div className="flex">
-                        <h1 className="text-2xl font-semibold text-gray-700 dark:text-gray-200 flex"> 
-                    <MdStar className="text-orange"/>
+                        <h1 className="text-2xl font-semibold text-Black-text flex"> 
+                    <MdStar className="text-orange my-auto"/>
                         { profileReviews.length === 1 ? `${profileReviews.length} review` : `${profileReviews.length} reviews`}
                         </h1>
-                    </div>
-                    <div> 
-                        <div className="flex mt-3">
-                            <div 
-                                onClick = {handleItemReview}
-                                className= {`px-2 ${tab === 0 ? "border-b-2 border-Black" : ""}`}>
-                                Item Reviews
-                            </div>
-                            {/* <div 
-                                onClick= {handleProfileReview}
-                                className= {`px-2 ${tab === 1 ? "border-b-2 border-Black" : ""}`}>
-                                Seller reviews
-                            </div> */}
-                        </div>
                     </div>
                     
                     { profileReviews.length !== 0 ?
@@ -163,15 +149,15 @@ const Review = ({product, isTabletOrMobile, toggleSidebar, handleLike, handleRem
                         freeMode= { true }
                     >
                         {
-                               profileReviews && profileReviews.slice(0, 7).map( data => (
-                                   <SwiperSlide
-                                    slidesPerView={1}
-                                    className="m-1 w-9/12 border-box my-4"
-                                    >
-                                        <ReviewCard review={data} handleLike={handleLike} handleRemoveLike={handleRemoveLike}/>
-                                    </SwiperSlide>
-                                ))
-                            }
+                            profileReviews && profileReviews.slice(0, 7).map( data => (
+                                <SwiperSlide
+                                 slidesPerView={1}
+                                 className="m-1 w-9/12 border-box my-4 h-[225px]"
+                                 >
+                                     <ReviewCard review={data} handleLike={handleLike} handleRemoveLike={handleRemoveLike}/>
+                                 </SwiperSlide>
+                             ))
+                        }
                     </Swiper>
                         :
                     <div className="my-5">
