@@ -2,7 +2,19 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useState, Fragment, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { AiOutlineClose, AiOutlineRight, AiFillShop, AiTwotoneShopping, AiOutlineThunderbolt, AiOutlineDollarCircle, AiOutlineMessage, AiOutlineBook, AiTwotoneSetting, AiOutlineLogout  } from "react-icons/ai";
+import { 
+    AiOutlineClose, 
+    AiOutlineRight, 
+    AiFillShop, 
+    AiTwotoneShopping,
+    AiOutlineQuestionCircle, 
+    AiOutlineThunderbolt, 
+    AiOutlineDollarCircle, 
+    AiOutlineMessage,
+     AiOutlineBook, 
+     AiTwotoneSetting, 
+     AiOutlineLogout  
+    } from "react-icons/ai";
 import {HiOutlineTruck } from "react-icons/hi";
 import {logout} from '@/redux/actions/authAction'
 import {signout} from '@/redux/actions'
@@ -195,13 +207,23 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                                 </div>
                             </div>
                         </Link>
-                        <Link href= {'/blogs'}
+                        {/* <Link href= {'/blogs'}
                               onClick={() => setIsOpen(false)}
                         >
                             <div className="flex py-3">
                                 <div className="flex">
                                     <AiOutlineBook className=" my-auto w-5 h-5 text-Black-text"/>
                                     <h2 className="text ml-2 font-bold text-Black-text my-auto"> Blog </h2>
+                                </div>
+                            </div>
+                        </Link> */}
+                        <Link href= {'/faq'}
+                              onClick={() => setIsOpen(false)}
+                        >
+                            <div className="flex py-3">
+                                <div className="flex">
+                                    <AiOutlineQuestionCircle className=" my-auto w-5 h-5 text-Black-text"/>
+                                    <h2 className="text ml-2 font-bold text-Black-text my-auto"> FAQ </h2>
                                 </div>
                             </div>
                         </Link>
