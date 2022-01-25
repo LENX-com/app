@@ -450,17 +450,21 @@ import SectionTitle from '@/components/Typography/SectionTitle'
 import { getCategories } from "@/redux/actions/categoryAction";
 import { getBrands } from "@/redux/actions/productAction";
 import NavBar from '@/marketplace/components/navBar/NavBar'
-import { NavLink } from '@/components/NavLink/NavLink'
 import Layout from '@/containers/Layout'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import Button from '@/components/Buttons/Button'
 import { NotFound } from '@/marketplace/assets/icons'
-import { getAllManufacturer } from "@/redux/actions/userActions";
+import * as Icons from '@/marketplace/assets/icons'
 import { AiTwotoneShopping, AiFillShop, AiOutlineSearch, AiFillCar, AiOutlineDown, AiOutlineClose } from 'react-icons/ai'
 import PopUp from '@/marketplace/components/pop/PopUp'
-import {  Pagination } from "@windmill/react-ui";
+import {  Pagination } from "@windmill/react-ui"; 
 import Profile from '@/marketplace/components/profile/Profile'
+
+function Icon({ icon, ...props }) {
+  const Icon = Icons[icon]
+  return <Icon {...props} />
+}
 
 const Stores = () => {
   const categories = useSelector((state) => state.category.categories);
@@ -574,7 +578,7 @@ const handlePagination = (value) => {
                                         key={data.id}
                                     >
                                         <div className="rounded-full bg-Grey-dashboard p-2">
-                                            <AiFillCar className="m-auto"/>
+                                            <Icon className="w-5 h-5" aria-hidden="true" icon={data.name} />
                                         </div>
                                         <span className="font-bold text-base my-auto ml-2 text-Black capitalize">
                                             {data.name}

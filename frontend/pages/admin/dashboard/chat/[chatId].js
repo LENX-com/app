@@ -22,7 +22,7 @@ import ManufacturerProfile from '@/chat/ManufacturerProfile'
 
 function Chat({ animState, unreadMessages, b }) {
     const router = useRouter();
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState('');  
     const [ ok ,setOk ] = useState(false)
     const dispatch = useDispatch();
     const socket = useRef();

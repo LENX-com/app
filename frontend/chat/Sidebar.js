@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import SidebarChat from '@/chat/SidebarChat';
 import styles from '@/styles/chat.module.scss'
 
-
+  
 const Sidebar = ({ chats, isTabletOrMobile }) => {
     const [searchInput, setSearchInput] = useState("");
     const [mounted, setMounted] = useState(false);
@@ -35,7 +35,7 @@ const Sidebar = ({ chats, isTabletOrMobile }) => {
                         <MdArrowBack className="text-Blue " />
                     </button>
                 </div>
-                <form className={`${styles.sidebar__search} bg-white h-8 px-3 pr-12 rounded-lg text-sm focus:outline-none my-3 border-box mobile:mx-auto mobile:mt-3 mobile:mb-1`}>
+                {/* <form className={`${styles.sidebar__search} bg-white h-8 px-3 pr-12 rounded-lg text-sm focus:outline-none my-3 border-box mobile:mx-auto mobile:mt-3 mobile:mb-1`}>
                     <MdSearch className="ml-3 text-lg text-Black-text cursor-pointer"/>
                     <input  
                         value={searchInput}
@@ -45,7 +45,7 @@ const Sidebar = ({ chats, isTabletOrMobile }) => {
                         type="text"
                     />
                     <button style={{ display: "none" }} type="submit" onClick={"search"}></button>
-                </form>
+                </form> */}
             </div>
              <SidebarChat dataList={chats} title="Chats" />
         </div>

@@ -109,13 +109,14 @@ exports.getReviewsByManufacturer = async (req, res) => {
       throw new Error ( "This user does not exist" ) 
     }
 
-    const review = await Review.find({ storeId: user[0]._id }).populate(
+    const review = await Review.find({ storeId: user[0]._id })
+    .populate(
       "author", " _id name avatar "
     );
 
-    if ( !review || review.length === 0 ){
-      throw new Error ( "This review does not exist" )
-    }
+    // if ( !review || review.length === 0 ){
+    //   throw new Error ( "This review does not exist" )
+    // }
 
     return res.json({ data: review });
   } catch (error) {

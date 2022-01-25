@@ -95,7 +95,7 @@ const SidebarChat = ({ dataList, title, fetchList}) => {
                                         <div>
                                             {data.lastMessage.substring(0, MAX_LENGTH)} {data.lastMessage.length > MAX_LENGTH ? "..." : ""} 
                                         </div> 
-                                        <div className="my-auto ml-3"> {moment(data.updatedAt).startOf('day').fromNow()} </div> 
+                                        <div className="my-auto ml-3 text-sm"> {moment(data.updatedAt).startOf('day').fromNow()} </div> 
                                     </div>
                                 </div>
                             </div>

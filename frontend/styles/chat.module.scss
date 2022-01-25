@@ -5,12 +5,12 @@
   height: 100%;
   transform-origin: 0% 0%;
   position: relative;
-  max-width: 1200px !important;
 }
 
 @media(min-width: 760px) {
     .app {
         height:85vh;
+        width: 90% !important;
     } 
 }
 

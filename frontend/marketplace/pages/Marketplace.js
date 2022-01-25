@@ -44,8 +44,6 @@ const Marketplace = (props) => {
   let { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
 
-  console.log(sub)
-
   const history = useHistory()
   let location = useLocation()
 

@@ -28,8 +28,7 @@ import { AiOutlineHome,
           AiOutlineMenu,
           AiOutlineMessage 
       }  from "react-icons/ai"
-import axios from 'axios'
-import moment from 'moment'
+import { format } from 'date-fns'
 import { useMediaQuery } from 'react-responsive'
 import NotFound from '../../assets/icons/NotFound.svg'
 import HamburguerMenu from '../pop/HamburguerMenu'
@@ -43,7 +42,7 @@ import _ from 'lodash'
   const Router = useRouter();
   const { isAuthenticated, user } = useSelector(state => state.auth)
   const {page, pathID, conversations} = useSelector( state => state.chat);
-  const MAX_LENGTH = 30
+  const MAX_LENGTH = 25
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const chatArray = new Array(10).fill(10)
 
@@ -76,6 +75,13 @@ import _ from 'lodash'
     </div>
   )
   
+  const handleClick = (data) => {
+        dispatch({
+                   type: "CURRENT_CHAT",
+                   payload: data,
+            });
+        Router.push( user?.role === 0 ? `/user/dashboard/chat/${data._id}` : `/admin/dashboard/chat/${data._id}`)
+    }
   
   useEffect(() => {
     if(user){
@@ -161,7 +167,7 @@ import _ from 'lodash'
                       align="right"
                       isOpen={isNotificationsMenuOpen}
                       onClose={_.debounce(() => setIsNotificationsMenuOpen(false))}
-                      className="w-96 overflow-y-scroll z-50 mobile:w-full mobile:mt-10"
+                      className="lg:w-[360px] overflow-y-scroll z-50 mobile:w-full mobile:mt-10"
                       style={{height: chatArray.length !== 0 && "70vh"}}
                     >
                     {chatArray.length !== 0 || undefined ? 
@@ -182,16 +188,13 @@ import _ from 'lodash'
                       {conversations !== undefined && conversations?.length !== 0 ? 
                        
                        ( conversations.map((data, i) => (   
-                          <DropdownItem tag="div" className="py-4 relative" key={i}>
-                            <Link 
+                          <DropdownItem tag="div" className="relative hover:bg-Grey-hover rounded-md py-4 " key={i}>
+                            <div 
                                   href= {user?.role === 1 ? `/admin/dashboard/chat/${data._id}` : `/user/dashboard/chat/${data._id}`} 
                                   className="w-full"
-                                  onClick={() => dispatch({
-                                    type: "CURRENT_CHAT",
-                                    payload: data,
-                                  })}
+                                  onClick={() => handleClick(data)}
                             >
-                            <div className="flex">
+                            <div className="flex justify-between w-full">
                               <div className="my-auto mr-3">
                                 <Avatar size="large" src= {user._id === data.members[0]._id ? data.members[1].avatar : data.members[0].avatar}/>
                               </div>
@@ -201,11 +204,11 @@ import _ from 'lodash'
                                   <div>
                                     {data.lastMessage.substring(0, MAX_LENGTH)} {data.lastMessage.length > MAX_LENGTH ? "..." : ""} 
                                   </div> 
-                                  <div className="my-auto ml-3"> {moment(data.updatedAt).format('LT')} </div> 
+                                  <div className="my-auto ml-3"> {format(new Date(data.updatedAt), 'dd MMM')} </div> 
                                 </div>
                               </div>
                             </div>
-                            </Link>
+                            </div>
                           </DropdownItem>
                       ))
                     ) : (
@@ -251,7 +254,7 @@ import _ from 'lodash'
                           alt=""
                           aria-hidden="true"
                         />
-                        <div className="my-auto px-2 text-Black-medium font-bold"> { user.name }  </div>
+                        <div className="my-auto px-2 text-Black-medium font-bold capitalize"> { user.name }  </div>
                         <AiFillCaretDown  className="my-auto text-Black"/>
             
                       </button>
@@ -266,7 +269,7 @@ import _ from 'lodash'
                               <div className="flex">
                               <Avatar size="large" src={ user.avatar } className="mr-2 my-2"/>
                               <div>
-                                <div className="text-lg font-bold text-Black"> 
+                                <div className="text-lg font-bold text-Black capitalize3"> 
                                   {user.name}
                                 </div>
                                 <div className="text-base text-Black-medium">

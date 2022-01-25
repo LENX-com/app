@@ -12,7 +12,6 @@ const colors = require('tailwindcss/colors')
         // Add more here
     ],
    mode:'jit',
-   darkMode: false, // or 'media' or 'class'
    theme: {
     screens: {
       'mobile':{'max': '575px'},

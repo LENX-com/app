@@ -478,16 +478,16 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                   
                   </div>
                 </div>
+                <div className="px-4 py-3 text-right sm:px-6">
+                  <Button
+                    type="submit"
+                    className=" bg-Blue text-white font-bold px-5"
+                  >
+                  Save
+                  </Button>
+              </div>
               </form>
             </div>
-                  <div className="px-4 py-3 bg-Grey text-right sm:px-6">
-                    <Button
-                      type="submit"
-                      className=" bg-Blue text-white font-bold"
-                    >
-                    Save
-                    </Button>
-                </div>
             </div>
 
           )} 

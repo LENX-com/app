@@ -154,9 +154,9 @@ exports.editProduct = async (req, res) => {
 
     console.log(args)
   
-    const updated = await Product.findOneAndUpdate(req.params.productId, args, {
-      new: true,
-    });
+    const updated = await Product.findOneAndUpdate({ _id: req.params.productId }, args, {
+    new: true,
+  })
     return res.status(200).json({ data: updated });
   } catch (error) {
     console.log(error);

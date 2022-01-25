@@ -28,7 +28,7 @@ const Profile = ({author, handleLike, handleRemoveLike}) => {
 
 
     const NoReview = () => (
-        <div className="mb-4">
+        <div className="my-8">
             <div className="m-auto text-center">
                 <Tree className="text-center mx-auto my-2"/>
                 <span className="font-bold"> Sorry there are no reviews available </span>

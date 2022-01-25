@@ -17,8 +17,10 @@ const Categories = () => {
     }, [dispatch])
 
     return (
-        <Layout>  
-            <CategoriesList categories= {categories} />
+        <Layout>
+            <div className="lg:w-5/6 mx-auto">  
+                <CategoriesList categories= {categories} />
+            </div>
         </Layout>
     )
 }

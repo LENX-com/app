@@ -81,22 +81,24 @@ const Chat = ({receiver}) => {
                     </div> 
                     <div className="sticky bottom-0 p-2 bg-white w-full">
                         <div className="grid grid-cols-2">
-                            <div className="ml-auto my-auto">
-                            <Button 
-                                className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
-                                >
-                                <a href={`tel: 0${receiver.mobile}`}>
-                                {`0${receiver.mobile}`}
-                                </a>
-                            </Button>
-                            </div>
+                            { receiver.mobile &&
+                                <div className="ml-auto my-auto">
+                                    <Button 
+                                        className="border-2 border-Blue text-Blue rounded shadow-none mr-1" 
+                                        >
+                                        <a href={`tel: 0${receiver.mobile}`}>
+                                        {`0${receiver.mobile}`}
+                                        </a>
+                                    </Button>
+                                </div>
+                            }
                             <div className="mr-auto">
                                 <Button
                                 onClick={(e) => handleSubmit(e)}
                                 className="bg-Blue text-white flex border-2 border-Blue"
                                 >
                                 <AiFillWechat className="my-auto text-lg mr-2"/>
-                                Chat now
+                                    Send message
                                 </Button>
                             </div>
                         </div>
