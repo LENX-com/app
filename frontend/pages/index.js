@@ -38,29 +38,29 @@ const Home = () => {
     return (
         <>
         <NextSeo
-         title="Wabei"
-         openGraph={{
-             title: 'Wabei',
-             description: 'Wabei helps you find reliable professionals',
-             openGraph: {
-             type: 'website',
-             locale: 'en_IE',
-             url: 'https://www.wabei.co.uk',
-             title: 'Next.js Seo',
-             description: 'Wabei is the marketplace to find profesionals',
-             image:
-                 'https://prismic-io.s3.amazonaws.com/gary-blog%2F3297f290-a885-4cc6-9b19-3235e3026646_default.jpg',
-             site_name: 'wabei.co.uk',
-             imageWidth: 1200,
-             imageHeight: 1200
-             },
-             twitter: {
-             handle: '@wabei',
-             cardType: 'summary_large_image'
-             }
-         }}
+            title="Wabei"
+            description="Wabei is a marketplace to find reliable and cheap tradespersons. Wabei connects carpenters, plumbers, handyman and electricians directly to consumers. Find trusted handyman with Wabei."
+            canonical="https://www.wabei.co.uk"
+            openGraph={{
+                title: 'Wabei',
+                openGraph: {
+                type: 'website',
+                locale: 'en_IE',
+                url: 'https://www.wabei.co.uk',
+                description: 'Wabei is a marketplace to find reliable and cheap tradespersons. Wabei connects carpenters, plumbers, handyman and electricians directly to consumers. Find trusted handyman with Wabei.',
+                image:
+                    'https://prismic-io.s3.amazonaws.com/gary-blog%2F3297f290-a885-4cc6-9b19-3235e3026646_default.jpg',
+                site_name: 'wabei.co.uk',
+                imageWidth: 1200,
+                imageHeight: 1200
+                },
+                twitter: {
+                handle: '@wabei',
+                cardType: 'summary_large_image'
+                }
+            }}  
          />
-        <Layout>
+            <Layout>
             <div className="relative"> 
                  <main className="lg:w-5/6 m-auto pb-12">
                     <Banner products = { products } isTabletOrMobile ={ isTabletOrMobile }/>

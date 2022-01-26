@@ -430,7 +430,7 @@ var total = 0;
       ) : (
           <Layout>
             <div className="my-4">
-              <div className="lg:w-4/6 lg:mx-auto lg:py-3 border-box bg-white">
+              <div className="lg:w-5/6 lg:mx-auto lg:py-3 border-box min-h-[85vh] bg-white">
                 <div className="relative">
                     {/**/}
                     <div className="">

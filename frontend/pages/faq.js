@@ -27,7 +27,7 @@ const FAQ = () => {
   const GeneralFAQ = React.memo(() => (
         <Fade bottom>
             <div className="my-4">
-                <div className="border-t border-b border-Grey-border">
+                <div className="border-t border-b border-Grey-border bg-white bg-white">
                     <Disclosure>
                         {({open}) => (
                         <>
@@ -49,7 +49,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -71,7 +71,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -93,7 +93,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -127,7 +127,7 @@ const FAQ = () => {
       const OrderFAQ = () => (
         <Fade bottom>
             <div className="my-4">
-                <div className="border-t border-b border-Grey-border">
+                <div className="border-t border-b border-Grey-border bg-white bg-white">
                     <Disclosure>
                         {({open}) => (
                         <>
@@ -157,7 +157,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -178,7 +178,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -201,7 +201,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -226,7 +226,7 @@ const FAQ = () => {
                     </Disclosure>
                 </div>
                 
-                {/* <div className="border-b border-Grey-border">
+                {/* <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -266,7 +266,7 @@ const FAQ = () => {
       const SellerFAQ = () => (
         <Fade bottom>
             <div className="my-4">
-                <div className="border-t border-b border-Grey-border">
+                <div className="border-t border-b border-Grey-border bg-white bg-white">
                     <Disclosure>
                         {({open}) => (
                         <>
@@ -287,7 +287,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -308,7 +308,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                <div className="border-b border-Grey-border">
+                <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -329,7 +329,7 @@ const FAQ = () => {
                         )}
                     </Disclosure>
                 </div>
-                {/* <div className="border-b border-Grey-border">
+                {/* <div className="border-b border-Grey-border bg-white">
                     <Disclosure>
                         {({open}) => (
                             <>
@@ -456,7 +456,7 @@ const FAQ = () => {
                                                             >
                                                                 <div className ="">
                                                                     <Handyman className="m-auto h-8 w-8"/>
-                                                                    <p className="font-bold"> Professionals </p>
+                                                                    <p className="font-bold"> Pros </p>
                                                                 </div>
                                                             </button>
                                                         )}
@@ -517,7 +517,7 @@ const FAQ = () => {
                                     }
                                 </div>
                                 <Tab.Panels>
-                                    <div className="my-4 bg-white">
+                                    <div className="my-4">
                                         <Tab.Panel>
                                             <GeneralFAQ />
                                         </Tab.Panel>
