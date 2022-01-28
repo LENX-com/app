@@ -1,8 +1,21 @@
-# Allow all user agents.
+# *
 User-agent: *
 Allow: /
 
-# User agent "Googlebot" should not crawl the `http://example.com/nogooglebot/` folder or any of its subdirectories.
-User-agent: Googlebot
-Disallow: /user/dashboard
-Disallow: /admin/dashboard
+# test-bot
+User-agent: test-bot
+Allow: /path
+Allow: /path-2
+
+# black-listed-bot
+User-agent: black-listed-bot
+Disallow: /sub-path-1
+Disallow: /path-2
+
+# Host
+Host: https://wabei.co.uk
+
+# Sitemaps
+Sitemap: https://wabei.co.uk/sitemap.xml
+Sitemap: https://wabei.co.uk/sitemap-0.xml
+Sitemap: https://wabei.co.uk/server-sitemap.xml

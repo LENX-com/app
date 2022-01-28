@@ -8,14 +8,19 @@ import Button from '@/components/Buttons/Button'
 import * as Yup from "yup";
 import withAuth from '@/components/auth'
 import Dropzone from "react-dropzone";
+import { getCategories } from "@/redux/actions/categoryAction";
 import  { getLocations } from '@/redux/actions/productAction'
 import { Formik,  Field, FieldArray } from "formik";
+import 'react-quill/dist/quill.snow.css';
 import { loadUser, userProfileUpdate } from "@/redux/actions/authAction";
 import Layout from '@/admin/containers/Layout'
+import dynamic from 'next/dynamic'
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const categories = useSelector((state) => state.category.categories);
   const { user } = useSelector((state) => state.auth);
   const { locations } = useSelector((state) => state.locations);
   const [load, setload] = useState(false);
@@ -24,6 +29,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getLocations())
+    dispatch(getCategories());
   }, [])
 
   const thumbsContainer = {
@@ -71,6 +77,11 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         .required('Enter a location')
                         .min(1, 'Enter a location')
                         .max(6, 'You cannot enter more than four locations'),
+                categories:
+                    Yup.array()
+                        .required('Enter a category')
+                        .min(1, 'Enter a category')
+                        .max(4, 'You cannot enter more than four categories'),
                 mobile: 
                     Yup.string()
                       .matches(/^[0-9]+$/, "Must be only digits")
@@ -95,13 +106,15 @@ const title = "text-lg font-bold text-Black-medium pb-1";
            <Formik
           initialValues={{ 
             name: user.name,
-            about: user.about,
+            about: user.about ? user.about : '',
             file: [],
             photos: user.photos ? user.photos : [],
             title: user.title ? user.title : "",
             locations:user.locations ? user.locations : [],
             skills: user.skills ? user.skills : [],
+            categories: user.categories ? user.categories : [],
             mobile: user.mobile ? user.mobile : "",
+            summary: user.summary ? user.summary : "",
           }}
 
           validationSchema={validatorForm}
@@ -116,6 +129,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
             formData.append("title", values.title);
             formData.append("about", values.about);
             formData.append("mobile", values.mobile);
+            formData.append("summary", values.summary);
 
             formData.append("file", values.file)
 
@@ -138,6 +152,11 @@ const title = "text-lg font-bold text-Black-medium pb-1";
            // we loop the skills array and assign a value to each task in the form, if any tag is undefined its value will not be looped.           
            for (let i = 0; i <= values.skills.length; i++) {
              values.skills[i] !== undefined && formData.append(`skills`, values.skills[i] );
+            }
+
+              // we loop the skills array and assign a value to each task in the form, if any tag is undefined its value will not be looped.           
+           for (let i = 0; i <= values.categories.length; i++) {
+             values.categories[i] !== undefined && formData.append(`categories`, values.categories[i] );
             }
             
             // we loop the skills array and assign a value to each task in the form, if any tag is undefined its value will not be looped.           
@@ -181,87 +200,13 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                       >
                         About
                       </h2>
-                      <div className="border-box">
-                        <textarea
-                          id="about"
-                          name="about"
-                          onChange={handleChange}
-                          value={values.about}
-                          rows={3}
-                          className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
-                          placeholder="Brief description for your profile."
-                        />
-                      </div>
+                        <Field name="about">
+                            {({ field }) => <ReactQuill className="products" value={field.value} onChange={field.onChange(field.name)} />}
+                        </Field>
+                        {errors.about && (
+                            <div className="input-feedback">{errors.about}</div>
+                        )}
                     </div>
-
-                    {/* <div>
-                      <h2 className={title}>
-                        Profile Picture
-                      </h2>
-                      <div className="mt-1 flex items-center">
-                        <Avatar src={user.avatar} size="large"/>
-                      </div>
-                    </div>
-
-                  { values.file.length < 1 &&
-                          <Dropzone  
-                              accept="image/jpeg, image/png"
-                              minSize={1024}
-                              maxSize={3072000}
-                              multiple = {false }
-                              onDrop={(acceptedFiles) => {
-                          // on drop we add to the existing files
-                          setFieldValue("file", values.file.concat(acceptedFiles.map( file => Object.assign(file, {
-                              preview: URL.createObjectURL(file)
-                          }))));
-                          }}>
-                                  {({ getRootProps, getInputProps }) => (
-                          <section className="container p-2 border-box mt-2">
-                              <div {...getRootProps({ className: "dropzone text-center" })}>
-                                  <input name="file" {...getInputProps()} />
-                                  <div clasName="p-2 mx-auto">
-                                      <AiFillFileImage className="my-auto h-12 w-12 m-auto"/>
-                                      <div className="my-3 shadow-button rounded cursor-pointer hover:shadow-hover w-1/2 text-center m-auto p-1 "> Add a file </div>
-                                  </div>
-                                  <em className="text-xs text-Black-medium">(Include an image for your profile Avatar.)</em>
-                              </div>
-                          </section>
-                      )}
-                          </Dropzone>
-                      }
-                              <div className="px-4 my-2">
-                              { values.file.length > 0 && 
-                              <>
-                                <strong>New Avatar:</strong>
-                                <ul className="list-disc my-2">
-                                    <aside style={thumbsContainer}>
-                                            <div style={thumb} className="relative">
-                                                <div style={thumbInner}>
-                                                    <img
-                                                    alt="preview"
-                                                    src={values.file[0].preview}
-                                                    style={img}
-                                                    />
-                                                </div>
-                                                <div className=" absolute top-2 right-1 z-50">     
-                                                    <button
-                                                        onClick = { (event) => {
-                                                            event.preventDefault();
-                                                            setFieldValue("file", _.remove())
-                                                }}
-                                                        className="rounded-full w-5 h-5 bg-Grey-light p-0 border-0 inline-flex items-center justify-center text-white">
-                                                        <AiOutlineClose className="w-3 h-3"/>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                    </aside>
-                                </ul>
-                              </>
-                            }
-                              {errors.file && (
-                              <div className="input-feedback">{errors.file}</div>
-                              )}
-                          </div> */}
                   </div>
 
                   <div className="">
@@ -304,6 +249,28 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                             onChange={handleChange}
                             value={values.title}
                             id="title"
+                            autoComplete="given-name"
+                            className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="py-8">
+                        <h2
+                          className={title}
+                        >
+                          Summary <span className="text italic">(brief description of what you do) </span>
+                        </h2>
+                        {errors.summary && (
+                          <div className="input-feedback">{ errors.summary }</div>
+                        )}
+                        <div className="border-box">
+                          <textarea
+                            type="text"
+                            name="summary"
+                            onChange={handleChange}
+                            value={values.summary}
+                            id="summary"
                             autoComplete="given-name"
                             className="focus:outline-none focus:ring focus:border-blue-500 w-full rounded-[12px] p-3 "
                           />
@@ -375,6 +342,29 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                       </div>
                       {errors.skills && (
                           <div className="input-feedback -m-mt-2">{ errors.skills }</div>
+                      )}
+                  </div>
+                        
+                    <div className="py-8 ">
+                        <h2 className={title}> Categories you cover </h2>
+                          { categories &&
+                              categories.map((c, i) => (
+                              <div class="form-check" key={i}>
+                                <input 
+                                      class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" 
+                                      name="categories" 
+                                      id="categories"
+                                      value={c._id}
+                                      onChange={(event) => setFieldValue( "categories" ,[...values.categories, event.target.value])}
+                                      type="checkbox" 
+                                />
+                                <label class="form-check-label inline-block text-gray-800" for="categories">
+                                  {c.name}
+                                </label>
+                              </div>
+                          ))}
+                      {errors.categories && (
+                        <div className="input-feedback">{errors.categories}</div>
                       )}
                   </div>
 

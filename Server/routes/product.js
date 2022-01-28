@@ -55,7 +55,7 @@ router.post(
 router.get("/query-catalogues", searchCatalogue);
 router.get("/query-products", searchProductsCatalogue);  
 router.get("/query-stores", searchStoresCatalogue);
-router.post("/products/by/search", listBySearch);
+router.post("/products/by/search", listBySearch); 
 router.put("/edit/product/:productId", upload.array('file'), auth, protected(1), editProduct);
 router.delete("/product/delete/:productId", auth, protected(1), deleteProduct);
 router.get("/products/by/category/:categoryId", getProductByCategory);

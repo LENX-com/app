@@ -4,6 +4,7 @@ import { AiOutlineInfoCircle} from 'react-icons/ai'
 import Button from '@/components/Buttons/Button'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import parse from 'html-react-parser';
 import { Star, EmptyStar, Tree, Verified } from '../../assets/icons'
 
 const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
@@ -19,6 +20,7 @@ const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
             initialRating={brand.rating}
         />
     )) 
+
     return (
         <> 
             { isTabletOrMobile ?
@@ -88,7 +90,7 @@ const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
                                 </Link>
                             </div>
                             <div>
-                                {`${brand.about?.substring(0, MAX_LENGTH)} ${brand.about.length >= MAX_LENGTH ? "..." : ""}`}
+                                { brand.summary && `${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary?.length >= MAX_LENGTH ? "..." : ""}`}
                             </div>
                             { brand.rating &&
                                 <div className="flex">  

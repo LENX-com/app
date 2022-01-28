@@ -136,7 +136,7 @@ exports.updateProfilePicture = async (req, res) => {
     const { ...args } = req.body;
     
     if(req.file) {
-      await cloudinary.uploader.destroy(user.avatarId);
+      user.avatarId && await cloudinary.uploader.destroy(user.avatarId);
       const result = await cloudinary.uploader.upload(req.file.path, {
           resource_type: "auto",
             invalidate: true,

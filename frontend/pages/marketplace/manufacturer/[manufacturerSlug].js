@@ -6,12 +6,11 @@ import { SwiperSlide, Swiper } from 'swiper/react'
 import { Tab } from '@headlessui/react'
 import Layout from '@/containers/Layout'
 import Button from '@/components/Buttons/Button'
-
+import parse from 'html-react-parser';
 import { useRouter } from 'next/router'
 import Chat from '@/marketplace/components/chat/Chat'
 import { AddLike, RemoveLike, Upvote, Downvote } from '@/redux/actions/reviewsAction'
-import {
-  MdArrowBack, MdLocationOn } from "react-icons/md";
+import { MdArrowBack, MdLocationOn } from "react-icons/md";
 import { AiFillWechat } from 'react-icons/ai'
 import { getManufacturerProfile, getProductsBySlug } from '@/redux/actions/manufacturerAction'
 import ReviewCard from '@/marketplace/components/review/ReviewCard'
@@ -139,7 +138,7 @@ var total = 0;
 
    const Products = React.memo(() => (
      <div>
-      <div className="grid mobile:grid-cols-1 gap-6 grid-cols-2 ">
+      <div className="grid mobile:grid-cols-1 gap-6 grid-cols-3 ">
         {
             products && products.length !== 0 ?
               products.map((product, i) =>
@@ -537,7 +536,7 @@ var total = 0;
                             <div>
                               <div className="my-3 p-3">
                                 <h2 className="font-bold text-Black-text "> About </h2>
-                                <h3 className="text-Black-medium text mt-2"> { profile.summary } </h3>
+                                <div className="mt-2"> {parse(profile.about)} </div>
                               </div>
                               { profile.skills && profile.skills.length !== 0 &&
                                 <div className="my-3 p-3">

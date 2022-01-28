@@ -281,12 +281,14 @@ exports.getBrands = async (req, res) => {
 
     var filters = {
       role: 1,
-      summary: { $regex: query , $options: "i" }, 
+      about: { $regex: query , $options: "i" }, 
       categories: req.query.category ? {$elemMatch:{$eq:(req.query.category)}} : undefined
     }
 
     // Check if categories is undefined and remove it from filter 
     Object.keys(filters).forEach(key => filters[key] === undefined ? delete filters[key] : {});
+
+    console.log("filters", filters)
 
     const user = await User.find({...filters})
     .sort("-createdAt")
@@ -319,6 +321,7 @@ exports.getBrands = async (req, res) => {
        avatar: user[i].avatar,
        photos: user[i].photos,
        about: user[i].about,
+       summary: user[i].summary,
        rating: rating,
        slug: user[i].slug,
        categories: user[i].categories,
@@ -327,7 +330,6 @@ exports.getBrands = async (req, res) => {
     }
     
     console.log({brands})
-    
 
     return res.status(200).json({brands, count});
   } catch (error) {

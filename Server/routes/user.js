@@ -52,7 +52,7 @@ const upload = multer({ storage });
 //******************************User Crud.********************** */
 router.post(
   "/user/update", 
-  upload.array("photos", 6),
+  upload.array("photos", 12),
   // upload.single("file"), 
   auth, 
   updateUser

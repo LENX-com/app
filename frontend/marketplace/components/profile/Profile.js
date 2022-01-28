@@ -6,6 +6,7 @@ import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai'
 import moment from 'moment'
 import Chat from '../chat/Chat'
 import { getReviewsByManufacturer } from '@/redux/actions/userActions'
+import parse from 'html-react-parser';
 import Rating from 'react-rating'
 
 
@@ -42,7 +43,7 @@ const Profile = ({author, handleLike, handleRemoveLike}) => {
                 <span className="capitalize font-bold text-Black"> {author.name} </span> summary
             </h1>
             <div>
-                {author.about}
+                {parse(author.about)}
             </div>
         </div>
     )

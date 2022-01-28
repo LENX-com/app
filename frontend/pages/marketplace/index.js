@@ -484,7 +484,7 @@ const Stores = () => {
   //  const search = new URLSearchParams(useLocation().search).get("search");
   let location = typeof window !== 'undefined' && window.location.search
   const resultsPerPage = 1
-  let params = new URLSearchParams(location);
+  let params = new URLSearchParams(location);  
   let categoryParams = params.get('category')
 
   
@@ -505,8 +505,6 @@ const Stores = () => {
       setIsOpen(true)
     , 300)
   }, [brand])
-
-  console.log({location})
 
   const handleCategory = React.useCallback((data) => {
     setCategory(data)

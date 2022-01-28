@@ -150,7 +150,7 @@ const FAQ = () => {
 
                             You can read more about our robust data privacy approach 
                             <Link href="/terms-conditions"> 
-                                <div className="underline font-bold"> here  </div>
+                                <div className="underline font-bold cursor-pointer"> here  </div>
                             </Link>
                         </Disclosure.Panel>
                         </>
@@ -194,7 +194,7 @@ const FAQ = () => {
                         </Disclosure.Button>
                         <Disclosure.Panel className="text-gray-500 p-3">
                             You can contact the professional by either visiting their profile, and clicking on <span className="italic"> chat now </span>, or by going to your
-                            <Link href="/user/dashboard/chat"> <div className="underline font-bold text-Black-medium px-1"> dashboard </div> </Link>
+                            <Link href="/user/dashboard/chat" className="underline font-bold text-Black-medium px-1 cursor-pointer"> dashboard </Link>
                             account, selecting the order and click on <span className="italic"> message professional </span>.
                         </Disclosure.Panel>
                         </>
@@ -217,8 +217,11 @@ const FAQ = () => {
                         </Disclosure.Button>
                         <Disclosure.Panel className="text-gray-500 p-3">
                             Your reviews helps the community to book reliable professionals and ensure excellent customer service accross the platform. 
-                            Reviewing a professionals is as easy as going to your   
-                            <Link href="/user/dashboard/chat"> <div className="underline font-bold text-Black-medium px-1"> dashboard </div> </Link>
+                            Reviewing a professionals is as easy as going to your<Link href="/user/dashboard/chat"> 
+                                <span className="underline font-bold text-Black-medium px-1 cursor-pointer"> 
+                                dashboard 
+                                </span> 
+                            </Link>
                             and selecting the order and click on <span className="italic"> review professional </span>.
                         </Disclosure.Panel>
                         </>

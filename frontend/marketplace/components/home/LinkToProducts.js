@@ -162,7 +162,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                                        </Link>
                                    </div>
                                    <div className="text-Black-medium font-bold text-sm">
-                                       {`${brand.about?.substring(0, MAX_LENGTH)} ${brand.about.length >= MAX_LENGTH ? "..." : ""}`}
+                                       {`${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
                                    </div>
                                 </div>
                             ) : (
@@ -176,7 +176,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                                        </Link>
                                    </div>
                                    <div className="text-Black-medium font-bold text">
-                                       {`${brand.about?.substring(0, MAX_LENGTH)} ${brand.about.length >= MAX_LENGTH ? "..." : ""}`}
+                                       {`${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
                                    </div>
                                    { brand.rating &&
                                        <div className="flex">  

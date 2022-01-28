@@ -38,7 +38,7 @@ const Home = () => {
     return (
         <>
         <NextSeo
-            title="Wabei"
+            title="Wabei : Marketplace to find reliable and cheap tradespersons"
             description="Wabei is a marketplace to find reliable and cheap tradespersons. Wabei connects carpenters, plumbers, handyman and electricians directly to consumers. Find trusted handyman with Wabei."
             canonical="https://www.wabei.co.uk"
             openGraph={{
