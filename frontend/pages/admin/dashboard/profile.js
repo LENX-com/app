@@ -349,16 +349,16 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         <h2 className={title}> Categories you cover </h2>
                           { categories &&
                               categories.map((c, i) => (
-                              <div class="form-check" key={i}>
+                              <div className="form-check" key={i}>
                                 <input 
-                                      class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" 
+                                      className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" 
                                       name="categories" 
                                       id="categories"
                                       value={c._id}
                                       onChange={(event) => setFieldValue( "categories" ,[...values.categories, event.target.value])}
                                       type="checkbox" 
                                 />
-                                <label class="form-check-label inline-block text-gray-800" for="categories">
+                                <label className="form-check-label inline-block text-gray-800" htmlFor="categories">
                                   {c.name}
                                 </label>
                               </div>
