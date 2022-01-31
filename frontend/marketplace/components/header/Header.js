@@ -293,7 +293,7 @@ import _ from 'lodash'
                           <AiOutlineRight className="text-Black my-auto text-lg"/>
                         </DropdownItem>
                         <DropdownItem tag="div" className="justify-between">
-                          <Link href={`/marketplace/faq`}>
+                          <Link href={`/faq`}>
                             <a className="flex">
                               <div className="bg-Grey-dashboard p-2 rounded-full mr-3">
                                 <AiOutlineUser className="text-xl text-Black" />

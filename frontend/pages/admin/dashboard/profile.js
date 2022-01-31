@@ -403,7 +403,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                               render={arrayHelpers => (
                           <>
                           <Dropzone  
-                              accept="image/jpeg, image/png"
+                              accept="image/jpeg, image/png, image/webp"
                               minSize={1024}
                               maxSize={3072000}
                               onDrop={(acceptedFiles) => {
