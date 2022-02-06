@@ -41,7 +41,7 @@ const Banner = ({products, isTabletOrMobile}) => {
                             </h1>
                             <span style={textStyle}>
                                 Wabei is a <span> marketplace for services,</span>
-                                <span style={{color:'#32bdc3'}}> that simplifies hiring small business and freelancers</span>.
+                                <span className="font-bold"> that simplifies hiring small business and freelancers</span>.
                             </span>
                             { !isTabletOrMobile ? (
                                 <div className="grid grid-cols-3 gap-5 my-8 lg:px-3">
