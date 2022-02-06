@@ -339,7 +339,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                                   </li>
                               ))}
                           </ul>
-                      </div>
+                      </div>S
                       {errors.skills && (
                           <div className="input-feedback -m-mt-2">{ errors.skills }</div>
                       )}

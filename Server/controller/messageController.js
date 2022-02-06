@@ -32,7 +32,6 @@ exports.MessageSend = async (req, res) => {
 
     await conversation.save()
 
-    console.log({conversation})
     return res.status(200).json(newMessage);
   } catch (err) {
     res.status(500).json(err);

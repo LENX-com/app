@@ -32,7 +32,7 @@ const Home = () => {
          getProducts().then( data => {
            setProducts(data) })  
 
-        
+          
     }, [])
     
     return (
@@ -65,15 +65,16 @@ const Home = () => {
                  <main className="lg:w-5/6 m-auto pb-12">
                     <Banner products = { products } isTabletOrMobile ={ isTabletOrMobile }/>
 
+                    { categories && 
+                        <LinkToProducts categories = {categories} products = {products} isTabletOrMobile ={ isTabletOrMobile }/>
+                    }
+                    
                     <HowItWorks />
 
                     <NameSlider categories = { categories } />
 
                     {/* <StoresHome /> */}
                         
-                    { categories && 
-                        <LinkToProducts categories = {categories} products = {products} isTabletOrMobile ={ isTabletOrMobile }/>
-                    }
                     <BannerBotom /> 
                 </main>  
             </div>

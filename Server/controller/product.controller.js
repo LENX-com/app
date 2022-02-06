@@ -275,9 +275,16 @@ exports.getProductByBrand = async (req, res) => {
 //get product by brands
 exports.getBrands = async (req, res) => { 
   try {
-    const perPage = 18;
-    let page = req.params.page
+    var perPage = 18;
+    var page = req.params.page
     var query = req.query.search ? req.query.search : ""
+
+    // console.log("req.body", req.body)
+
+    // if ( req.body.perPage ){
+    //   console.log("perPage", req.body.perPage)
+    //   perPage = req.body.perPage
+    // }
 
     var filters = {
       role: 1,
@@ -288,9 +295,10 @@ exports.getBrands = async (req, res) => {
     // Check if categories is undefined and remove it from filter 
     Object.keys(filters).forEach(key => filters[key] === undefined ? delete filters[key] : {});
 
-    console.log("filters", filters)
+    // console.log("filters", filters)
 
     const user = await User.find({...filters})
+    .populate("categories")
     .sort("-createdAt")
     .limit(perPage)
     .skip(perPage * page )
@@ -329,7 +337,7 @@ exports.getBrands = async (req, res) => {
       })
     }
     
-    console.log({brands})
+    // console.log({brands})
 
     return res.status(200).json({brands, count});
   } catch (error) {
@@ -353,6 +361,10 @@ exports.getBrandByCategory = async (req, res) => {
     Object.keys(filters).forEach(key => filters[key] === undefined ? delete filters[key] : {});
     
     const brands = await User.find({...filters})
+    .populate("categories", "_id name")
+
+    console.log("brands")
+
     return res.status(200).json({brands})
   }
   catch(err) {
@@ -711,7 +723,7 @@ exports.searchFilters = async (req, res) => {
     let page = req.query.page ? req.query.page : 0
     var query = req.query.search ? req.query.search : ""
 
-    console.log(req.body)
+    // console.log(req.body)
     
     var filters = {
       slug: { $regex: query , $options: "i" }, 
@@ -724,7 +736,7 @@ exports.searchFilters = async (req, res) => {
       subs: req.query.sub ? req.query.sub : undefined,
     }
     
-    console.log({...filters})
+    // console.log({...filters})
 
     // // Check if categories is undefined and remove it from filter 
     Object.keys(filters).forEach(key => filters[key] === undefined || "" ? delete filters[key] : {});

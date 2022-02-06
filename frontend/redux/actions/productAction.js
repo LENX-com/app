@@ -34,10 +34,10 @@ export  const getProducts = () => async (dispatch) => {
 };
 
 // all products
-export  const getBrands = (page= 0 , params) => async (dispatch) => {
+export  const getBrands = (page= 0 , params, perPage='') => async (dispatch) => {
   try {
     const res = await api.get(
-      `${API}/product/by/brands/${page}${params}`
+      `${API}/product/by/brands/${page}${params}`, perPage
     );
     dispatch({
       type: "GET_BRANDS",

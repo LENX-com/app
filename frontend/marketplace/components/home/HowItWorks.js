@@ -17,13 +17,15 @@ const HowItWorks = () => {
                         <Fade left duration={1000} distance="20px">
                             <div className="bg-white border-box p-3 text-Black-text lg:p-6">
                                 <h1 className="text-lg font-bold my-1">1. Search the professional</h1>
-                                <p className="text-base"> Create an account and start connecting directly with professionals free of charge in the marketplace. </p>
+                                <p className="text-base">
+                                     Create an account and start connecting directly with professionals free of charge in the marketplace. 
+                                </p>
                             </div>
                         </Fade>
                         <Fade right duration={1000} distance="20px">
                             <div className="bg-white border-box p-3 text-Black-text lg:p-6">
                                 <h1 className="text-lg font-bold my-1">2. Contact the professional</h1>
-                                <p className="text-base"> 
+                                <p className="text-base">
                                     Check the professional's profile, reviews and projects. If you feel there is a good fit, do not hesitate to contact them directly to book their services.
                                 </p>
                             </div>
@@ -31,7 +33,9 @@ const HowItWorks = () => {
                         <Fade bottom duration={1000} distance="20px">
                             <div className="bg-white border-box p-3 text-Black-text lg:p-6">
                                 <h1 className="text-lg font-bold my-1">3. Rate the professional</h1>
-                                <p className="text-base">In order to maintain Wabei's high quality platform, your reviews are what gives life to the marketplace. Once the job is completed succesfuly give your honest feedback</p>
+                                <p className="text-base">
+                                    In order to maintain Wabei's high quality platform, your reviews are what gives life to the marketplace. Once the job is completed succesfuly give your honest feedback
+                                </p>
                             </div>
                         </Fade>
                     </div>

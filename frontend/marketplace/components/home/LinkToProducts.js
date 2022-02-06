@@ -14,6 +14,7 @@ import Link from 'next/link'
 const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
     const MAX_LENGTH = 50
     const [ category, setCategory ] = useState()
+    const [ perPage, setPerPage ] = useState(6)
     const { brands, count } = useSelector((state) => state.product.brands);
     const dispatch = useDispatch();
 
@@ -26,18 +27,24 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
          title: <> {categories && "name"} </>
     })
 
-    // useEffect(() => {
-    //     if(category){
-    //         dispatch(getProductByCategory(category))
-    //     } else {
-    //         dispatch(getProductByCategory( categories && categories[0]?._id))
-    //     }
-    // }, [dispatch, category])
+    const categoriesStyle = {
+        display: "inline-block",
+        fontSize: "12px",
+        lineHeight: "12px",
+        fontWeight: "200",
+        textTransform: "uppercase",
+        letterSpacing: ".1em",
+        background: "#e6e6dd",
+        borderRadius: "4px",
+        padding: "0.4em 1em",
+        marginRight: "0.6em",
+        marginBottom: "0.6em",
+    }
 
 
     return (
-        <Card>
-            <div className="flex justify-between">
+        <div className="bg-white">
+            <div className="flex justify-between p-3">
                 <div>
                     <h2 className="mb-4 text-lg font-semibold text-Black-text"> Marketplace </h2>
                 </div>
@@ -52,7 +59,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                 <Swiper
                     slidesPerView = {4}
                     paceBetween={20}
-                    className="mb-4"
+                    className="pb-4 shadow-separator"
                 >
                     {categories?.map((category, i) => (
                             <SwiperSlide className= {`${menu.state === i ? 'border-b-2 border-orange text-orange font-bold' : 'text-Black-medium'} whitespace-nowrap w-auto p-2 text-lg cursor-pointer`}
@@ -75,7 +82,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
 
                 :
 
-                <div className="grid grid-cols-6 shadow-separator mb-4">
+                <div className="grid grid-cols-6 shadow-separator mb-6">
                     {categories?.map((category, i) => (
                         <div className="p-2">
                         <div className= {`${menu.state === i ? 'border-b-2 border-orange text-orange font-bold' : 'text-Black-medium'} text-lg w-auto p-2 cursor-pointer`}
@@ -98,99 +105,62 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                 </div>
             }
 
-                { brands && 
-                    
-                    brands.length > 0 ? 
-             ( <div className="grid grid-cols-5 gap-5 mb-3 mobile:grid-cols-2">
+            { brands && 
                 
-                { brands.map( brand => (
-                   <div className="rounded-md cursor-pointer group bg-white border-box h-72 mobile:h-52"
-                        key= {brand.name}
-                    >
-                        <section 
-                            className="content bg-cover bg-center h-40 mobile:h-28 rounded-t-md m-auto relative bg-Grey-dashboard"
+                brands.length > 0 ? 
+                    ( 
+                    <>
+                        <div className="grid mobile:grid-cols-1 mb-3 lg:grid-cols-2 lg:gap-4 lg:px-6">
+                    
+                    { brands.slice(0, perPage).map( brand => (
+                    <Link href={`/marketplace/manufacturer/${brand.slug}`}>
+                        <div className={`cursor-pointer group flex p-4 ${!isTabletOrMobile ? "border-box hover:bg-Grey-dashboard" : 'shadow-separator'}`}
+                            key= {brand.name}
                         >
-                            {/* <div className="absolute top-1 right-2 rounded-full bg-white z-10"
-                                 onClick={() => handleProfile(brand)}
+                            <section 
+                                className="relative w-1/4 m-auto"
                             >
-                                <AiOutlineInfoCircle className="w-6 h-6"/>
-                            </div> */}
-                            <Swiper
-                                spaceBetween={10}
-                                freeMode={true}
-                                pagination={{ "dynamicBullets": true }}
-                            >
-                                <SwiperSlide 
-                                    className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
+                                <div
+                                    className="bg-cover bg-center h-16 w-16 lg:h-[78px] lg:w-[78px] shadow-button rounded-full" 
                                     style= {{backgroundImage: `url(${brand.avatar})`}} 
                                 />
-                                {
-                                    brand.photos?.length > 0 &&
-                                    <>
-                                        <SwiperSlide 
-                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                            style= {{backgroundImage: `url(${brand.photos[0]?.url})`}} 
-                                        />
-                                        <SwiperSlide 
-                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                            style= {{backgroundImage: `url(${brand.photos[1]?.url})`}} 
-                                        />
-                                        <SwiperSlide 
-                                            className="bg-cover bg-center h-40 w-full mobile:h-28 rounded-md m-auto shadow-button" 
-                                            style= {{backgroundImage: `url(${brand.photos[2]?.url})`}} 
-                                        />
-                                    </>
-                                }
-                            </Swiper>
-                        </section>
-                        {
-                            isTabletOrMobile ?
-                                (
-                                <div className="mx-auto grid px-3 py-2">
-                                   { brand.rating &&
-                                       <div className="flex">  
-                                           <Star className= "text-lg my-auto" style={{width:"12px", height: "12px"}}/>
-                                           <span className="my-auto text-Black-medium font-bold pl-1 text"> {brand.rating} </span>
-                                       </div>
-                                   }
-                                   <div className="flex mb-2 mobile:hidden">
-                                       <div className="bg-cover bg-center shadow-button h-8 w-8 rounded-full bg-white my-auto mr-2 transform transition hover:-rotate-6 cursor-pointer duration-300 border-2 border-white" 
-                                           style= {{backgroundImage: `url("${brand.avatar}")`}}
-                                       />
-                                       <Link href = {`marketplace/manufacturer/${brand.slug}`} className="my-auto flex">
-                                           <span className="text-Black-text text font-bold hover:text-Blue my-auto capitalize"> {brand.name} </span>
-                                       </Link>
-                                   </div>
-                                   <div className="text-Black-medium font-bold text-sm">
-                                       { brand.summary && `${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
-                                   </div>
+                            </section>
+                            <div className="m-auto grid px-3 py-2 w-3/4">
+                            { brand.rating &&
+                                <div className="flex">  
+                                    <Star className= "text-lg my-auto" style={{width:"12px", height: "12px"}}/>
+                                    <span className="my-auto text-Black-medium font-bold pl-1 text"> {brand.rating} </span>
                                 </div>
-                            ) : (
-                               <div className="mx-auto grid px-3 py-2">
-                                   <div className="flex mb-2 mobile:hidden">
-                                       <div className="bg-cover bg-center shadow-button h-8 w-8 rounded-full bg-white my-auto mr-2 transform transition hover:-rotate-6 cursor-pointer duration-300 border-2 border-white" 
-                                           style= {{backgroundImage: `url("${brand.avatar}")`}}
-                                       />
-                                       <Link href = {`marketplace/manufacturer/${brand.slug}`} className="my-auto flex">
-                                           <span className="text-Black-text text font-bold hover:text-Blue my-auto capitalize"> {brand.name} </span>
-                                       </Link>
-                                   </div>
-                                   <div className="text-Black-medium font-bold text">
-                                       { brand.summary && `${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
-                                   </div>
-                                   { brand.rating &&
-                                       <div className="flex">  
-                                           <Star className= "text-lg my-auto" style={{width:"16px", height: "16px"}}/>
-                                           <span className="my-auto text-Black-medium font-bold pl-1"> {brand.rating} </span>
-                                       </div>
-                                   }
-                               </div>
-                            )
-                        } 
-                    </div>    
-                ))}
-
-            </div>
+                            }   
+                                <Link href = {`marketplace/manufacturer/${brand.slug}`} className="my-auto flex">
+                                    <span className="text-Black-medium font-bold hover:text-Blue my-auto capitalize"> {brand.name} </span>
+                                </Link>
+                            <div className=" text-sm">
+                                { brand.summary && `${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
+                            </div>
+                            <div className="overflow-hidden py-2">
+                                    {brand.categories && brand.categories.length > 0 && brand.categories.map( category => (
+                                        <span 
+                                                className="text-Black-medium font-bold hover:text-Blue my-auto capitalize"
+                                                style= { categoriesStyle }
+                                        >
+                                            {category.name}
+                                        </span>
+                                    ))}
+                            </div>
+                            </div>
+                        </div>    
+                    </Link>
+                    ))}
+                </div>
+                <div className="grid p-3">
+                    <Button 
+                            onClick={() => setPerPage(perPage + 4)}
+                            className="my-2 w-2/3 mx-auto lg:w-1/4 bg-Black text-Grey"> 
+                        Load more 
+                    </Button>
+                </div>
+            </>
                 ) : (
                     <div className="mb-4 mx-auto col-span-2">
                         <div className="m-auto text-center">
@@ -200,11 +170,8 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                     </div>
                   )
                 }
-            {/* <div className="grid">
-                <Button className="bg-white my-2 w-2/3 mx-auto lg:w-1/4"> Load more </Button>
-            </div> */}
-        </Card>
+        </div>
     )
 }
 
-export default LinkToProducts
+export default React.memo(LinkToProducts)
