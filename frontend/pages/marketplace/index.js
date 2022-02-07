@@ -456,7 +456,7 @@ import { useMediaQuery } from 'react-responsive'
 import Button from '@/components/Buttons/Button'
 import { NotFound } from '@/marketplace/assets/icons'
 import * as Icons from '@/marketplace/assets/icons'
-import { AiTwotoneShopping, AiFillShop, AiOutlineSearch, AiFillCar, AiOutlineDown, AiOutlineClose } from 'react-icons/ai'
+import { AiTwotoneShopping, AiFillShop, AiOutlineSearch, AiFillCar, AiOutlineDown, AiOutlineClose, AiOutlineInfoCircle } from 'react-icons/ai'
 import PopUp from '@/marketplace/components/pop/PopUp'
 import {  Pagination } from "@windmill/react-ui"; 
 import Profile from '@/marketplace/components/profile/Profile'
@@ -494,7 +494,7 @@ const Stores = () => {
     dispatch(getCategories());
     dispatch(getBrands(0, location ? location :`?search=${value ? value : "" }&category=${category ? category : ""}`));
     dispatch(getCategories());
-    if (categoryParams) {
+    if (categoryParams) {  
       setCategory(categoryParams)
     }
   }, []);
@@ -622,7 +622,8 @@ const handlePagination = (value) => {
           <div className="px-3 mb-4">
               <div className="flex bg-white rounded-lg px-3 border-box relative">
                 <input className="bg-white focus:outline-none focus:border-purple-50 py-1 w-full " value={value} placeholder="Search Professionals" onChange= {handleSearch} />
-                <button className=" absolute right-0 top-0 bg-Blue" style={{height:"34px", borderRadius: "12px 12px 12px 12px"}}
+                <button 
+                        className=" absolute right-0 top-0 bg-Blue" style={{height:"34px", borderRadius: "12px 12px 12px 12px"}}
                         onClick={handleSubmit}
                 >
                   <AiOutlineSearch className="my-auto ml-1  text-white text-xl"/>
@@ -644,15 +645,26 @@ const handlePagination = (value) => {
       <div></div>
       {brands?.length > 0 ? (
         <>
-          <div className={ !isTabletOrMobile && "grid grid-cols-4 gap-4 mt-10" }>
+          <div className={ !isTabletOrMobile && "grid grid-cols-1 gap-2 mt-10 w-4/5 mx-auto" }>
             { brands.map((brand, i) =>
-            <Fragment key={i}>
+            <div 
+                key={i}
+                className="relative"
+            >
+              { !isTabletOrMobile && 
+                <div 
+                    className='absolute right-2 top-2 cursor-pointer'
+                    onClick={() => handleProfile(brand)}
+                >
+                  <Icon className="m-auto h-[28px] w-[28px]" icon="Info"/>
+                </div>
+              }
               <StoreCard 
                 brand={brand} 
                 isTabletOrMobile ={isTabletOrMobile} 
                 handleProfile={handleProfile} 
               />
-            </Fragment> 
+            </div> 
             )}
           </div>
         </>
@@ -664,7 +676,7 @@ const handlePagination = (value) => {
               </div>
             </div>
         )}
-        <div className="p-3 mt-3">
+        <div className="p-3 mt-3 mb-8">
           <Pagination
                 totalResults={count ? count : 0}
                 resultsPerPage={18}

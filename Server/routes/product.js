@@ -36,7 +36,7 @@ const {
   getBrandByCategory,
   getBrands
 } = require("../controller/product.controller");
-const { auth, protected } = require("../middlewares/verify");
+const { auth, protected } = require("../middlewares/verify");  
 const { userById } = require("../controller/user.controller");
 const { uploadImage } = require("../middlewares/cloudinary");
 const checkObjectId = require("../middlewares/checkObjectId");

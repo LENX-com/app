@@ -1,17 +1,17 @@
 import React, { useState, useEffect, memo } from 'react'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux'
-import { Tree, Star, EmptyStar } from '../../assets/icons'
+import { Tree, Star, EmptyStar, Telephone } from '../../assets/icons'
 import { AiOutlineCaretUp, AiOutlineCaretDown } from 'react-icons/ai'
 import moment from 'moment'
-import Chat from '../chat/Chat'
+import Button from '@/components/Buttons/Button'
 import { getReviewsByManufacturer } from '@/redux/actions/userActions'
 import parse from 'html-react-parser';
 import Rating from 'react-rating'
 
 
 const Profile = ({author, handleLike, handleRemoveLike}) => {
-    const menuOptions = [ "About", "Reviews", "Contact" ]
+    const menuOptions = [ "About", "Reviews", "Photos" ]
      const [ menu, setMenu ] = useState(0)  
      const { reviews } = useSelector( state => state.admin)
      const [ content, setContent ] = useState("")
@@ -68,15 +68,35 @@ const Profile = ({author, handleLike, handleRemoveLike}) => {
                         </>
                     )
                         );
-            case "Contact":
+            case "Photos":
                 return (
-                    <Chat receiver={author}/>
+                    <Photos />
                 );
             default:
             return <About /> ;
         }
     }
 
+  const Photos = React.memo(() => (     
+      <div className="grid grid-cols-2 gap-6 mobile:grid-cols-1 p-6">
+        {
+          author.photos && author.photos.length !== 0 ?
+            ( author.photos.map((photo, i) => (
+                <div key={photo.url} className="w-full cursor-pointer shadow-product h-40">
+                  <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-product"/>
+                </div>
+              ))
+            ) : (
+              <div className="mb-4 col-span-2">
+                <div className="m-auto text-center">
+                    <NotFound className="text-center mx-auto my-2"/>
+                    <span className="font-bold capitalize"> Sorry there are no photos available </span>
+                </div>
+              </div>
+            ) 
+        }
+      </div>
+    ))
 
     const ReviewCard = React.memo(({review}) => (
         <div className="border-box p-3">
@@ -156,6 +176,22 @@ const Profile = ({author, handleLike, handleRemoveLike}) => {
                     ))}
                 </div>
                 {value()}
+             <div className="sticky bottom-0 p-2 bg-white w-full z-50 border-t border-Grey">
+                        <div className="relative h-full">
+                            { author.mobile &&
+                                <div className="m-auto text-center">
+                                    <Button 
+                                        className=" ml-2 text-blue shadow-none border border-blue rounded flex" 
+                                        >
+                                        <Telephone className="mr-2" style={{width:"24px", height: "24px"}} fill="#00adb5" />
+                                        <a href={`tel: 0${author.mobile}`}>
+                                        {`0${author.mobile}`}
+                                        </a>
+                                    </Button>
+                                </div>
+                            }
+                        </div>
+                    </div>  
             </div>
         </div>
     )

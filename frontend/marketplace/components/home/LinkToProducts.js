@@ -141,7 +141,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                             <div className="overflow-hidden py-2">
                                     {brand.categories && brand.categories.length > 0 && brand.categories.map( category => (
                                         <span 
-                                                className="text-Black-medium font-bold hover:text-Blue my-auto capitalize"
+                                                className="text-Black-medium font-bold my-auto capitalize"
                                                 style= { categoriesStyle }
                                         >
                                             {category.name}

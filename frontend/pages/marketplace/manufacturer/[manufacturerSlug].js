@@ -21,7 +21,7 @@ import { getReviewsByManufacturer } from '@/actions/userActions'
 import { useMediaQuery } from 'react-responsive'
 import { getCategories } from '@/redux/actions/marketplace'
 import { Star, NotFound } from '@/marketplace/assets/icons'
-import SwiperCore, {
+import SwiperCore, {  
   Navigation, Pagination
 } from 'swiper';
 
@@ -138,13 +138,14 @@ var total = 0;
 
    const Products = React.memo(() => (
      <div>
-      <div className="grid mobile:grid-cols-1 gap-6 grid-cols-3 ">
         {
-            products && products.length !== 0 ?
+          products && products.length !== 0 ?
               products.map((product, i) =>
-                <Fragment key={i=product._id}> 
-                  <CategoryProduct product={product} handleWishlist={handleWishlist}/>
-                </Fragment>
+                <div className="grid mobile:grid-cols-1 gap-6 grid-cols-3 ">
+                  <Fragment key={i=product._id}> 
+                    <CategoryProduct product={product} handleWishlist={handleWishlist}/>
+                  </Fragment>
+                </div>
               )
               :
             <div className="mb-4">
@@ -154,7 +155,6 @@ var total = 0;
                 </div>
             </div>
         }
-      </div>
      </div>
    ));
   
@@ -210,7 +210,7 @@ var total = 0;
         {
           profile.photos && profile.photos.length !== 0 ?
             ( profile.photos.map((photo, i) => (
-                <div key={photo.url} className="w-full cursor-pointer shadow-product">
+                <div key={photo.url} className="w-full cursor-pointer shadow-product h-60 lg:h-80">
                   <img src={photo.url} alt="photo" className="w-full h-full object-cover rounded-md shadow-product"/>
                 </div>
               ))

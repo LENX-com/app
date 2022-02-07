@@ -34,6 +34,8 @@ import Carpenter from './Carpenter.svg'
 import Plumber from './Plumber.svg'
 import Electrician from './Electrician.svg'
 import Handyman from './Handyman.svg'
+import Info from './Info.svg'
+import Telephone from './Telephone.svg'
 
 
 export {
@@ -72,6 +74,8 @@ export {
   Carpenter,
   Plumber,
   Electrician,
-  Handyman 
+  Handyman,
+  Info,
+  Telephone 
 }
  
