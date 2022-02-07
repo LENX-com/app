@@ -142,7 +142,7 @@ var total = 0;
           products && products.length !== 0 ?
               products.map((product, i) =>
                 <div className="grid mobile:grid-cols-1 gap-6 grid-cols-3 ">
-                  <Fragment key={i=product._id}> 
+                  <Fragment key={product._id}> 
                     <CategoryProduct product={product} handleWishlist={handleWishlist}/>
                   </Fragment>
                 </div>
