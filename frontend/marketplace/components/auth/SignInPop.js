@@ -25,7 +25,7 @@ const SignInPop = () => {
                     Yup.string().email()
                     .required("Required"),
 
-                password:
+                password: 
                     Yup.string()
                     .required("Required")
             })

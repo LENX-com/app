@@ -14,8 +14,8 @@ const BannerBottom = () => {
     return (
         <>
             <Fade left duration={1000} distance="20px">
-                <div className="bg-white mobile:py-8 mobile:px-5 lg:py-10">
-                    <div className="lg:w-3/5 mx-auto">
+                <div className="mobile:py-8 mobile:px-5 lg:py-10">
+                    <div className="lg:w-3/5 mx-auto lg:pb-8">
                         <div className="lg:w-3/5 mx-auto">
                             <Entrepeneur />
                         </div>

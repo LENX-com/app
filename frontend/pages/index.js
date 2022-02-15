@@ -1,11 +1,10 @@
 import React,{useState, useEffect} from 'react';
 import Layout from '@/containers/Layout'
 import Banner from '@/marketplace/components/banner/Banner';
-import NameSlider from '@/marketplace/components/home/NameSlider';
-// import StoresHome from '@/marketplace/components/home/StoresHome';
 import LinkToProducts from '@/marketplace/components/home/LinkToProducts';
 import { NextSeo } from 'next-seo';
 import HowItWorks from '@/marketplace/components/home/HowItWorks'
+import WhyWabei from '@/marketplace/components/home/WhyWabei'
 import BannerBotom from '@/marketplace/components/home/BannerBottom'
 import { useMediaQuery } from 'react-responsive'
 import { getCategories, getProducts } from '@/redux/actions/marketplace'
@@ -15,7 +14,7 @@ import SwiperCore, {
 } from 'swiper';
 
 
-// install Swiper modules
+// install Swiper modules  
 SwiperCore.use([Navigation, Pagination]);
  
 const Home = () => {
@@ -31,8 +30,6 @@ const Home = () => {
         
          getProducts().then( data => {
            setProducts(data) })  
-
-          
     }, [])
     
     return (
@@ -62,16 +59,19 @@ const Home = () => {
          />
             <Layout>
             <div className="relative"> 
-                 <main className="lg:w-5/6 m-auto pb-12">
-                    <Banner products = { products } isTabletOrMobile ={ isTabletOrMobile }/>
+                 <main className="m-auto">
+                    <Banner products= { products } isTabletOrMobile= { isTabletOrMobile }/>
+
+                    <WhyWabei isTabletOrMobile= { isTabletOrMobile } />
 
                     { categories && 
-                        <LinkToProducts categories = {categories} products = {products} isTabletOrMobile ={ isTabletOrMobile }/>
+                        <LinkToProducts categories= { categories } products= {products} isTabletOrMobile= { isTabletOrMobile }/>
                     }
                     
                     <HowItWorks />
 
-                    <NameSlider categories = { categories } />
+                    {/* <NameSlider categories = { categories } /> */}
+
 
                     {/* <StoresHome /> */}
                         

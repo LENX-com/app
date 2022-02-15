@@ -1,6 +1,7 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Card from '@/components/Cards/Card'
+import React, { useContext } from 'react';
+import Button from '@/components/Buttons/Button'
+import { SignInContext } from '@/context/SignInContext'
+import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 
  const textStyle = {
@@ -10,28 +11,13 @@ import Link from 'next/link'
       color: "#424770"
   }
 
-const banners = [
-    {
-        title: "Support small businesses",
-        text: "We provide the infrastucture to help small businesses fulfill their potential.",
-        image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639073084/istockphoto-1298550035-170667a_esvmii.jpg'
-    },
-    {
-        title: "Community Marketplace",
-        text: "Know who you are hiring based in their profile and reviews.",
-        image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639076227/photo-1461938337379-4b537cd2db74_gnwhl3.jpg'
-    },
-    {
-        title: "Ease of use",
-        text: "We simplify hiring professionals, you will access to a wide talent pool of freelancers.",
-        image: 'https://res.cloudinary.com/lenx2222/image/upload/v1639076011/istockphoto-1333405308-170667a_dlx5re.jpg'
-    },
-]
 
 const Banner = ({products, isTabletOrMobile}) => {
+  const { toggleSidebar } = useContext(SignInContext)
+
     return (
-        <div className="">      
-                <Card>
+        <div className="bg-white lg:py-16">      
+                <div className="lg:w-5/6 mx-auto grid grid-cols-2 gap-4 mobile:grid-cols-1 p-3">
                     <div className="bg-white  mobile:py-4 lg:py-4">
                         <div className="lg:w-4/5 mx-auto">
                             <div className="lg:w-3/5 mx-auto">
@@ -41,87 +27,44 @@ const Banner = ({products, isTabletOrMobile}) => {
                             </h1>
                             <span style={textStyle}>
                                 Wabei is a <span> marketplace for services,</span>
-                                <span className="font-bold"> that simplifies hiring small business and freelancers</span>.
+                                <span className="font-bold"> that simplifies hiring small businesses and freelancers</span>.
                             </span>
-                            { !isTabletOrMobile ? (
-                                <div className="grid grid-cols-3 gap-5 my-8 lg:px-3">
-                                    { banners.map( data => 
-                                        <div className="h-80 rounded-md" style={{background:'#F6F7F8'}}>
-                                            <section 
-                                                className="bg-cover bg-center h-36 w-full rounded-t-md" 
-                                                style={{backgroundImage:`url(${data.image})`}} 
-                                            />
-                                            <div className="h-44 p-6">
-                                                <h2 className="font-bold text-xl text-Black text-center"> {data.title} </h2>
-                                                <p className="text-base mt-3"> { data.text } </p>
-                                            </div>
-                                        </div>
-                                    )}
+                            <div className="py-6 grid grid-cols-2 gap-4 lg:w-3/4">
+                                <Button className="bg-Blue text-white ">
+                                    <a href="#HowItWorks">
+                                        How it works?     
+                                    </a>
+                                </Button>
+                                <Button 
+                                    onClick= { toggleSidebar }
+                                > 
+                                    Sign up 
+                                </Button>
+                            </div>
+                            { isTabletOrMobile && 
+                                <div>
+                                    <img src="https://res.cloudinary.com/lenx2222/image/upload/v1639084389/uk-hero-static_lagpc9.png" className="w-full" alt="marketplace"/>
                                 </div>
-                                
-                                ) : (
-                                    <Swiper
-                                        slidesPerView= {1}
-                                        className="w-full mt-8"
-                                        spaceBetween={25}
-                                        freeMode={true}
-                                    >
-                                        {banners.map( data => 
-                                            <SwiperSlide className="h-[22rem] rounded-md w-5/6" style={{background:'#F6F7F8'}}>
-                                                <section 
-                                                    className="bg-cover bg-center h-40 w-full rounded-t-md" 
-                                                    style={{backgroundImage:`url(${data.image})`}} 
-                                                />
-                                                <div className="h-44 px-8 py-3">
-                                                    <div className="h-1/3">
-                                                        <h2 className="font-bold text-xl text-Black"> {data.title} </h2>
-                                                    </div>
-                                                    <div className="h-1/2">
-                                                        <p className="text-base mt-4"> { data.text } </p>
-                                                    </div>
-                                                </div>
-                                            </SwiperSlide>
-                                        )}
-                                    </Swiper>
-                                )
                             }
                         </div>
                     </div>
-                </Card>
-
-                {/* <Card title="Trending Services">
-                    <Swiper
-                        spaceBetween={10}
-                        navigation={true}
-                        freeMode={true}
-                        className="w-full"
-                        breakpoints={{
-                            // when window width is >= 640px
-                            640: {
-                                width: 640,
-                                slidesPerView: 1,
-                            },
-                            // when window width is >= 768px
-                            768: {
-                                width: 768,
-                                slidesPerView: 3,
-                                },
-                            }}
-                        >
-                        { products && products.slice(0, 6).map( data => (
-                            <SwiperSlide className="shadow-product rounded-md m-2 h-28 mobile:w-5/6">
-                                <div className="flex h-full">
-                                    <div className="w-1/3 h-full bg-cover bg-center rounded-tl-md rounded-bl-md mobile:w-2/4" style = {{background: `url("${data.photo[0].url}")`}}/>
-                                    <div className="w-2/3 text-center font-bold text-Black my-auto mobile:w-2/4">
-                                        <Link href= {`/marketplace/products/${data.slug}`} className="font-bold text-Black-text capitalize">
-                                            { data.name }
-                                        </Link>
-                                    </div>
+                    { !isTabletOrMobile &&
+                        <div>
+                            <div className="relative min-h-[500px] rounded-[8px]">
+                                <div>
+                                    <img 
+                                        className={`bg-cover h-[340px] w-[800px] mt-3 ${styles.DashboardGraphic}`}>
+                                    </img>
+                                    <figure className={`${styles.phoneSmall} m-auto absolute right-3 top-10`}>
+                                        <div className={styles.PhoneGraphic__screen}>
+                                            <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644411754/WhatsApp-Image-2022-02-09-at-12.59.48_gnnwtw.webp" alt="Phone Screen" />
+                                        </div>
+                                    </figure>
                                 </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </Card> */}
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
     );
 };

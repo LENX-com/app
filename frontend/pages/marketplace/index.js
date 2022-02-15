@@ -444,7 +444,7 @@
 
 import React, { useEffect, useState, useMemo, Fragment, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import StoreCard from "@/marketplace/components/stores/StoreCard";
+import StoreCard from "@/marketplace/components/stores/StoreCard"; 
 import CategorySlider from "@/marketplace/components/stores/CategorySlider";
 import SectionTitle from '@/components/Typography/SectionTitle'
 import { getCategories } from "@/redux/actions/categoryAction";
@@ -552,12 +552,12 @@ const handlePagination = (value) => {
                     <div className="px-3 mb-4">
                     <div className="flex bg-Grey-dashboard rounded-lg px-3 py-1 border-box">
                         <AiOutlineSearch className="my-auto ml-1  text-Black-medium"/>
-                        <input className="bg-Grey-dashboard focus:outline-none focus:border-purple-50 " value={value} placeholder="Search Professionals" onChange= {handleSearch} />
+                        <input className="bg-Grey-dashboard focus:outline-none focus:border-purple-50 " value= { value } placeholder="Search Professionals" onChange= { handleSearch } />
                     </div>
                     { (value || category) &&
                         <button className=" text-white px-3 py-1 text-sm flex rounded-md my-3 bg-Black-text"
                                 type="button"
-                                onClick={handleFilters}        
+                                onClick= { handleFilters }        
                         >
                         Clear filters
                         < AiOutlineClose className="my-auto ml-2" />

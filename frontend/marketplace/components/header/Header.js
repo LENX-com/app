@@ -284,9 +284,9 @@ import _ from 'lodash'
                           <div className="bg-Grey-dashboard p-2 rounded-full mr-3">
                             <AiTwotoneSetting className="text-xl text-Black" />
                           </div>
-                          <Link href={`/user/dashboard/settings`} className="text-base font-bold my-auto">
+                          <Link href={`/user/dashboard/profile`} className="text-base font-bold my-auto">
                             <div className="text-base font-bold my-auto">
-                              Settings
+                              Profile
                             </div>
                           </Link>
                         </div>

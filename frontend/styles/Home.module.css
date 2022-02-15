@@ -1,0 +1,78 @@
+.code {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.DashboardGraphic {
+    border-radius: 8px;
+    background: linear-gradient(hsla(0,0%,100%,.4),hsla(0,0%,100%,.3) 25%,rgba(246,249,252,.3) 50%,#f6f9fc 60%);
+    box-shadow: inset 0 1px 1px 0 hsl(0deg 0% 100% / 10%), 0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%);
+    letter-spacing: .2px;
+    background: url("https://res.cloudinary.com/lenx2222/image/upload/v1644427519/output-onlinepngtools-_1__l2oxib.webp");
+    line-height: 14px;
+    color: #425466;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.phoneSmall {
+    --phoneBorderRadius: 36px;
+    --phoneScreenBorderRadius: 33px;
+    --phoneWidth: 198px;
+    --phoneHeight: 399.75px;
+    width: var(--phoneWidth);
+    height: var(--phoneHeight);
+    padding: 8px;
+    border-radius: var(--phoneBorderRadius);
+    background: #f6f9fc;
+    box-shadow: 0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), inset 0 -2px 6px 0 rgb(10 37 64 / 35%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 16px;
+}
+
+.phone {
+    --phoneBorderRadius: 36px;
+    --phoneScreenBorderRadius: 33px;
+    --phoneWidth: 264px;
+    --phoneHeight: 533px;
+    width: var(--phoneWidth);
+    height: var(--phoneHeight);
+    padding: 8px;
+    border-radius: var(--phoneBorderRadius);
+    background: #f6f9fc;
+    box-shadow: 0 50px 100px -20px rgb(50 50 93 / 25%), 0 30px 60px -30px rgb(0 0 0 / 30%), inset 0 -2px 6px 0 rgb(10 37 64 / 35%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 16px;
+}
+
+.PhoneGraphic__screen {
+    position: relative;
+    height: 100%;
+    border-radius: var(--phoneScreenBorderRadius);
+    -webkit-mask-image: -webkit-radial-gradient(#fff,#000);
+    background: #fff;
+}
