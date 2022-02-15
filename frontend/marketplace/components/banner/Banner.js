@@ -17,11 +17,9 @@ const Banner = ({products, isTabletOrMobile}) => {
 
     return (
         <div className="bg-white lg:py-16">      
-                <div className="lg:w-5/6 mx-auto grid grid-cols-2 gap-4 mobile:grid-cols-1 p-3">
-                    <div className="bg-white  mobile:py-4 lg:py-4">
-                        <div className="lg:w-4/5 mx-auto">
-                            <div className="lg:w-3/5 mx-auto">
-                            </div>
+                <div className="lg:w-5/6 mx-auto grid grid-cols-2 gap-4 mobile:grid-cols-1 lg:p-3">
+                    <div className="bg-white mobile:pt-5 lg:py-4">
+                        <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">
                             <h1 className="text-3xl mobile:text-2xl text-Black mb-5 mobile:mt-4">
                                 The easiest way to <span className="font-bold"> hire quality services.</span>
                             </h1>
@@ -30,7 +28,7 @@ const Banner = ({products, isTabletOrMobile}) => {
                                 <span className="font-bold"> that simplifies hiring small businesses and freelancers</span>.
                             </span>
                             <div className="py-6 grid grid-cols-2 gap-4 lg:w-3/4">
-                                <Button className="bg-Blue text-white ">
+                                <Button className="bg-orange text-white ">
                                     <a href="#HowItWorks">
                                         How it works?     
                                     </a>
@@ -41,12 +39,12 @@ const Banner = ({products, isTabletOrMobile}) => {
                                     Sign up 
                                 </Button>
                             </div>
-                            { isTabletOrMobile && 
-                                <div>
-                                    <img src="https://res.cloudinary.com/lenx2222/image/upload/v1639084389/uk-hero-static_lagpc9.png" className="w-full" alt="marketplace"/>
-                                </div>
-                            }
                         </div>
+                        { isTabletOrMobile && 
+                            <div className="pt-5">
+                                <img src="https://res.cloudinary.com/lenx2222/image/upload/v1639084389/uk-hero-static_lagpc9.png" className="w-full" alt="marketplace"/>
+                            </div>
+                        }
                     </div>
                     { !isTabletOrMobile &&
                         <div>

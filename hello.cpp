@@ -1,15 +1,13 @@
 #include <iostream>
 
+
 using namespace std;
 int myNum = 5;
+string myString = "Hello World";
 
 int main()
 {
-    if ( !myNum ) {
-        cout << 0 << "K" << myNum << endl;
-    }
-
-    else {
-        cout << 1 << "K" << myNum << endl;
-    }
+    int time = 20;
+    string result = (time < 18) ? "Good day." : "Good evening.";
+    cout << result;
 }

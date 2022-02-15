@@ -56,22 +56,27 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
     }
 
     return (
-        <div className="py-10 lg:py-16">
+        <div className="mobile:pt-10 lg:py-16">
             <div className="lg:w-5/6 mx-auto">
-                <div className="flex justify-between mobile:p-3">
-                    <h1 className="text-xl font-bold text-Black-medium mb-5 mobile:mt-4">
+                <div className="lg:flex lg:justify-between mobile:p-3 mobile:pb-5">
+                    <h1 className="text-xl font-bold text-Black lg:mb-5">
                         Looking for a tradesperson?
                     </h1>
-                    { !isTabletOrMobile && 
-                        <Link href="/marketplace">
+                    { !isTabletOrMobile  ?
+                        ( <Link href="/marketplace">
                             Explore marketplace
-                        </Link>
+                          </Link>
+                         ) : (
+                            <p className="text text-Black mt-2">
+                                Search quality tradespeople in our marketplace.
+                            </p>
+                          )
                     }
                 </div>
                 { 
                  isTabletOrMobile ?
                     ( categories && categories.map( ( category, i ) => (
-                        <div className="w-full p-3">
+                        <div className="w-full p-3 mobile:bg-white mobile:mb-2">
                             <div className="flex mobile:justify-between">
                                 <div>
                                     <h1 className="text-Black font-bold text-lg lg:text-xl "> { category.name }s </h1>

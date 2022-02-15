@@ -28,12 +28,12 @@ const banners = [
 
 const Banner = ({products, isTabletOrMobile}) => {
     return (
-        <div className="bg-Black lg:py-16">      
+        <div className="bg-Black lg:py-16 mobile:pb-10">      
                 <div className="lg:w-5/6 mx-auto">
                     <div className="mobile:py-4 lg:py-4">
-                        <div className="lg:w-4/5 mx-auto mobile:p-3">
+                        <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">
                             <div className="">
-                            <h1 className="text-lg font-bold text-orange mb-5 mobile:mt-4">
+                            <h1 className="text-lg font-bold text-blue mb-5 mobile:mt-4">
                                 Why Wabei?
                             </h1>
                             <span style={textStyle}>
@@ -49,8 +49,13 @@ const Banner = ({products, isTabletOrMobile}) => {
                                                 style={{backgroundImage:`url(${data.image})`}} 
                                             />
                                             <div className="h-44 p-6">
-                                                <h2 className="font-bold text-lg text-white"> {data.title} </h2>
-                                                <p className="text-base mt-3 text-white"> { data.text } </p>
+                                                <h2 className="font-bold text-lg text-Grey"> {data.title} </h2>
+                                                <p 
+                                                    className="text-base mt-3"
+                                                    style={{color:'#c5c5c5'}}
+                                                > 
+                                                    { data.text } 
+                                                </p>
                                             </div>
                                         </div>
                                     )}
@@ -74,7 +79,12 @@ const Banner = ({products, isTabletOrMobile}) => {
                                                         <h2 className="font-bold text-xl text-Grey"> {data.title} </h2>
                                                     </div>
                                                     <div className="h-1/2">
-                                                        <p className="text-base mt-4 text-white"> { data.text } </p>
+                                                        <p 
+                                                            className="text-base mt-3"
+                                                            style={{color:'#c5c5c5'}}
+                                                        > 
+                                                            { data.text } 
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </SwiperSlide>

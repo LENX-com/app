@@ -19,7 +19,7 @@ const BannerBottom = () => {
                         <div className="lg:w-3/5 mx-auto">
                             <Entrepeneur />
                         </div>
-                        <h3 className="text-base mt-3 mb-6 text-Blue font-bold">Our mission</h3>
+                        <h3 className="text-base mt-3 mb-6 text-orange font-bold">Our mission</h3>
                         <h1 className="text-3xl mobile:text-2xl font-bold text-Black mb-5 mobile:mt-4">
                             The platform that democratizes work
                         </h1>

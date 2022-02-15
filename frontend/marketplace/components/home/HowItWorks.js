@@ -8,11 +8,11 @@ const HowItWorks = () => {
     return (
         <div className="py-10 bg-white" id="HowItWorks">
             <div className=" lg:w-5/6 lg:mx-auto">
-                <SectionTitle className="text-2xl p-3"> How does Wabei work? </SectionTitle>
+                <SectionTitle className="text-2xl mobile:text-center mobile:mb-2"> How does Wabei work? </SectionTitle>
                 <div className="w-4/5 mx-auto">
                     <div className="grid grid-cols-2 mobile:grid-cols-1 my-8 mobile:mb-12">
                         <div className=" text-Black-text lg:p-6 mb-5">
-                            <h1 className="text-lg font-bold my-1 text-Black mb-2">Post a project.</h1>
+                            <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">1. Post a project.</h1>
                             <p className="text-base max-w-[304px]">
                                 Create a project opening, specifying your budget, time frame and location. 
                             </p>
@@ -31,7 +31,7 @@ const HowItWorks = () => {
                                 </div>
                             </figure>
                             <div className=" text-Black-text lg:p-6 mb-5 mobile:order-first">
-                                <h1 className="text-lg font-bold my-1 text-Black mb-2">Review project applications. </h1>
+                                <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">2. Review project applications. </h1>
                                 <p className="text-base max-w-[304px]">
                                     Review all the applications. You can review the professional's reviews, previous work and select the applicant that best matches your requirements.
                                 </p>
@@ -41,7 +41,7 @@ const HowItWorks = () => {
                     <Fade top duration={1000} distance="20px">
                         <div className="grid grid-cols-2 mobile:grid-cols-1 my-8 mobile:my-12">
                             <div className=" text-Black-text lg:p-6 mb-5">
-                                <h1 className="text-lg font-bold my-1 text-Black mb-2">Write a review.</h1>
+                                <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">3. Write a review.</h1>
                                 <p className="text-base max-w-[304px]">
                                     Your reviews is what makes Wabei's community so special. By reviewing the job you help others make smarter decisions and hire the best professionals. 
                                 </p>
