@@ -1,7 +1,6 @@
 import React from 'react'
 import { Fade } from "react-reveal";
 import Entrepeneur from '@/marketplace/assets/icons/Entrepeneur.svg';
-import SectionTitle from '@/marketplace/components/typography/SectionTitle';
 import Link from 'next/link'
 import { BsChevronRight } from "react-icons/bs";
 
@@ -54,7 +53,7 @@ const Links = [
                                 Links.map(({ img, title, text, url }, index) => (
                                 <div className="mt-2 mb-[48px]" key= { index }>
                                     <div className="mb-[1.6rem]">
-                                        <img src= {img} alt="Entrepeneur" className="w-[112px] h-[112px]" />
+                                        <img src= { img } alt="Entrepeneur" className="w-[112px] h-[112px]" />
                                     </div>
                                     <div className="mb-[1.44rem]">
                                         <h1 className="text-lg font-bold"> { title } </h1>
