@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBrands } from "@/redux/actions/productAction";
  import Button from '@/components/Buttons/Button'
 import { Star } from '@/marketplace/assets/icons'
-import { AiOutlineInfoCircle } from 'react-icons/ai'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaArrowRight } from "react-icons/fa";
 import { NotFound } from '@/marketplace/assets/icons'
@@ -58,13 +58,18 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
     return (
         <div className="mobile:pt-10 lg:py-16">
             <div className="lg:w-5/6 mx-auto">
-                <div className="lg:flex lg:justify-between mobile:p-3 mobile:pb-5">
+                <div className="lg:flex lg:justify-between mobile:p-3 mobile:px-5 mobile:pb-5">
                     <h1 className="text-xl font-bold text-Black lg:mb-5">
                         Looking for a tradesperson?
                     </h1>
                     { !isTabletOrMobile  ?
                         ( <Link href="/marketplace">
-                            Explore marketplace
+                            <a className="font-bold text-orange flex group">
+                                <p className="my-auto font-bold">
+                                    Explore marketplace
+                                </p>
+                                <AiOutlineArrowRight className="ml-2 my-auto hidden group-hover:block" />
+                            </a>
                           </Link>
                          ) : (
                             <p className="text text-Black mt-2">
@@ -76,7 +81,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                 { 
                  isTabletOrMobile ?
                     ( categories && categories.map( ( category, i ) => (
-                        <div className="w-full p-3 mobile:bg-white mobile:mb-2">
+                        <div className="w-full p-3 mobile:px-5 mobile:bg-white mobile:mb-2">
                             <div className="flex mobile:justify-between">
                                 <div>
                                     <h1 className="text-Black font-bold text-lg lg:text-xl "> { category.name }s </h1>
@@ -131,7 +136,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                             { brands && brands.length > 0 && brands.slice( 0, 8 ).map( ( brand, i ) => (
                                 <Link href={`/marketplace/manufacturer/${brand.slug}`}>
                                     <div 
-                                        className={`bg-white shadow-product rounded-md cursor-pointer`}
+                                        className={`bg-white shadow-product rounded-md cursor-pointer transform duration-500 hover:-translate-y-2 `}
                                         key= {brand.name}
                                     >
                                         <div className="flex">
@@ -139,7 +144,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                                                 className="bg-cover bg-center rounded-l-md w-2/5 h-32" 
                                                 style= {{backgroundImage: `url(${brand.avatar})`}} 
                                             />
-                                            <div className="w-3/5 m-auto text-Black font-bold text-base pl-2 hover:text-Blue">
+                                            <div className="w-3/5 m-auto text-Black font-bold text-base pl-3 hover:text-Blue">
                                                 { brand.name }
                                             </div>                            
                                         </div>
@@ -148,17 +153,17 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
                         ))}
                     </div>
                     <div className="py-16">
-                        <h1 className="text-xl font-bold text-Black-medium mb-5 mobile:mt-4">
+                        <h1 className="text-xl font-bold text-Black mb-5 mobile:mt-4">
                             Search by category
                         </h1>
                         <div className="grid grid-cols-4 gap-4">
                             { categories.
                                 map( ( category, i ) => (
-                                    <div className="col-span-1 bg-white rounded-md shadow-product" key={i}>
+                                    <div className="col-span-1 bg-white rounded-md shadow-product transform duration-500 hover:-translate-y-2 " key={i}>
                                         <section  className="h-36 bg-cover bg-center rounded-t-md" style={{background:`url("${category.bg}")`}}/>
                                         <div className="p-3 font-bold text-Black">
                                             <Link href={`/marketplace?search=&category=${category._id}`}>
-                                                <span className="text-Black-medium font-bold hover:text-Blue my-auto capitalize cursor-pointer"> 
+                                                <span className="text-Black font-bold hover:text-Blue my-auto capitalize cursor-pointer"> 
                                                     {category.name} 
                                                 </span>
                                             </Link>

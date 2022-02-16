@@ -28,7 +28,8 @@ const banners = [
 
 const Banner = ({products, isTabletOrMobile}) => {
     return (
-        <div className="bg-Black lg:py-16 mobile:pb-10">      
+        <div>
+            <div className="bg-Black lg:py-16 mobile:pb-10">
                 <div className="lg:w-5/6 mx-auto">
                     <div className="mobile:py-4 lg:py-4">
                         <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">
@@ -96,6 +97,7 @@ const Banner = ({products, isTabletOrMobile}) => {
                     </div>
                 </div>
             </div>
+        </div>
     );
 };
 

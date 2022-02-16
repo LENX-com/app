@@ -886,6 +886,7 @@ const colors = require('tailwindcss/colors')
     'active',
     'disabled',
   ],
+  display: ["group-hover"],
   variants: {
     accessibility: ['responsive', 'focus-within', 'focus'],
     alignContent: ['responsive'],

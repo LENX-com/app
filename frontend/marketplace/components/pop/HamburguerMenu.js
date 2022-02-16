@@ -318,7 +318,7 @@ const HamburguerMenu = ({ title, isOpen = false, setIsOpen }) => {
                             <Link href="/signin"
                                     onClick={ () => setIsOpen(false) }
                             >
-                                <a className="bg-Blue rounded-full px-6 py-2 text text-white font-bold mx-auto text Center">
+                                <a className="bg-orange rounded-full px-6 py-2 text text-white font-bold mx-auto text Center">
                                     Sign in
                                 </a>
                             </Link>
