@@ -45,8 +45,8 @@ const Links = [
             <Fade left duration={1000} distance="20px">
                 <div className="py-16">
                     <div className="px-5">
-                        <div className="mobile:w-3/5">
-                            <h1 className="mb-3 font-semibold text-Black-text text-xl"> The marketplace of services </h1>
+                        <div className="mobile:w-4/5">
+                            <h1 className="mb-4 font-semibold text-Black-title text-2xl"> The marketplace of services </h1>
                         </div>
                         <div className= "grid lg:grid-cols-2 gap-4 mt-4">
                             {
@@ -56,15 +56,15 @@ const Links = [
                                         <img src= { img } alt="Entrepeneur" className="w-[112px] h-[112px]" />
                                     </div>
                                     <div className="mb-[1.44rem]">
-                                        <h1 className="text-lg font-bold"> { title } </h1>
+                                        <h1 className="text-lg font-bold text-Black-title"> { title } </h1>
                                     </div>
                                     <div className="mb-[1.6rem]">
-                                        <p className="text-[#383838]"> { text } </p>
+                                        <p className="text-Black-text"> { text } </p>
                                     </div>
                                     <div className="">
                                         <Link href= { url }>
-                                            <a className= "flex font-bold">
-                                                Learn more
+                                            <a className= "flex">
+                                                <p className="my-auto font-bold"> Learn more </p>
                                                 <BsChevronRight className="my-auto"/>
                                             </a>
                                         </Link>

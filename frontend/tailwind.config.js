@@ -83,8 +83,8 @@ const colors = require('tailwindcss/colors')
       Black:{
         DEFAULT:"#222831",
         medium: '#787c7e',
-        text: '#3c4257',
-        title: '#32325d',
+        text: '#425466',
+        title: '#0a2540',
         light: '#697386', 
       },
       lightBlack:"#393e46",

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
       fontWeight: "300",
       fontSize: "38px",
       lineHeight: "40px",
-      color: "#eee",
+      color: "white",
   }
 
 const banners = [
@@ -29,7 +29,7 @@ const banners = [
 const Banner = ({products, isTabletOrMobile}) => {
     return (
         <div>
-            <div className="bg-Black lg:py-16 mobile:pb-10">
+            <div className="bg-Black lg:py-16 mobile:pb-12 pt-8">
                 <div className="lg:w-5/6 mx-auto">
                     <div className="mobile:py-4 lg:py-4">
                         <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">

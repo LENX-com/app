@@ -9,16 +9,16 @@ const HowItWorks = () => {
         <div>
             <div className="py-10 bg-white" id="HowItWorks">
                 <div className=" lg:w-5/6 lg:mx-auto">
-                    <SectionTitle className="text-2xl mobile:text-center mobile:mb-2"> How does Wabei work? </SectionTitle>
+                    <SectionTitle className="text-2xl mobile:text-center mobile:mb-2 font-bold"> How does Wabei work? </SectionTitle>
                     <div className="mobile:w-4/5 mx-auto lg:grid lg:grid-cols-3 lg:gap-4">
                         <div className="grid mobile:grid-cols-1 my-8 mobile:mb-12">
-                            <div className=" text-Black-text lg:p-6 mb-5">
-                                <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">1. Post a project.</h1>
-                                <p className="text-base max-w-[304px]">
+                            <div className=" text-Black-title lg:p-6 mb-5">
+                                <h1 className="text-lg font-bold my-1 text-Black-title mb-2">1. Post a project.</h1>
+                                <p className="text-base max-w-[304px] text-Black-text">
                                     Create a project opening, specifying your budget, time frame and location. 
                                 </p>
                             </div>
-                            <figure className={`${styles.phone} my-auto`}>
+                            <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
                                 <div className={styles.PhoneGraphic__screen}>
                                     <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644352969/WhatsApp-Image-2022-02-08-at-20.34.46_zjv2cu.webp" alt="Phone Screen" />
                                 </div>
@@ -26,14 +26,14 @@ const HowItWorks = () => {
                         </div>
                         <Fade top duration={1000} distance="20px">
                             <div className="grid mobile:grid-cols-1 my-8 mobile:my-12">
-                                <figure className={`${styles.phone} my-auto`}>
+                                <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
                                     <div className={styles.PhoneGraphic__screen}>
                                         <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644411754/WhatsApp-Image-2022-02-09-at-12.59.48_gnnwtw.webp" alt="Phone Screen" />
                                     </div>
                                 </figure>
-                                <div className=" text-Black-text lg:p-6 mb-5 order-first">
-                                    <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">2. Review project applications. </h1>
-                                    <p className="text-base max-w-[304px]">
+                                <div className=" text-Black-title lg:p-6 mb-5 order-first">
+                                    <h1 className="text-lg font-bold my-1 text-Black-title mb-2">2. Review project applications. </h1>
+                                    <p className="text-base max-w-[304px] text-Black-text">
                                         Review all the applications. You can review the professional's reviews, previous work and select the applicant that best matches your requirements.
                                     </p>
                                 </div>
@@ -41,13 +41,13 @@ const HowItWorks = () => {
                         </Fade>
                         <Fade top duration={1000} distance="20px">
                             <div className="grid mobile:grid-cols-1 my-8 mobile:my-12">
-                                <div className=" text-Black-text lg:p-6 mb-5">
-                                    <h1 className="text-lg font-bold my-1 text-Black-medium mb-2">3. Write a review.</h1>
-                                    <p className="text-base max-w-[304px]">
+                                <div className=" text-Black-title lg:p-6 mb-5">
+                                    <h1 className="text-lg font-bold my-1 text-Black-title mb-2">3. Write a review.</h1>
+                                    <p className="text-base max-w-[304px] text-Black-text">
                                         Your reviews is what makes Wabei's community so special. By reviewing the job you help others make smarter decisions and hire the best professionals. 
                                     </p>
                                 </div>
-                                <figure className={`${styles.phone} my-auto`}>
+                                <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
                                     <div className={styles.PhoneGraphic__screen}>
                                         <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644352969/WhatsApp-Image-2022-02-08-at-20.34.46_zjv2cu.webp" alt="Phone Screen" />
                                     </div>
