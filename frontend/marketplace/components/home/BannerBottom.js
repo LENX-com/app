@@ -43,31 +43,41 @@ const Links = [
     return (
         <>
             <Fade left duration={1000} distance="20px">
-                <div className="py-16">
-                    <div className="px-5">
+                <div className="py-16 lg:w-4/6 lg:mx-auto">
+                    <div className="mobile:px-5">
                         <div className="mobile:w-4/5">
-                            <h1 className="mb-4 font-semibold text-Black-title text-2xl"> The marketplace of services </h1>
+                            <h1 className="mb-4 font-semibold text-Black-title text-2xl lg:mb-[50px]"> The marketplace of services </h1>
                         </div>
                         <div className= "grid lg:grid-cols-2 gap-4 mt-4">
                             {
                                 Links.map(({ img, title, text, url }, index) => (
                                 <div className="mt-2 mb-[48px]" key= { index }>
-                                    <div className="mb-[1.6rem]">
-                                        <img src= { img } alt="Entrepeneur" className="w-[112px] h-[112px]" />
-                                    </div>
-                                    <div className="mb-[1.44rem]">
-                                        <h1 className="text-lg font-bold text-Black-title"> { title } </h1>
-                                    </div>
-                                    <div className="mb-[1.6rem]">
-                                        <p className="text-Black-text"> { text } </p>
-                                    </div>
-                                    <div className="">
-                                        <Link href= { url }>
-                                            <a className= "flex">
-                                                <p className="my-auto font-bold"> Learn more </p>
-                                                <BsChevronRight className="my-auto"/>
-                                            </a>
-                                        </Link>
+                                    <div className="lg:flex">
+                                        <div className="lg:w-1/4">
+                                            <div className="mb-[1.6rem]">
+                                                <img 
+                                                    src= { img } 
+                                                    alt="Entrepeneur" 
+                                                    style={{ height:"112px", width:"112px" }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className=" lg:w-3/4">
+                                            <div className="mb-[1.44rem]">
+                                                <h1 className="text-lg font-bold text-Black-title"> { title } </h1>
+                                            </div>
+                                            <div className="mb-[1.6rem]">
+                                                <p className="text-Black-text"> { text } </p>
+                                            </div>
+                                            <div className="">
+                                                <Link href= { url }>
+                                                    <a className= "flex hover:text-orange">
+                                                        <p className="my-auto font-bold"> Learn more </p>
+                                                        <BsChevronRight className="my-auto"/>
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 ))}

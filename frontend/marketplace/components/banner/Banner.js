@@ -17,7 +17,7 @@ const Banner = ({products, isTabletOrMobile}) => {
 
     return (
         <div className="bg-white lg:py-16">      
-                <div className="lg:w-5/6 mx-auto grid grid-cols-2 gap-4 mobile:grid-cols-1 lg:p-3">
+                <div className="lg:w-4/6 mx-auto grid grid-cols-2 gap-4 mobile:grid-cols-1 lg:p-3">
                     <div className="bg-white mobile:pt-5 lg:py-4">
                         <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">
                             <h1 className="text-3xl mobile:text-2xl text-Black-title mb-5 mobile:mt-4">

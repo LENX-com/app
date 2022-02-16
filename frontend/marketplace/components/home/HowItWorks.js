@@ -8,7 +8,7 @@ const HowItWorks = () => {
     return (
         <div>
             <div className="py-10 bg-white" id="HowItWorks">
-                <div className=" lg:w-5/6 lg:mx-auto">
+                <div className=" lg:w-4/6 lg:mx-auto">
                     <SectionTitle className="text-2xl mobile:text-center mobile:mb-2 font-bold"> How does Wabei work? </SectionTitle>
                     <div className="mobile:w-4/5 mx-auto lg:grid lg:grid-cols-3 lg:gap-4">
                         <div className="grid mobile:grid-cols-1 my-8 mobile:mb-12">
@@ -18,7 +18,7 @@ const HowItWorks = () => {
                                     Create a project opening, specifying your budget, time frame and location. 
                                 </p>
                             </div>
-                            <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
+                            <figure className={`${styles.phone} my-auto mobile:mx-auto lg:pl-3`}>
                                 <div className={styles.PhoneGraphic__screen}>
                                     <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644352969/WhatsApp-Image-2022-02-08-at-20.34.46_zjv2cu.webp" alt="Phone Screen" />
                                 </div>
@@ -26,7 +26,7 @@ const HowItWorks = () => {
                         </div>
                         <Fade top duration={1000} distance="20px">
                             <div className="grid mobile:grid-cols-1 my-8 mobile:my-12">
-                                <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
+                                <figure className={`${styles.phone} my-auto mobile:mx-auto lg:pl-3`}>
                                     <div className={styles.PhoneGraphic__screen}>
                                         <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644411754/WhatsApp-Image-2022-02-09-at-12.59.48_gnnwtw.webp" alt="Phone Screen" />
                                     </div>
@@ -47,7 +47,7 @@ const HowItWorks = () => {
                                         Your reviews is what makes Wabei's community so special. By reviewing the job you help others make smarter decisions and hire the best professionals. 
                                     </p>
                                 </div>
-                                <figure className={`${styles.phone} my-auto mobile:mx-auto`}>
+                                <figure className={`${styles.phone} my-auto mobile:mx-auto lg:pl-3`}>
                                     <div className={styles.PhoneGraphic__screen}>
                                         <img src="https://res.cloudinary.com/lenx2222/image/upload/v1644352969/WhatsApp-Image-2022-02-08-at-20.34.46_zjv2cu.webp" alt="Phone Screen" />
                                     </div>

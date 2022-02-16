@@ -30,9 +30,9 @@ const Banner = ({products, isTabletOrMobile}) => {
     return (
         <div>
             <div className="bg-Black lg:py-16 mobile:pb-12 pt-8">
-                <div className="lg:w-5/6 mx-auto">
+                <div className="lg:w-4/6 mx-auto">
                     <div className="mobile:py-4 lg:py-4">
-                        <div className="lg:w-4/5 mx-auto mobile:py-3 mobile:px-5">
+                        <div className="mx-auto mobile:py-3 mobile:px-5">
                             <div className="">
                             <h1 className="text-lg font-bold text-blue mb-5 mobile:mt-4">
                                 Why Wabei?

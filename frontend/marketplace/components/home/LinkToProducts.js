@@ -57,7 +57,7 @@ const LinkToProducts = ({categories, products, isTabletOrMobile}) => {
 
     return (
         <div className="mobile:py-12 lg:py-16">
-            <div className="lg:w-5/6 mx-auto">
+            <div className="lg:w-4/6 mx-auto">
                 <div className="lg:flex lg:justify-between mobile:p-3 mobile:px-5 mobile:pb-5">
                     <h1 className="text-2xl font-bold text-Black-title lg:mb-5">
                         Looking for a tradesperson?
