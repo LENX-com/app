@@ -27,7 +27,7 @@ const Store = ({match}) => {
     { name: " On hold "},
 ]
 function toggleDropdown() {
-  setIsOpen(!isOpen)
+  setIsOpen( !isOpen )
 }
  
   useEffect(() => {

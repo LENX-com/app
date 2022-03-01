@@ -20,7 +20,7 @@ const Profile = () => {
   
   const thumbsContainer = {
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'row', 
   flexWrap: 'wrap',
   marginTop: 16
 };

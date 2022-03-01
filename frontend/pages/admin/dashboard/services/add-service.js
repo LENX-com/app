@@ -22,10 +22,9 @@ import 'react-quill/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
-
+  
 
 const AddProduct = () => {
-    const categories = useSelector((state) => state.category.categories);
     const { token } = useSelector((state) => state.auth);
     const [ category, setCategory ] = useState('')
     const [ subs, setSubs ] = useState('')
@@ -178,8 +177,6 @@ const validatorForm = Yup.object().shape({
         const handleSub = (e) => {
             setFieldValue("subs", e)
         }
-        
-        console.log("values.subs._id", values.subs._id)
         
          return (
             <form onSubmit={handleSubmit}>
@@ -475,13 +472,13 @@ const validatorForm = Yup.object().shape({
                 </Card>
 
             </div>
-                    <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey lg:relative lg:mb-10" style={{zIndex:'9999'}}>
-                        <div className="flex my-2 px-3 m-auto">
-                            <Button className="bg-Black text-white w-3/5 ml-3" type="submit" onClick={() => setIsSubmitting(true)}>
-                                Save Product
-                            </Button>
-                        </div>
-                    </div>
+            <div className="w-full fixed bottom-0 border-t-2 mobile:bg-white border-Grey lg:relative lg:mb-10" style={{zIndex:'9999'}}>
+                <div className="flex my-2 px-3 m-auto">
+                    <Button className="bg-Black text-white w-3/5 ml-3" type="submit" onClick={() => setIsSubmitting(true)}>
+                        Save Product
+                    </Button>
+                </div>
+            </div>
         </form>
     
       )} 

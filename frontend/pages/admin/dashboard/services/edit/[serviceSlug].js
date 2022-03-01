@@ -177,7 +177,7 @@ const validatorForm = Yup.object().shape({
                 <Badge type={ singleProduct.status === "active" ? `success` : 'warning' } className="capitalize"> { singleProduct.status } </Badge>
             </div>
         </div>
-      <div className="container relative">
+      <div className= "container relative">
         <Formik
           initialValues={{
             name: singleProduct.name,
@@ -190,9 +190,9 @@ const validatorForm = Yup.object().shape({
             tags: singleProduct.tags,
           }}
 
-          validationSchema={validatorForm}
-          validateOnChange={isSubmitting}
-          validateOnBlur={isSubmitting}
+          validationSchema= { validatorForm }
+          validateOnChange= { isSubmitting }
+          validateOnBlur= { isSubmitting }
 
           onSubmit= { async (values, {resetForm, validate}) => {
             
@@ -202,9 +202,9 @@ const validatorForm = Yup.object().shape({
             var currentPhoto = []
             for (let i = 0; i <= values.file.length; i++) {
                 values.file[i] !== undefined && currentPhoto.push({
-                    url:values.file[i].url,
-                    id:values.file[i]._id,
-                    public_id:values.file[i].public_id
+                    url: values.file[i].url,
+                    id: values.file[i]._id,
+                    public_id: values.file[i].public_id
                 });
                 }
             formData.append("currentPhoto", JSON.stringify(currentPhoto))
@@ -221,10 +221,10 @@ const validatorForm = Yup.object().shape({
             }
 
             for (let i = 0; i <= values.file.length; i++) {
-              formData.append(`file`, values.file[i] );
+              formData.append( `file`, values.file[i] );
                 }
 
-            dispatch(updateProduct( singleProduct._id, formData))
+            dispatch( updateProduct( singleProduct._id, formData) )
             router.replace("/admin/dashboard/services")
 
           }}>

@@ -41,7 +41,7 @@ const NameSlider = ({categories}) => {
                         freeMode={true}
                         navigation={true}
                     >
-                        {categories?.map((category) => (
+                        { categories?.map((category) => (
                             <SwiperSlide className="bg-white rounded-md border-box h-44 cursor-pointer group m-2 w-4/6">
                                 <Link href= {`/marketplace?search=${""}&category=${category._id}`} key={category.name} className="">
                                     <a>

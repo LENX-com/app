@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import withAuth from '@/components/auth'
 import Dropzone from "react-dropzone";
 import { getCategories } from "@/redux/actions/categoryAction";
-import  { getLocations } from '@/redux/actions/productAction'
+import  { getLocations } from '@/redux/actions/productAction' 
 import { Formik,  Field, FieldArray } from "formik";
 import 'react-quill/dist/quill.snow.css';
 import { loadUser, userProfileUpdate } from "@/redux/actions/authAction";
@@ -22,7 +22,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.category.categories);
   const { user } = useSelector((state) => state.auth);
-  const { locations } = useSelector((state) => state.locations);
+  const { locations } = useSelector((state) => state.locations); 
   const [load, setload] = useState(false);
   const [ isSubmitting, setIsSubmitting ] = useState(false)
   const [ isCreated, setIsCreated] = useState(false)
@@ -78,7 +78,7 @@ const title = "text-lg font-bold text-Black-medium pb-1";
                         .min(1, 'Enter a location')
                         .max(6, 'You cannot enter more than four locations'),
                 categories:
-                    Yup.array()
+                    Yup.array() 
                         .required('Enter a category')
                         .min(1, 'Enter a category')
                         .max(4, 'You cannot enter more than four categories'),

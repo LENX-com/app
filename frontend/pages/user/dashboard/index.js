@@ -10,7 +10,7 @@ import { Avatar } from '@windmill/react-ui'
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { orderByUser } from '@/redux/actions/orderAction'
 import Link from 'next/link'
-import { NotFound } from '@/marketplace/assets/icons'
+import { NotFound } from '@/marketplace/assets/icons'  
 import { HiChevronRight, HiOutlineChat } from 'react-icons/hi'
 import { AiOutlineMessage, AiOutlineUser } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'  

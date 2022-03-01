@@ -454,9 +454,11 @@ import Layout from '@/containers/Layout'
 import { useRouter } from 'next/router'
 import { useMediaQuery } from 'react-responsive'
 import Button from '@/components/Buttons/Button'
+import { NavLink } from '@/components/NavLink/NavLink'
 import { NotFound } from '@/marketplace/assets/icons'
 import * as Icons from '@/marketplace/assets/icons'
 import { AiTwotoneShopping, AiFillShop, AiOutlineSearch, AiFillCar, AiOutlineDown, AiOutlineClose, AiOutlineInfoCircle } from 'react-icons/ai'
+import { MdHandyman } from 'react-icons/md'
 import PopUp from '@/marketplace/components/pop/PopUp'
 import {  Pagination } from "@windmill/react-ui"; 
 import Profile from '@/marketplace/components/profile/Profile'
@@ -515,7 +517,7 @@ const Stores = () => {
   }, [category])
 
 const handleSearch = React.useCallback((e) => {
-  Router.push(`?search=${e.target.value}&category=${category}`)
+  Router.push(`?search=${e.target.value}&category=${category}`)  
   setValue(e.target.value)
 }, [value])
 
@@ -598,21 +600,21 @@ const handlePagination = (value) => {
 
        <div className="mobile:ml-0 lg:col-span-5 mobile:mt-3 lg:mt-6">
             <div className="bar">
-               {/* <div className="grid grid-cols-2 max-w-sm">
-                    <div className="text-Black-medium">
-                    <NavLink exact href="/marketplace" className="p-2 border-b-2 justify-center font-bold text-center cursor-pointer flex "  activeClassName="border-Blue text-Blue" >
-                          <AiTwotoneShopping className="my-auto text-xl mr-1"/>
-                          Products
-                    </NavLink>
-                    </div>
+              <div className="grid grid-cols-2 max-w-sm">
+                <div className="text-Black-medium">
+                <NavLink exact href="/marketplace" className="p-2 border-b-2 justify-center font-bold text-center cursor-pointer flex "  activeClassName="border-orange text-orange" >
+                      <MdHandyman className="my-auto w-5 h-5 mr-1" />
+                      Search professionals
+                </NavLink>
+                </div>
 
-                    <div className="text-Black-medium">
-                    <NavLink href="/marketplace/stores" className="p-2 border-b-2 justify-center font-bold text-center cursor-pointer flex "  activeClassName="border-Blue text-Blue" >
-                        <AiFillShop className="my-auto text-xl mr-1"/>
-                        Stores
-                      </NavLink>
-                    </div>
-                </div> */}
+                <div className="text-Black-medium">
+                <NavLink href="/marketplace/jobs" className="p-2 border-b-2 justify-center font-bold text-center cursor-pointer flex "  activeClassName="border-orange text-orange" >
+                    <AiTwotoneShopping className="my-auto h-5 w-5 mr-1"/>
+                    Search jobs
+                  </NavLink>
+                </div>
+              </div>
 
       { isTabletOrMobile &&
         <>
@@ -660,7 +662,7 @@ const handlePagination = (value) => {
                 </div>
               }
               <StoreCard 
-                brand={brand} 
+                brand= { brand } 
                 isTabletOrMobile ={isTabletOrMobile} 
                 handleProfile={handleProfile} 
               />

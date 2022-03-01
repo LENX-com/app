@@ -110,12 +110,12 @@ import _ from 'lodash'
           <div className="my-auto">
             <div className="grid grid-cols-4 gap-6" style={{height:"64px"}}>
               <div className="text-Grey hover:bg-lightBlack px-3 rounded-md my-1"> 
-                <NavLink exact href="/" className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" activeClassName=" border-b-2 border-orange text-orange " >
+                <NavLink exact href="/" className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" activeClassName=" border-b-2 border-blue text-blue " >
                   <AiOutlineHome className="w-7 h-7 my-auto" />
                 </NavLink>
               </div>
             <div className="text-Grey hover:bg-lightBlack px-3 rounded-md my-1">
-                <NavLink href="/marketplace" className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" activeClassName=" border-b-2 border-orange text-orange" >
+                <NavLink href="/marketplace" className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" activeClassName=" border-b-2 border-blue text-blue" >
                   <AiOutlineShop className="w-7 h-7 my-auto" />
                 </NavLink>
               </div>
@@ -123,7 +123,7 @@ import _ from 'lodash'
                 <NavLink 
                         href={user?.role === 1 ? '/admin/dashboard' : '/user/dashboard'} 
                         className="p-2 justify-center font-bold text-center cursor-pointer flex h-full" 
-                        activeClassName=" border-b-2 border-orange text-orange" >
+                        activeClassName=" border-b-2 border-blue text-blue" >
                   <AiOutlineDashboard className="w-7 h-7 my-auto" 
                 />
                 </NavLink>

@@ -27,7 +27,7 @@ const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
         fontWeight: "200",
         textTransform: "uppercase",
         letterSpacing: ".1em",
-        background: "#e6e6dd",
+        background: "#e6e6dd",  
         borderRadius: "4px",
         padding: "0.4em 1em",
         marginRight: "0.6em",
@@ -37,7 +37,7 @@ const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
     return (
        <>
             <Link href={`/marketplace/manufacturer/${brand.slug}`}>
-                <div className={`cursor-pointer group flex p-4 bg-white ${!isTabletOrMobile ? "border-box hover:bg-Grey-dashboard" : 'shadow-separator'}`}
+                <div className={`cursor-pointer group flex p-4 bg-white ${!isTabletOrMobile ? "border-box hover:bg-Grey-dashboard" : 'shadow-separator'} transform duration-500 hover:-translate-y-2 `}
                     key= {brand.name}
                 >
                     <section 
@@ -56,21 +56,21 @@ const StoreCard = React.memo(({brand, isTabletOrMobile, handleProfile}) => {
                         </div>
                     }   
                         <Link href = {`marketplace/manufacturer/${brand.slug}`} className="my-auto flex">
-                            <span className="text-Black-medium font-bold hover:text-Blue my-auto capitalize"> {brand.name} </span>
+                            <span className="text-Black-title font-bold hover:text-Blue my-auto capitalize"> {brand.name} </span>
                         </Link>
-                    <div className=" text-sm">
+                    <div className=" text-sm text-Black-title">
                         { brand.summary && `${brand.summary?.substring(0, MAX_LENGTH)} ${brand.summary.length >= MAX_LENGTH ? "..." : ""}`}
                     </div>
                     <div className="overflow-hidden py-2">
-                            {brand.categories && brand.categories.length > 0 && brand.categories.map( (category, i) => (
-                                <span 
-                                        className="text-Black-medium font-bold my-auto capitalize"
-                                        style= { categoriesStyle }
-                                        key={i}
-                                >
-                                    {category.name}
-                                </span>
-                            ))}
+                        { brand.categories && brand.categories.length > 0 && brand.categories.map( (category, i) => (
+                            <span 
+                                className="text-Black-medium font-bold my-auto capitalize"
+                                style= { categoriesStyle }
+                                key={i}
+                            >
+                                {category.name}
+                            </span>
+                        ))}
                     </div>
                     </div>
                 </div>    

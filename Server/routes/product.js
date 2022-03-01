@@ -50,7 +50,7 @@ router.post(
   upload.array("file"),
   auth,
   protected(1),
-  createProduct
+  createProduct  
 );   
 router.get("/query-catalogues", searchCatalogue);
 router.get("/query-products", searchProductsCatalogue);  
