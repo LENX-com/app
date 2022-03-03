@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import parse from 'html-react-parser'
 import { useMediaQuery } from 'react-responsive'
+import moment from 'moment'
 import Button from '@/components/Buttons/Button'
 import { NotFound } from '@/marketplace/assets/icons'
 import { getAllManufacturer } from "@/redux/actions/userActions";
@@ -37,7 +38,7 @@ const Stores = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 768px)' })
 
   console.log("jobs", jobs)
-
+  
     const categoriesStyle = {
         display: "inline-block",
         fontSize: "12px",
@@ -47,7 +48,7 @@ const Stores = () => {
         letterSpacing: ".1em",
         background: "#e6e6dd",  
         borderRadius: "4px",
-        padding: "0.4em 1em",
+        padding: "0.2em 0.5em",
         marginRight: "0.6em",
         marginBottom: "0.6em",
     }
@@ -101,6 +102,14 @@ const handlePagination = (value) => {
     Router.push(`?search=${""}&category=${""}`)
     dispatch( getJobs());
   }
+
+  const handleClick = (e) => {
+    if(!isAuthenticated) {
+      Router.push('/login')
+    } else return 
+     Router.push('/s')
+  }
+
 
   return (
     <Layout>
@@ -222,36 +231,49 @@ const handlePagination = (value) => {
               <Fragment key={i}>
                 <Link href={`/marketplace/jobs/${job._id}`}>
                   <div className= {
-                                  `cursor-pointer group p-3 bg-white 
+                                  `cursor-pointer group p-3 bg-white group
                                   ${!isTabletOrMobile ? "border-box hover:bg-Grey-dashboard" 
-                                    : 'shadow-separator'} 
-                                  transform duration-500 hover:-translate-y-2 `
+                                    : 'shadow-separator'}`
                   }>
                     <div className="m-auto px-3 py-2">
-                      <div className= "mb-3 mt-1">
+                      <div className="flex justify-between">
                         <div>
-                          <span className="text-Black-title hover:text-orange my-auto capitalize text-lg"> { job.title } </span>
+                          <div className= "mb-3 mt-1">
+                            <div>
+                              <span className="text-Black-title hover:text-orange my-auto capitalize text-lg"> { job.title } </span>
+                            </div>
+                            <div>
+                              <span className="text-Black-title font-bold my-auto capitalize"> 
+                                { job.location && ` ${ job.location?.location }, ${ job.location?.city } `} 
+                              </span>
+                            </div>
+                          </div>
+                          <div className=" text-base text-Black-medium mb-3">
+                            { parse( job.description && `${job.description?.substring(0, MAX_LENGTH)} ${job.description.length >= MAX_LENGTH ? "..." : ""}` )}
+                          </div>
                         </div>
-                        <div>
-                          <span className="text-Black-title font-bold my-auto capitalize"> 
-                            { job.location && ` ${ job.location?.location }, ${ job.location?.city } `} 
-                          </span>
-                        </div>
-                      </div>
-                      <div className=" text-base text-Black-medium mb-3">
-                          { parse( job.description && `${job.description?.substring(0, MAX_LENGTH)} ${job.description.length >= MAX_LENGTH ? "..." : ""}` )}
+
+                        { !isTabletOrMobile &&
+                            <div className="my-auto hidden group-hover:block">
+                              <Button className="bg-orange text-white"> 
+                                Apply
+                              </Button>
+                            </div>
+                        }
+
                       </div>
                       <div className= "flex justify-between" >
                         <div>
-                            <h2 className=" text-base text-Black-text"> Budget: </h2>
+                            <h2 className=" text-base text-Black-text mb-1"> Budget: </h2>
                             <span 
-                                className="text-Black-title font-bold my-auto capitalize text-lg"
+                                className="text-lg font-bold"
+                                style= { categoriesStyle }
                                 >
                                 £{ job.budget }
                             </span>
                         </div>
                         <div>
-                            <h2 className= "text"> Posted: 12 hours ago</h2>
+                            <h2 className= "text"> Posted: { moment(job.updatedAt).startOf('hour').fromNow() } </h2>
                         </div>
                       </div>
                     </div>
@@ -271,7 +293,7 @@ const handlePagination = (value) => {
         )}
         <div className="p-3 mt-3">
           <Pagination
-                totalResults={count ? count : 0}
+                totalResults= { count ? count : 0 }
                 resultsPerPage={18}
                 onChange={(value) => handlePagination(value)}
             />

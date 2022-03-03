@@ -50,10 +50,10 @@ exports.getJobById = async (req, res) => {
     if( !jobId ) {
         return res.status(400).json({error: "Job ID is required"});
     }
-    const job = await Job.findById(jobId);
-     if( ! _.isEqual(job.author, req.user._id) ) { 
-        return res.status(500).json({error: "You are not authorized to view this job"});
-    }
+    // const job = await Job.findById(jobId);
+    //  if( ! _.isEqual(job.author, req.user._id) ) { 
+    //     return res.status(500).json({error: "You are not authorized to view this job"});
+    // }
     return res.status(200).json(job);
   } catch (error) {
     console.log(error);
